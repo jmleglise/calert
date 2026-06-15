@@ -1,0 +1,281 @@
+---
+import fr from '../i18n/fr.json';
+const { nav } = fr;
+---
+
+<header class="header">
+  <div class="header-container">
+    <a href="/fr/" class="logo">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="currentColor"/>
+        <path d="M8 16C8 16 10 10 16 10C22 10 24 16 24 16C24 16 22 22 16 22C10 22 8 16 8 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="3" fill="white"/>
+      </svg>
+      <span class="logo-text">ConsoAlert</span>
+    </a>
+
+    <nav class="nav-desktop">
+      <a href="/fr/" class="nav-link">{nav.home}</a>
+      <a href="#tarifs" class="nav-link">{nav.pricing}</a>
+      <a href="#blog" class="nav-link">{nav.blog}</a>
+
+    </nav>
+
+    <div class="auth-buttons">
+      <a href="https://app.consoalert.com/auth" class="btn-login">{nav.login}</a>
+      <a href="https://app.consoalert.com/auth" class="btn-signup">{nav.signup}</a>
+    </div>
+
+    <button class="mobile-menu-btn" aria-label="Menu" data-mobile-menu>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" data-mobile-nav>
+    <a href="/fr/" class="nav-link">{nav.home}</a>
+    <a href="#tarifs" class="nav-link">{nav.pricing}</a>
+    <a href="#blog" class="nav-link">{nav.blog}</a>
+
+    <div class="auth-buttons-mobile">
+      <a href="https://app.consoalert.com/auth" class="btn-login">{nav.login}</a>
+      <a href="https://app.consoalert.com/auth" class="btn-signup">{nav.signup}</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: color-mix(in oklab, white 70%, transparent);
+    backdrop-filter: blur(3px) saturate(70%);
+    -webkit-backdrop-filter: blur(3px) saturate(70%);
+    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+    transition: all var(--transition-normal);
+  }
+
+  .header.scrolled {
+    box-shadow: 0 4px 24px rgba(10, 37, 64, 0.08);
+  }
+
+  .header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-6);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-blurple);
+  }
+
+  .logo-text {
+    font-size: var(--font-size-xl);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: var(--spacing-8);
+  }
+
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-blurple);
+    transition: width var(--transition-normal);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .auth-buttons {
+    display: none;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+
+  @media (min-width: 768px) {
+    .auth-buttons {
+      display: flex;
+    }
+  }
+
+  .btn-login {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: var(--spacing-2) var(--spacing-4);
+    transition: color var(--transition-fast);
+  }
+
+  .btn-login:hover {
+    color: var(--color-text-primary);
+  }
+
+  .btn-signup {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: white;
+    background: var(--color-blurple);
+    padding: var(--spacing-2) var(--spacing-5);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+  }
+
+  .btn-signup:hover {
+    background: var(--color-blurple-hover);
+    transform: translateY(-1px);
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-primary);
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+  }
+
+  .mobile-menu-btn:hover {
+    background: var(--color-slate-100);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu-btn {
+      display: none;
+    }
+  }
+
+  .mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-mobile {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: color-mix(in oklab, white 90%, transparent);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+    padding: var(--spacing-4) var(--spacing-6) var(--spacing-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-normal);
+  }
+
+  .nav-mobile.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  @media (min-width: 768px) {
+    .nav-mobile {
+      display: none;
+    }
+  }
+
+  .nav-mobile .nav-link {
+    padding: var(--spacing-2) 0;
+    font-size: var(--font-size-base);
+  }
+
+  .auth-buttons-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    margin-top: var(--spacing-3);
+    padding-top: var(--spacing-3);
+    border-top: 1px solid var(--color-slate-200);
+  }
+
+  .auth-buttons-mobile .btn-login {
+    text-align: center;
+    padding: var(--spacing-3);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-md);
+  }
+
+  .auth-buttons-mobile .btn-signup {
+    text-align: center;
+    padding: var(--spacing-3);
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.querySelector('[data-mobile-menu]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('open');
+  });
+
+  // Close mobile nav when clicking a link
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // Add scrolled class
+  const header = document.querySelector('.header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+</script>

@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Partners from '../../components/Partners.astro';
+import Cards from '../../components/Cards.astro';
+import Legal from '../../components/Legal.astro';
+import FAQ from '../../components/FAQ.astro';
+import Footer from '../../components/Footer.astro';
+import fr from '../../i18n/fr.json';
+---
+
+<Layout title={`${fr.meta.title} | ConsoAlert`} description={fr.meta.description}>
+  <Header />
+  <main>
+    <Hero />
+    <Partners />
+    <Cards />
+    <Legal />
+    <FAQ />
+  </main>
+  <Footer />
+</Layout>

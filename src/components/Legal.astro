@@ -1,0 +1,128 @@
+---
+import fr from '../i18n/fr.json';
+const { legal } = fr;
+---
+
+<section class="legal-section" id="legal">
+  <div class="legal-container">
+    <div class="legal-header">
+      <h2 class="legal-title">{legal.title}</h2>
+      <p class="legal-subtitle">{legal.subtitle}</p>
+    </div>
+
+    <div class="legal-grid">
+      {legal.sections.map((section, index) => (
+        <article class="legal-block" style={`animation-delay: ${index * 0.15}s`}>
+          <div class="legal-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="legal-block-title">{section.title}</h3>
+          <p class="legal-block-text">{section.content}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .legal-section {
+    padding: var(--spacing-24) 0;
+    background: #FFFFFF;
+  }
+
+  .legal-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-6);
+  }
+
+  .legal-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+
+  .legal-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-4);
+  }
+
+  @media (min-width: 768px) {
+    .legal-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  .legal-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .legal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+
+  @media (min-width: 768px) {
+    .legal-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .legal-block {
+    background: #FFFFFF;
+    padding: var(--spacing-8);
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .legal-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-50);
+    border-radius: var(--radius-lg);
+    color: var(--color-blurple);
+    margin-bottom: var(--spacing-5);
+  }
+
+  .legal-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .legal-block-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .legal-block-text {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

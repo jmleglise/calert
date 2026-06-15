@@ -1,0 +1,165 @@
+---
+import fr from '../i18n/fr.json';
+const { faq } = fr;
+---
+
+<section class="faq-section" id="faq">
+  <div class="faq-container">
+    <div class="faq-header">
+      <h2 class="faq-title">{faq.title}</h2>
+    </div>
+
+    <div class="faq-list">
+      {faq.items.map((item, index) => (
+        <div class="faq-item" data-faq-item style={`animation-delay: ${index * 0.1}s`}>
+          <button class="faq-question" data-faq-trigger aria-expanded="false">
+            <span class="faq-question-text">{item.question}</span>
+            <span class="faq-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer" data-faq-answer>
+            <p class="faq-answer-text">{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: var(--spacing-24) 0;
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-6);
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .faq-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  @media (min-width: 768px) {
+    .faq-title {
+      font-size: var(--font-size-4xl);
+    }
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .faq-item {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    padding: var(--spacing-6);
+    text-align: left;
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--color-text-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .faq-question:hover {
+    color: var(--color-blurple);
+  }
+
+  .faq-question-text {
+    flex: 1;
+  }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-slate-100);
+    border-radius: var(--radius-full);
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+  }
+
+  .faq-icon svg {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--transition-normal);
+  }
+
+  .faq-item.open .faq-icon {
+    background: var(--color-blurple);
+    color: white;
+  }
+
+  .faq-item.open .faq-icon svg {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-answer-text {
+    padding: 0 var(--spacing-6) var(--spacing-6);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+  }
+</style>
+
+<script>
+  const faqItems = document.querySelectorAll('[data-faq-item]');
+
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('[data-faq-trigger]');
+
+    trigger?.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all others
+      faqItems.forEach(other => other.classList.remove('open'));
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      } else {
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+</script>

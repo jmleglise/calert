@@ -1,0 +1,301 @@
+---
+import fr from '../i18n/fr.json';
+const { hero } = fr;
+---
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-title">{hero.title}</h1>
+      <p class="hero-subtitle">{hero.subtitle}</p>
+      <div class="hero-cta-group">
+        <a href="https://app.consoalert.com/auth" class="hero-cta">
+          {hero.cta}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-arrow">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="hero-micro">{hero.micro}</p>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="wattson-avatar">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="24" fill="url(#grad1)"/>
+            <path d="M16 24C16 24 18 18 24 18C30 18 32 24 32 24C32 24 30 30 24 30C18 30 16 24 16 24Z" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="4" fill="white"/>
+            <circle cx="24" cy="24" r="2" fill="#4f46e5"/>
+            <defs>
+              <linearGradient id="grad1" x1="0" y1="0" x2="48" y2="48">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#4f46e5"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="stat-value" >Villa Tamaris</span>
+        </div>
+        <div class="alert-content">
+          <span class="alert-icon">⚡</span>
+          <div class="alert-text">
+            <span class="alert-title">Anomalie détectée</span>
+            <span class="alert-desc">Chauffage actif - Logement vide</span>
+          </div>
+          <span class="alert-time">Il y a 2 min</span>
+        </div>
+        <div class="stats-row">
+          <div class="stat">
+            <span class="stat-value">2.4 kWh</span>
+            <span class="stat-label">Sur-consommation</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value stat-warning">0,5€ / 24h</span>
+            <span class="stat-label">Evaluation du risque</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bg-gradient"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-24) 0 var(--spacing-16);
+    overflow: hidden;
+    background-image: url('/background_abstract-waves.jpg');
+    background-size: cover;
+    background-position: center 60%;
+    background-repeat: no-repeat;
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-6);
+    display: grid;
+    gap: var(--spacing-12);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-16);
+    }
+  }
+
+  .hero-content {
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-6);
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: var(--font-size-5xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: var(--font-size-6xl);
+    }
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-8);
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    align-items: flex-start;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: white;
+    background: var(--color-blurple);
+    padding: var(--spacing-4) var(--spacing-8);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+    box-shadow: 0 8px 24px rgba(99, 91, 255, 0.35);
+  }
+
+  .hero-cta:hover {
+    background: var(--color-blurple-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(99, 91, 255, 0.45);
+  }
+
+  .cta-arrow {
+    width: 20px;
+    height: 20px;
+    transition: transform var(--transition-fast);
+  }
+
+  .hero-cta:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .hero-micro {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+
+  .hero-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-2xl);
+    border: 1px solid var(--color-slate-200);
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .wattson-avatar {
+    display: flex;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .wattson-avatar svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .alert-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-4);
+    background: var(--color-slate-50);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .alert-icon {
+    font-size: 24px;
+  }
+
+  .alert-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .alert-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .alert-desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  .alert-time {
+    font-size: var(--font-size-xs);
+    color: var(--color-slate-400);
+    margin-left: auto;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-4);
+    background: var(--color-slate-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .stat-warning {
+    color: var(--color-warning-500);
+  }
+
+  .stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+  }
+
+  .hero-bg-gradient {
+    position: absolute;
+    inset: 0;
+    /* White overlay on left (text side) fading to transparent — preserves readability */
+    background: linear-gradient(
+      105deg,
+      rgba(246, 249, 252, 0.92) 0%,
+      rgba(246, 249, 252, 0.75) 35%,
+      rgba(246, 249, 252, 0.30) 60%,
+      rgba(246, 249, 252, 0.10) 100%
+    );
+    pointer-events: none;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-bg-gradient {
+      /* On mobile (single column) cover more of the image */
+      background: rgba(246, 249, 252, 0.82);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

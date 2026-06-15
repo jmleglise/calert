@@ -1,0 +1,1671 @@
+---
+import fr from '../i18n/fr.json';
+const { cards } = fr;
+---
+
+<section class="cards-section" id="features">
+  <div class="cards-container">
+    <div class="section-header">
+      <h2 class="section-title">{cards.title}</h2>
+      <p class="section-subtitle">{cards.subtitle}</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Card 1 -->
+      <article class="card" data-card="0">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Protégez vos propriétaires avant qu'ils ne découvrent leur facture.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-heater">
+            <div class="heater-bg"></div>
+            <div class="heater-chart">
+              <div class="chart-bars">
+                <div class="bar" style="height:30%"></div>
+                <div class="bar" style="height:35%"></div>
+                <div class="bar" style="height:28%"></div>
+                <div class="bar bar-alert" style="height:95%"></div>
+                <div class="bar bar-alert" style="height:90%"></div>
+                <div class="bar bar-alert" style="height:88%"></div>
+                <div class="bar bar-alert" style="height:92%"></div>
+              </div>
+              <div class="chart-label-empty">Logement vide</div>
+              <div class="alert-badge">
+                <span class="alert-dot"></span>
+                Anomalie détectée — Chauffage actif
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card" data-card="1">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Refacturez équitablement les recharges de véhicules électriques.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-savings">
+            <div class="savings-bg"></div>
+            <div class="savings-content">
+              <div class="savings-ring">
+                <svg viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="48" fill="none" stroke="#e2e8f0" stroke-width="10"/>
+                  <circle cx="60" cy="60" r="48" fill="none" stroke="url(#savings-grad)" stroke-width="10" stroke-dasharray="188 113" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                  <text x="60" y="55" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">200€</text>
+                  <text x="60" y="72" text-anchor="middle" font-size="10" fill="#64748b">économisés</text>
+                  <defs>
+                    <linearGradient id="savings-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#6366f1"/>
+                      <stop offset="100%" stop-color="#4f46e5"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="savings-items">
+                <div class="saving-item">
+                  <span class="saving-label">Sèche-serviette 1000W</span>
+                  <span class="saving-value positive">+€€€</span>
+                </div>
+                <div class="saving-item">
+                  <span class="saving-label">Abonnement Wattson</span>
+                  <span class="saving-value negative">–€</span>
+                </div>
+                <div class="saving-divider"></div>
+                <div class="saving-item bold">
+                  <span class="saving-label">ROI en 48h</span>
+                  <span class="saving-value positive">✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card" data-card="2">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Centralisez la surveillance de tous vos logements.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-squat">
+            <div class="squat-bg"></div>
+            <div class="squat-timeline">
+              <div class="timeline-row">
+                <span class="timeline-date">Lun</span>
+                <div class="timeline-bar empty"></div>
+                <span class="timeline-wh">0 Wh</span>
+              </div>
+              <div class="timeline-row">
+                <span class="timeline-date">Mar</span>
+                <div class="timeline-bar empty"></div>
+                <span class="timeline-wh">0 Wh</span>
+              </div>
+              <div class="timeline-row">
+                <span class="timeline-date">Mer</span>
+                <div class="timeline-bar empty"></div>
+                <span class="timeline-wh">0 Wh</span>
+              </div>
+              <div class="timeline-row alert">
+                <span class="timeline-date">Jeu</span>
+                <div class="timeline-bar squat-bar"></div>
+                <span class="timeline-wh alert-text">3.2 kWh ⚠️</span>
+              </div>
+            </div>
+            <div class="squat-alert">
+              <svg viewBox="0 0 20 20" fill="none" class="squat-icon">
+                <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 4v4m0 4v.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Occupation suspecte détectée
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card" data-card="3">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Gardez un œil sur votre résidence secondaire.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-ev">
+            <div class="ev-bg"></div>
+            <div class="ev-content">
+              <div class="ev-night-chart">
+                <div class="ev-label">Consommation nocturne</div>
+                <div class="ev-timeline">
+                  <div class="ev-slot" style="height:10%"></div>
+                  <div class="ev-slot" style="height:12%"></div>
+                  <div class="ev-slot ev-charging" style="height:85%"></div>
+                  <div class="ev-slot ev-charging" style="height:88%"></div>
+                  <div class="ev-slot ev-charging" style="height:90%"></div>
+                  <div class="ev-slot ev-charging" style="height:87%"></div>
+                  <div class="ev-slot ev-charging" style="height:89%"></div>
+                  <div class="ev-slot ev-charging" style="height:86%"></div>
+                  <div class="ev-slot" style="height:11%"></div>
+                  <div class="ev-slot" style="height:9%"></div>
+                </div>
+                <div class="ev-hours">
+                  <span>22h</span><span>00h</span><span>02h</span><span>04h</span><span>06h</span>
+                </div>
+              </div>
+              <div class="ev-cost-badge">
+                <span class="ev-cost-value">+20€</span>
+                <span class="ev-cost-label">récupérables</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card" data-card="4">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Détectez les anomalies avant votre facture.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-clim">
+            <div class="clim-bg"></div>
+            <div class="clim-content">
+              <div class="clim-gauge">
+                <svg viewBox="0 0 200 110">
+                  <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#e2e8f0" stroke-width="14" stroke-linecap="round"/>
+                  <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#clim-grad)" stroke-width="14" stroke-linecap="round" stroke-dasharray="220 40"/>
+                  <text x="100" y="90" text-anchor="middle" font-size="28" font-weight="700" fill="#ef4444">+340%</text>
+                  <text x="100" y="108" text-anchor="middle" font-size="11" fill="#64748b">vs seuil normal</text>
+                  <defs>
+                    <linearGradient id="clim-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#22c55e"/>
+                      <stop offset="60%" stop-color="#f59e0b"/>
+                      <stop offset="100%" stop-color="#ef4444"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="clim-stats">
+                <div class="clim-stat">
+                  <span class="clim-stat-v">18°C</span>
+                  <span class="clim-stat-l">Consigne</span>
+                </div>
+                <div class="clim-stat">
+                  <span class="clim-stat-v">35°C</span>
+                  <span class="clim-stat-l">Extérieur</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card" data-card="5">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Surveillez vos logements vacants comme si vous étiez sur place.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-mining">
+            <div class="mining-bg"></div>
+            <div class="mining-content">
+              <div class="mining-chart">
+                <div class="mining-line">
+                  <svg viewBox="0 0 280 100" preserveAspectRatio="none">
+                    <polyline points="0,85 40,80 80,82 120,20 160,18 200,15 240,17 280,16" fill="none" stroke="url(#mining-line)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="0,85 40,80 80,82 120,20 160,18 200,15 240,17 280,16" fill="url(#mining-fill)" stroke="none"/>
+                    <defs>
+                      <linearGradient id="mining-line" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#22c55e"/>
+                        <stop offset="45%" stop-color="#f59e0b"/>
+                        <stop offset="100%" stop-color="#ef4444"/>
+                      </linearGradient>
+                      <linearGradient id="mining-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.2"/>
+                        <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+              <div class="mining-alert">
+                <div class="mining-stat">
+                  <span class="mining-big">124 kWh/j</span>
+                  <span class="mining-sub">Consommation actuelle</span>
+                </div>
+                <div class="mining-loss">
+                  <span>–30€/jour</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 7 -->
+      <article class="card" data-card="6">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Comprenez où part réellement votre budget énergie.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-boiler">
+            <div class="boiler-bg"></div>
+            <div class="boiler-content">
+              <div class="boiler-cycles">
+                <div class="boiler-label">Cycles de chauffe / 24h</div>
+                <div class="boiler-grid">
+                  {Array.from({length: 24}).map((_, i) => (
+                    <div class={`boiler-cell ${i >= 0 && i < 6 ? 'cell-on' : i >= 6 && i < 8 ? 'cell-peak' : i >= 8 && i < 14 ? 'cell-off' : i >= 14 && i < 18 ? 'cell-mid' : 'cell-on'}`}></div>
+                  ))}
+                </div>
+                <div class="boiler-time-labels">
+                  <span>00h</span><span>06h</span><span>12h</span><span>18h</span><span>24h</span>
+                </div>
+              </div>
+              <div class="boiler-verdict">
+                <span class="verdict-icon">⚠️</span>
+                Chauffe continue — Thermostat défaillant
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 8 -->
+      <article class="card" data-card="7">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Activez la surveillance en moins de deux minutes.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-fault">
+            <div class="fault-bg"></div>
+            <div class="fault-content">
+              <div class="fault-signal">
+                <svg viewBox="0 0 280 80" preserveAspectRatio="none">
+                  <polyline points="0,40 30,40 35,10 40,70 45,30 50,50 55,40 80,40 85,5 90,75 95,35 100,40 130,40 135,15 140,65 145,20 150,40 180,40 185,8 190,72 195,25 200,40 240,40 245,12 250,68 255,30 260,40 280,40" fill="none" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="fault-alerts">
+                <div class="fault-alert">
+                  <span class="fault-time">02:14</span>
+                  <span class="fault-msg">Pic anormal +850W</span>
+                </div>
+                <div class="fault-alert">
+                  <span class="fault-time">02:17</span>
+                  <span class="fault-msg">Pic anormal +900W</span>
+                </div>
+                <div class="fault-alert critical">
+                  <span class="fault-time">02:21</span>
+                  <span class="fault-msg">Court-circuit probable</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 9 -->
+      <article class="card" data-card="8">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Analysez votre consommation toutes les 30 minutes.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-ical">
+            <div class="ical-bg"></div>
+            <div class="ical-content">
+              <div class="ical-sources">
+                <div class="ical-source airbnb">
+                  <div class="source-dot dot-airbnb"></div>
+                  <span>Airbnb</span>
+                  <span class="source-status synced">Synced</span>
+                </div>
+                <div class="ical-source booking">
+                  <div class="source-dot dot-booking"></div>
+                  <span>Booking.com</span>
+                  <span class="source-status synced">Synced</span>
+                </div>
+                <div class="ical-source abritel">
+                  <div class="source-dot dot-abritel"></div>
+                  <span>Abritel</span>
+                  <span class="source-status synced">Synced</span>
+                </div>
+              </div>
+              <div class="ical-calendar">
+                <div class="ical-week">
+                  {['L','M','M','J','V','S','D'].map(d => (
+                    <div class="ical-day-label">{d}</div>
+                  ))}
+                  <div class="ical-day empty"></div>
+                  <div class="ical-day empty"></div>
+                  <div class="ical-day occupied airbnb-day">14</div>
+                  <div class="ical-day occupied airbnb-day">15</div>
+                  <div class="ical-day occupied booking-day">16</div>
+                  <div class="ical-day occupied booking-day">17</div>
+                  <div class="ical-day empty">18</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 10 -->
+      <article class="card" data-card="9">
+        <div class="card-inner">
+          <div class="card-top">
+            <h3 class="card-title">Automatisez la surveillance selon l'occupation réelle de vos logements.</h3>
+            <button class="card-expand-btn" aria-label="Agrandir">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M10 2h4v4M6 14H2v-4M14 10v4h-4M2 6V2h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="card-visual visual-dashboard">
+            <div class="dashboard-bg"></div>
+            <div class="dashboard-content">
+              <div class="dash-properties">
+                <div class="dash-prop ok">
+                  <div class="prop-dot dot-ok"></div>
+                  <div class="prop-info">
+                    <span class="prop-name">Studio Marais</span>
+                    <span class="prop-status">Normal — 1.2 kWh</span>
+                  </div>
+                </div>
+                <div class="dash-prop ok">
+                  <div class="prop-dot dot-ok"></div>
+                  <div class="prop-info">
+                    <span class="prop-name">T2 Lyon Part-Dieu</span>
+                    <span class="prop-status">Vide — 0.1 kWh</span>
+                  </div>
+                </div>
+                <div class="dash-prop alert">
+                  <div class="prop-dot dot-alert"></div>
+                  <div class="prop-info">
+                    <span class="prop-name">Villa Nice</span>
+                    <span class="prop-status alert-status">Anomalie — 8.4 kWh</span>
+                  </div>
+                </div>
+                <div class="dash-prop ok">
+                  <div class="prop-dot dot-ok"></div>
+                  <div class="prop-info">
+                    <span class="prop-name">Apt. Bordeaux</span>
+                    <span class="prop-status">Occupé — 2.8 kWh</span>
+                  </div>
+                </div>
+                <div class="dash-prop ok">
+                  <div class="prop-dot dot-ok"></div>
+                  <div class="prop-info">
+                    <span class="prop-name">Chalet Megève</span>
+                    <span class="prop-status">Vide — 0.2 kWh</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Expanded modals -->
+{cards.items.map((card, index) => (
+  <div class="modal-overlay" data-modal={index}>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+
+      <button class="modal-close" data-close={index} aria-label="Fermer">
+        <svg viewBox="0 0 14 14" fill="none">
+          <path d="M13 1L1 13M1 1l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="modal-scroll">
+
+        <!-- 2-column content -->
+        <div class="modal-content">
+          <div class="modal-col-text">
+            <h2 class="modal-title">{card.title}</h2>
+            <div class="modal-body-text">
+              {card.body.map((paragraph: string) => (
+                <p>{paragraph}</p>
+              ))}
+            </div>
+            <a href="https://app.consoalert.com/auth" class="modal-cta-btn">
+              {cards.cta}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="modal-col-bullets">
+            <ul class="modal-bullets">
+              {card.bullets.map((bullet: string) => (
+                <li class="modal-bullet">
+                  <span class="bullet-check" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Image placeholder -->
+        <div class="modal-preview">
+          <div class="preview-inner">
+            <div class="preview-bar">
+              <span class="preview-dot"></span>
+              <span class="preview-dot"></span>
+              <span class="preview-dot"></span>
+              <span class="preview-url">app.consoalert.com — Tableau de bord Wattson</span>
+            </div>
+            <div class="preview-screen">
+              <div class="preview-sidebar">
+                <div class="preview-nav-item active-nav"></div>
+                <div class="preview-nav-item"></div>
+                <div class="preview-nav-item"></div>
+                <div class="preview-nav-item"></div>
+              </div>
+              <div class="preview-main">
+                <div class="preview-row">
+                  <div class="preview-card-sm gradient-blue"></div>
+                  <div class="preview-card-sm gradient-green"></div>
+                  <div class="preview-card-sm gradient-red"></div>
+                </div>
+                <div class="preview-chart-area">
+                  <svg viewBox="0 0 400 100" preserveAspectRatio="none" class="preview-chart-svg">
+                    <polyline points="0,80 50,70 100,60 150,65 200,30 250,25 300,35 350,20 400,25" fill="none" stroke="url(#preview-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="0,80 50,70 100,60 150,65 200,30 250,25 300,35 350,20 400,25 400,100 0,100" fill="url(#preview-fill)" stroke="none"/>
+                    <defs>
+                      <linearGradient id="preview-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#635BFF"/>
+                        <stop offset="100%" stop-color="#7C7AF5"/>
+                      </linearGradient>
+                      <linearGradient id="preview-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#635BFF" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="#635BFF" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+))}
+
+<style>
+  /* ────────────────── SECTION ────────────────── */
+  .cards-section {
+    padding: var(--spacing-24) 0;
+  }
+
+  .cards-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-6);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+
+  .section-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ────────────────── GRID ────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ────────────────── CARD SHELL ────────────────── */
+  .card {
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #FFFFFF;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+
+  .card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* ────────────────── CARD TOP ────────────────── */
+  .card-top {
+    padding: 32px 32px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: #0A2540;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-expand-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    padding: 8px;
+    background: var(--color-blurple-icon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .card-expand-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .card:hover .card-expand-btn {
+    background: var(--color-blurple-hover);
+  }
+
+  /* ────────────────── CARD VISUAL ────────────────── */
+  .card-visual {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    margin-top: 24px;
+  }
+
+  /* ── HEATER ── */
+  .visual-heater .heater-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #fff7ed 0%, #fff 100%);
+  }
+
+  .heater-chart {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 20px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 140px;
+    margin-bottom: 8px;
+  }
+
+  .bar {
+    flex: 1;
+    background: var(--color-slate-200);
+    border-radius: 4px 4px 0 0;
+    transition: height 0.3s;
+  }
+
+  .bar-alert {
+    background: linear-gradient(180deg, #fb923c, #ef4444);
+  }
+
+  .chart-label-empty {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-slate-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .alert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 99px;
+  }
+
+  .alert-dot {
+    width: 8px;
+    height: 8px;
+    background: #ef4444;
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  /* ── SAVINGS ── */
+  .visual-savings .savings-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #eef2ff 0%, #fff 60%);
+  }
+
+  .savings-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 20px 32px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .savings-ring svg {
+    width: 120px;
+    height: 120px;
+  }
+
+  .savings-items {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .saving-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--color-slate-600);
+  }
+
+  .saving-item.bold {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .saving-value.positive { color: #16a34a; font-weight: 600; }
+  .saving-value.negative { color: #dc2626; font-weight: 600; }
+
+  .saving-divider {
+    height: 1px;
+    background: var(--color-slate-200);
+    margin: 4px 0;
+  }
+
+  /* ── SQUAT ── */
+  .visual-squat .squat-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #f0fdf4 0%, #fff 60%);
+  }
+
+  .squat-timeline {
+    position: relative;
+    z-index: 1;
+    padding: 20px 32px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .timeline-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-slate-400);
+    width: 28px;
+  }
+
+  .timeline-bar {
+    flex: 1;
+    height: 20px;
+    border-radius: 4px;
+    background: var(--color-slate-100);
+  }
+
+  .squat-bar {
+    background: linear-gradient(90deg, #ef4444, #f97316);
+  }
+
+  .timeline-wh {
+    font-size: 11px;
+    color: var(--color-slate-400);
+    width: 60px;
+    text-align: right;
+  }
+
+  .timeline-row.alert .timeline-date { color: var(--color-slate-800); }
+  .timeline-row.alert .alert-text { color: #dc2626; font-weight: 600; }
+
+  .squat-alert {
+    position: relative;
+    z-index: 1;
+    margin: 0 32px;
+    padding: 10px 16px;
+    background: #dc2626;
+    color: white;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .squat-icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* ── EV ── */
+  .visual-ev .ev-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #f0f9ff 0%, #fff 70%);
+  }
+
+  .ev-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 16px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  .ev-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-slate-500);
+    margin-bottom: 8px;
+  }
+
+  .ev-timeline {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 100px;
+  }
+
+  .ev-slot {
+    flex: 1;
+    background: var(--color-slate-100);
+    border-radius: 3px 3px 0 0;
+  }
+
+  .ev-charging {
+    background: linear-gradient(180deg, #38bdf8, #0284c7);
+  }
+
+  .ev-hours {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--color-slate-400);
+    margin-top: 4px;
+  }
+
+  .ev-cost-badge {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 10px 16px;
+  }
+
+  .ev-cost-value { font-size: 22px; font-weight: 700; color: #16a34a; }
+  .ev-cost-label { font-size: 13px; color: #15803d; }
+
+  /* ── CLIM ── */
+  .visual-clim .clim-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #eff6ff 0%, #fff 70%);
+  }
+
+  .clim-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 12px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .clim-gauge svg { width: 200px; height: 110px; }
+
+  .clim-stats {
+    display: flex;
+    gap: 40px;
+  }
+
+  .clim-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .clim-stat-v {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .clim-stat-l {
+    font-size: 11px;
+    color: var(--color-slate-500);
+  }
+
+  /* ── MINING ── */
+  .visual-mining .mining-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #fff1f2 0%, #fff 60%);
+  }
+
+  .mining-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 16px 0 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .mining-line {
+    height: 100px;
+    overflow: hidden;
+  }
+
+  .mining-line svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .mining-alert {
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mining-big {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    display: block;
+  }
+
+  .mining-sub {
+    font-size: 11px;
+    color: var(--color-slate-500);
+  }
+
+  .mining-loss {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 99px;
+  }
+
+  /* ── BOILER ── */
+  .visual-boiler .boiler-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #fffbeb 0%, #fff 70%);
+  }
+
+  .boiler-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 20px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  .boiler-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-slate-500);
+    margin-bottom: 8px;
+  }
+
+  .boiler-grid {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 3px;
+    height: 40px;
+  }
+
+  .boiler-cell {
+    border-radius: 3px;
+  }
+
+  .cell-on { background: #f59e0b; }
+  .cell-peak { background: #ef4444; }
+  .cell-off { background: var(--color-slate-200); }
+  .cell-mid { background: #fbbf24; }
+
+  .boiler-time-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--color-slate-400);
+    margin-top: 4px;
+  }
+
+  .boiler-verdict {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 12px;
+  }
+
+  /* ── FAULT ── */
+  .visual-fault .fault-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #fef2f2 0%, #fff 60%);
+  }
+
+  .fault-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 16px 0 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .fault-signal {
+    height: 80px;
+    overflow: hidden;
+  }
+
+  .fault-signal svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .fault-alerts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 32px;
+  }
+
+  .fault-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--color-slate-50);
+    border-radius: 8px;
+    border: 1px solid var(--color-slate-200);
+  }
+
+  .fault-alert.critical {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+
+  .fault-time {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-slate-400);
+    font-variant-numeric: tabular-nums;
+    width: 36px;
+  }
+
+  .fault-msg {
+    font-size: 12px;
+    color: var(--color-slate-700);
+  }
+
+  .fault-alert.critical .fault-msg {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  /* ── ICAL ── */
+  .visual-ical .ical-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #f0fdf4 0%, #fff 60%);
+  }
+
+  .ical-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 20px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  .ical-sources {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ical-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-slate-700);
+    font-weight: 500;
+  }
+
+  .source-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot-airbnb { background: #f43f5e; }
+  .dot-booking { background: #003580; }
+  .dot-abritel { background: #f97316; }
+
+  .source-status {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+
+  .source-status.synced {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+
+  .ical-calendar {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-slate-200);
+    padding: 12px;
+  }
+
+  .ical-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .ical-day-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-slate-400);
+    text-transform: uppercase;
+    padding: 4px 0;
+  }
+
+  .ical-day {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-slate-700);
+    padding: 8px 4px;
+    border-radius: 8px;
+  }
+
+  .ical-day.empty { color: var(--color-slate-300); }
+  .ical-day.occupied { color: white; font-weight: 600; }
+  .airbnb-day { background: #f43f5e; }
+  .booking-day { background: #003580; }
+
+  /* ── DASHBOARD ── */
+  .visual-dashboard .dashboard-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #f8fafc 0%, #fff 60%);
+  }
+
+  .dashboard-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 20px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .dash-properties {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dash-prop {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--color-slate-50);
+    border: 1px solid var(--color-slate-200);
+  }
+
+  .dash-prop.alert {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+
+  .prop-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-ok { background: #22c55e; }
+  .dot-alert { background: #ef4444; animation: pulse 1.5s ease-in-out infinite; }
+
+  .prop-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .prop-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-slate-800);
+  }
+
+  .prop-status {
+    font-size: 11px;
+    color: var(--color-slate-500);
+  }
+
+  .alert-status { color: #dc2626 !important; font-weight: 600; }
+
+  /* ────────────────── MODALS ────────────────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 37, 64, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .modal-overlay {
+      align-items: center;
+      padding: 32px;
+    }
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-panel {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 900px;
+    max-height: 92vh;
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    transform: translateY(40px);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .modal-panel {
+      border-radius: 16px;
+    }
+  }
+
+  .modal-overlay.active .modal-panel {
+    transform: translateY(0);
+  }
+
+  /* Close button — top-right pill */
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-slate-100);
+    border-radius: 10px;
+    color: var(--color-slate-500);
+    z-index: 10;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .modal-close:hover {
+    background: var(--color-slate-200);
+    color: var(--color-text-primary);
+  }
+
+  .modal-close svg { width: 14px; height: 14px; }
+
+  /* Scrollable area */
+  .modal-scroll {
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  /* ── 2-column content ── */
+  .modal-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 36px 40px;
+  }
+
+  @media (min-width: 640px) {
+    .modal-content {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 56px 52px 48px;
+    }
+  }
+
+  /* Left column */
+  .modal-col-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .modal-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+  }
+
+  .modal-body-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .modal-body-text p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .modal-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    background: var(--color-blurple);
+    padding: 13px 28px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(99, 91, 255, 0.3);
+    width: fit-content;
+    margin-top: 4px;
+  }
+
+  .modal-cta-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.15s;
+  }
+
+  .modal-cta-btn:hover {
+    background: var(--color-blurple-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 91, 255, 0.4);
+  }
+
+  .modal-cta-btn:hover svg { transform: translateX(3px); }
+
+  /* Right column — bullets */
+  .modal-col-bullets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .modal-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .modal-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+  }
+
+  .bullet-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: rgba(99, 91, 255, 0.10);
+    color: var(--color-blurple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .bullet-check svg { width: 12px; height: 12px; }
+
+  /* ── Image preview placeholder ── */
+  .modal-preview {
+    margin: 0 36px 36px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 8px 32px rgba(10, 37, 64, 0.08);
+    background: var(--color-slate-50);
+  }
+
+  @media (min-width: 640px) {
+    .modal-preview {
+      margin: 0 52px 52px;
+    }
+  }
+
+  .preview-inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .preview-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: var(--color-slate-100);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .preview-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-slate-300);
+  }
+
+  .preview-url {
+    font-size: 11px;
+    color: var(--color-slate-400);
+    margin-left: 8px;
+    font-family: monospace;
+  }
+
+  .preview-screen {
+    display: flex;
+    height: 180px;
+    overflow: hidden;
+  }
+
+  .preview-sidebar {
+    width: 48px;
+    background: #0A2540;
+    flex-shrink: 0;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .preview-nav-item {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .active-nav { background: var(--color-blurple); }
+
+  .preview-main {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #FFFFFF;
+  }
+
+  .preview-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .preview-card-sm {
+    flex: 1;
+    height: 48px;
+    border-radius: 8px;
+    opacity: 0.7;
+  }
+
+  .gradient-blue  { background: linear-gradient(135deg, #635BFF 0%, #7C7AF5 100%); }
+  .gradient-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
+  .gradient-red   { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+  .preview-chart-area {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .preview-chart-svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const overlays = document.querySelectorAll('.modal-overlay');
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      const overlay = document.querySelector(`[data-modal="${index}"]`);
+      overlay?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  const closeModal = () => {
+    overlays.forEach(o => o.classList.remove('active'));
+    document.body.style.overflow = '';
+  };
+
+  overlays.forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+  });
+
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Swipe down to close on mobile
+  let touchStartY = 0;
+  document.querySelectorAll('.modal-panel').forEach(panel => {
+    panel.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    panel.addEventListener('touchmove', (e) => {
+      if (e.touches[0].clientY - touchStartY > 80) closeModal();
+    }, { passive: true });
+  });
+</script>

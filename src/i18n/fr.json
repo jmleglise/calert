@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "title": "ConsoAlert - Surveillez vos consommations électriques avec Wattson",
+    "description": "Agent IA intelligent qui surveille vos logements 24h/24 via Linky. Détecte anomalies, squat, abus. Sans boîtier."
+  },
+  "nav": {
+    "home": "Accueil",
+    "pricing": "Tarifs",
+    "blog": "Blog",
+    "legal": "Mentions légales",
+    "login": "Se connecter",
+    "signup": "S'inscrire"
+  },
+  "hero": {
+    "title": "Automatisez la surveillance électrique de vos logements",
+    "subtitle": "Dormez sur vos deux oreilles. Notre Agent Intelligent Wattson surveille la consommation électrique de vos logements 24h/24, 7j/7, détecte les anomalies et vous alerte avant que les factures n'explosent. Sans aucun boîtier à installer.",
+    "cta": "Commencer gratuitement",
+    "micro": "Activation en 2 minutes. Compatible Airbnb & Booking. Conforme RGPD."
+  },
+  "partners": {
+    "title": "ConsoAlert est compatible avec la plupart des PMS et plateform existante"
+  },
+  "cards": {
+    "title": "Ce que Wattson protège",
+    "subtitle": "10 scénarios où notre agent IA vous fait économiser temps, argent et sérénité.",
+    "cta": "Je me lance",
+    "items": [
+      {
+        "id": "conciergerie",
+        "icon": "🔥",
+        "title": "Conciergeries, protégez vos propriétaires avant qu'ils ne découvrent leur facture.",
+        "body": [
+          "Pas toujours facile de vérifier ce que les locataires auraient laissé allumé. Sans parler d'appareil piegeux disposant d'un programmateur que des locataires auraient pu laissé activés par inadvertance. ",
+          "C'est du vécu, un sèche-serviettes électrique programmé par un locataire peut se réactiver automatiquement chaque matin pendant plusieurs semaines sans que les checkout ne le détecte.",
+          "Avant que votre propriétaire ne découvre la surconsommation sur sa facture ou lors d'une visite, Wattson surveille le logement et vous alerte dès qu'un comportement inhabituel apparaît."
+        ],
+        "bullets": [
+          "Détectez automatiquement les surconsommations entre deux réservations.",
+          "Recevez une alerte avant votre propriétaire.",
+          "Quantifiez le coût réel de chaque anomalie détectée.",
+          "Valorisez vos interventions grâce à des rapports d'économies générés automatiquement."
+        ]
+      },
+      {
+        "id": "recharge-ve",
+        "icon": "🚗",
+        "title": "Refacturez équitablement les recharges de véhicules électriques.",
+        "body": [
+          "Les véhicules électriques sont de plus en plus présents dans les locations saisonnières.",
+          "Une seule recharge complète de batterie de 60 à 80 kWh peut représenter entre 12 € et 25 € d'électricité. Sur un séjour court, cela peut réduire significativement votre marge ou celle de votre propriétaire.",
+          "Wattson détecte les consommations exceptionnelles, estime l'énergie supplémentaire consommée et vous aide à justifier une éventuelle refacturation."
+        ],
+        "bullets": [
+          "Détectez les pics de consommation compatibles avec une recharge.",
+          "Estimez automatiquement le coût associé.",
+          "Générez un rapport de consommation détaillé.",
+          "Préservez la rentabilité de chaque réservation."
+        ]
+      },
+      {
+        "id": "multi-logements",
+        "icon": "📊",
+        "title": "Centralisez la surveillance de tous vos logements.",
+        "body": [
+          "Lorsque l'on gère plusieurs biens, surveiller chaque compteur devient rapidement impossible.",
+          "Locations courte durée, appartements LMNP, résidences secondaires : plus votre parc grandit, plus le risque de passer à côté d'une anomalie augmente.",
+          "Wattson surveille automatiquement tous vos logements depuis une seule interface et analyse chaque compteur quotidiennement, sans exception."
+        ],
+        "bullets": [
+          "Une vue centralisée de l'ensemble de votre parc immobilier.",
+          "Une surveillance identique quel que soit le nombre de logements.",
+          "Des alertes consolidées dans un seul espace.",
+          "Une gestion 100 % à distance sans déplacement."
+        ]
+      },
+      {
+        "id": "residence-secondaire",
+        "icon": "🏠",
+        "title": "Gardez un œil sur votre résidence secondaire.",
+        "body": [
+          "Vous êtes à 200 km. Puis un doute apparaît. Avez-vous bien coupé le chauffage ? Débranché le congélateur ? Arrêté la climatisation ?",
+          "Le problème ne vient généralement pas de l'appareil auquel on pense. Radiateur d'appoint, déshumidificateur, sèche-serviettes, ventilation ou ballon d'eau chaude peuvent continuer à consommer pendant des jours sans être remarqués.",
+          "Et lorsqu'un logement est censé être vide, une activité électrique inhabituelle peut révéler une présence inattendue ou une utilisation anormale du bien."
+        ],
+        "bullets": [
+          "Surveillez votre résidence secondaire sans vous déplacer.",
+          "Soyez alerté dès qu'une consommation inhabituelle apparaît.",
+          "Consultez la consommation depuis n'importe où.",
+          "Réagissez avant que la situation ne devienne coûteuse."
+        ]
+      },
+      {
+        "id": "anomalies",
+        "icon": "⚡",
+        "title": "Détectez les anomalies avant votre facture.",
+        "body": [
+          "La plupart des propriétaires découvrent une surconsommation plusieurs semaines après son apparition.",
+          "À ce moment-là, les dépenses ont déjà été engagées.",
+          "Wattson compare chaque jour la consommation observée aux habitudes du logement et détecte automatiquement les anomalies avant qu'elles ne se transforment en mauvaises surprises."
+        ],
+        "bullets": [
+          "Détection quotidienne des surconsommations.",
+          "Alertes précoces avant réception de la facture.",
+          "Estimation du coût potentiel de l'anomalie.",
+          "Historique complet des événements détectés."
+        ]
+      },
+      {
+        "id": "logements-vacants",
+        "icon": "🔒",
+        "title": "Surveillez vos logements vacants comme si vous étiez sur place.",
+        "body": [
+          "Un logement vide possède une signature énergétique relativement stable.",
+          "Lorsqu'une activité électrique inhabituelle apparaît soudainement, cela peut révéler un appareil oublié, une panne ou une occupation non prévue.",
+          "Wattson surveille les logements vacants en permanence et détecte immédiatement les changements de comportement énergétique."
+        ],
+        "bullets": [
+          "Surveillance automatique des logements inoccupés.",
+          "Détection des consommations anormales.",
+          "Alertes immédiates en cas de changement inhabituel.",
+          "Protection renforcée des biens vacants."
+        ]
+      },
+      {
+        "id": "budget-energie",
+        "icon": "💡",
+        "title": "Comprenez où part réellement votre budget énergie.",
+        "body": [
+          "Les dépenses énergétiques ne proviennent pas toujours des équipements les plus visibles.",
+          "Un simple radiateur d'appoint, un sèche-serviettes ou un déshumidificateur peuvent représenter des dizaines d'euros par mois lorsqu'ils restent actifs inutilement.",
+          "Wattson transforme les données brutes de consommation en informations exploitables pour comprendre et optimiser vos dépenses."
+        ],
+        "bullets": [
+          "Analyse détaillée des consommations.",
+          "Identification des comportements énergétiques anormaux.",
+          "Comparaison entre périodes occupées et vacantes.",
+          "Estimation des économies réalisables."
+        ]
+      },
+      {
+        "id": "activation",
+        "icon": "🚀",
+        "title": "Activez la surveillance en moins de deux minutes.",
+        "body": [
+          "Contrairement aux systèmes domotiques traditionnels, Wattson ne nécessite aucun équipement.",
+          "Aucun boîtier. Aucun capteur. Aucun technicien. Aucun déplacement.",
+          "Une simple autorisation officielle via Enedis suffit pour démarrer la surveillance de votre compteur Linky. Quelques minutes plus tard, Wattson travaille déjà pour vous."
+        ],
+        "bullets": [
+          "Connexion officielle via le consentement Enedis.",
+          "Aucun matériel à acheter ou installer.",
+          "Mise en service immédiate à distance.",
+          "Surveillance totalement autonome après activation."
+        ]
+      },
+      {
+        "id": "granularite",
+        "icon": "📈",
+        "title": "Analysez votre consommation toutes les 30 minutes.",
+        "body": [
+          "Grâce aux données Linky, Wattson peut analyser la consommation électrique avec une précision de 30 minutes.",
+          "Cette granularité permet de mieux comprendre ce qui se passe réellement dans un logement.",
+          "Pour les locations saisonnières, les horaires habituels de check-in et check-out permettent même d'isoler les périodes de ménage, de préparation ou de blanchisserie."
+        ],
+        "bullets": [
+          "Historique détaillé au pas de 30 minutes.",
+          "Visualisation précise des pics de consommation.",
+          "Analyse des périodes d'exploitation du logement.",
+          "Compréhension fine des usages énergétiques."
+        ]
+      },
+      {
+        "id": "ical-sync",
+        "icon": "📅",
+        "title": "Automatisez la surveillance selon l'occupation réelle de vos logements.",
+        "body": [
+          "Une consommation normale lorsque le logement est occupé peut devenir anormale lorsqu'il est censé être vide.",
+          "Wattson synchronise automatiquement les calendriers de réservation afin de connaître le statut réel de chaque logement.",
+          "Airbnb, Booking, Abritel, PMS ou calendrier iCal : les périodes occupées et vacantes sont prises en compte automatiquement dans les analyses."
+        ],
+        "bullets": [
+          "Synchronisation automatique des calendriers de réservation.",
+          "Compatibilité Airbnb, Booking, Abritel et PMS.",
+          "Distinction automatique entre périodes occupées et vacantes.",
+          "Alertes beaucoup plus pertinentes grâce au contexte réel du logement."
+        ]
+      }
+    ]
+  },
+  "legal": {
+    "title": "Cadre Légal et Jurisprudence",
+    "subtitle": "L'Intérêt Crucial de la Détection Précoce",
+    "sections": [
+      {
+        "title": "Loi Anti-Squat (Loi Kasbarian-Bergé)",
+        "content": "Cette loi simplifie et accélère les procédures d'expulsion administrative (en moins de 72 heures via le Préfet), à condition que le propriétaire puisse prouver l'introduction et l'occupation illicite très rapidement. Attendre la facture mensuelle rend la flagrance impossible à prouver. Une hausse soudaine de la \"consommation talon\" (bruit de fond électrique) sur un calendrier iCal déclaré vide constitue une alerte immédiate d'occupation suspecte."
+      },
+      {
+        "title": "Abus de jouissance et Décrets Bornes de Recharge",
+        "content": "Selon le Code de la copropriété et les règles contractuelles de la location saisonnière, l'électricité est incluse pour un \"usage raisonnable\". Le vol d'énergie (recharge de VE d'amis, minage) sans accord du propriétaire constitue un abus. Disposer d'un relevé quotidien permet d'opposer une preuve factuelle au locataire via la plateforme (Airbnb/Booking) pour retenir une caution."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "question": "Dois-je installer un boîtier ?",
+        "answer": "Non. Wattson communique directement avec votre compteur Linky via les serveurs sécurisés d'Enedis."
+      },
+      {
+        "question": "Est-ce que Wattson espionne mes locataires ?",
+        "answer": "Non. Wattson analyse uniquement le flux électrique global pour détecter les anomalies. Il protège votre propriété tout en garantissant l'anonymat et la vie privée de vos voyageurs."
+      },
+      {
+        "question": "Et si je perds mon mot de passe Enedis ?",
+        "answer": "Wattson vous guidera pour renouveler votre consentement en quelques secondes."
+      }
+    ]
+  },
+  "footer": {
+    "product": "Produit",
+    "company": "Entreprise",
+    "legal": "Légal",
+    "copyright": "© 2026 ConsoAlert. Tous droits réservés."
+  }
+}

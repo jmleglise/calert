@@ -1,0 +1,22 @@
+---
+// HTML meta refresh redirect for static hosting
+// Also sets hreflang for SEO
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/fr/" />
+    <link rel="canonical" href="https://consoalert.com/fr/" />
+    <link rel="alternate" hreflang="fr" href="https://consoalert.com/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://consoalert.com/fr/" />
+    <title>ConsoAlert - Redirection</title>
+    <script>
+      // JavaScript fallback for faster redirect
+      window.location.replace('/fr/');
+    </script>
+  </head>
+  <body>
+    <a href="/fr/">Continuer vers ConsoAlert</a>
+  </body>
+</html>
