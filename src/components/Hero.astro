@@ -74,6 +74,8 @@ const { hero } = fr;
   }
 
   .hero-container {
+    position: relative;
+    z-index: 1;
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 var(--spacing-6);
@@ -269,22 +271,32 @@ const { hero } = fr;
 
   .hero-bg-gradient {
     position: absolute;
-    inset: 0;
-    /* White overlay on left (text side) fading to transparent — preserves readability */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    /* Left side opaque, right side transparent */
     background: linear-gradient(
-      105deg,
+      90deg,
       rgba(246, 249, 252, 0.92) 0%,
-      rgba(246, 249, 252, 0.75) 35%,
-      rgba(246, 249, 252, 0.30) 60%,
-      rgba(246, 249, 252, 0.10) 100%
+      rgba(246, 249, 252, 0.70) 35%,
+      rgba(246, 249, 252, 0.25) 60%,
+      transparent 100%
     );
     pointer-events: none;
   }
 
   @media (max-width: 1023px) {
     .hero-bg-gradient {
-      /* On mobile (single column) cover more of the image */
-      background: rgba(246, 249, 252, 0.82);
+      /* On mobile, keep the overlay under the text/button and above the background */
+      background: linear-gradient(
+        90deg,
+        rgba(246, 249, 252, 0.92) 0%,
+        rgba(246, 249, 252, 0.75) 45%,
+        rgba(246, 249, 252, 0.20) 75%,
+        transparent 100%
+      );
     }
   }
 
