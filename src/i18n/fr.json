@@ -18,11 +18,11 @@
     "micro": "Activation en 2 minutes. Compatible Airbnb & Booking. Conforme RGPD."
   },
   "partners": {
-    "title": "ConsoAlert est compatible avec la plupart des PMS et plateform existante"
+    "title": "ConsoAlert est compatible avec la plupart des PMS et plateformes existantes"
   },
   "cards": {
-    "title": "Ce que Wattson protège",
-    "subtitle": "10 scénarios où notre agent IA vous fait économiser temps, argent et sérénité.",
+    "title": "Wattson vous protège",
+    "subtitle": "et vous fait économiser du temps, de l'argent et de la sérénité..",
     "cta": "Je me lance",
     "items": [
       {
@@ -30,15 +30,15 @@
         "icon": "🔥",
         "title": "Conciergeries, protégez vos propriétaires avant qu'ils ne découvrent leur facture.",
         "body": [
-          "Pas toujours facile de vérifier ce que les locataires auraient laissé allumé. Sans parler d'appareil piegeux disposant d'un programmateur que des locataires auraient pu laissé activés par inadvertance. ",
-          "C'est du vécu, un sèche-serviettes électrique programmé par un locataire peut se réactiver automatiquement chaque matin pendant plusieurs semaines sans que les checkout ne le détecte.",
-          "Avant que votre propriétaire ne découvre la surconsommation sur sa facture ou lors d'une visite, Wattson surveille le logement et vous alerte dès qu'un comportement inhabituel apparaît."
+          "Pas toujours facile de vérifier ce que les locataires laissent allumé. Sans parler d'appareil piegeux disposant d'un programmateur que des locataires auraient pu laissé activés par inadvertance. ",
+          "C'est du vécu, un sèche-serviette électrique programmé par un locataire peut se réactiver automatiquement chaque matin pendant plusieurs semaines sans que les checkout ne le détectent.",
+          "Par contre, bien visible sur la facture d'électricité que votre propriétaire ne manquera pas de relever. Wattson vous alerte dès qu'un comportement inhabituel apparaît et vous estime l'impact financier. De quoi se faire une idée si une intervention urgente est nécessaire ."
         ],
         "bullets": [
           "Détectez automatiquement les surconsommations entre deux réservations.",
-          "Recevez une alerte avant votre propriétaire.",
+          "Soyez alerté avant votre propriétaire.",
           "Quantifiez le coût réel de chaque anomalie détectée.",
-          "Valorisez vos interventions grâce à des rapports d'économies générés automatiquement."
+          "Valorisez votre service auprès de vos propriétaires. Nous vous préparons tout : Explications sur l'activation du service, et des rapports d'économies."
         ]
       },
       {
