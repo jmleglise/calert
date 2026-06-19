@@ -1,0 +1,927 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Tarifs — ConsoAlert | Wattson"
+  description="Notre grille tarifaire est simple : tout est gratuit. Maintenant, toujours, pour les fonctionnalités actuelles."
+>
+  <Header />
+
+  <main class="pricing-page">
+
+    <!-- ── HERO ── -->
+    <section class="pricing-hero">
+      <div class="container">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Grille tarifaire officielle &amp; transparente
+        </div>
+        <h1 class="pricing-headline">
+          La page tarifs la plus<br/>
+          <span class="headline-free">simple (*) du SaaS.</span>
+        </h1>
+        <p class="pricing-sub">
+          (*) Pas d'astérisque, pas de freemium, pas de trial ni autre . Juste Wattson, qui bosse pour vous.
+        </p>
+
+        <!-- Billing toggle (cosmetic) -->
+        <div class="billing-toggle" id="billing-toggle">
+          <button class="toggle-btn active" data-period="monthly">Mensuel</button>
+          <button class="toggle-btn" data-period="yearly">Annuel</button>
+        </div>
+        <p class="toggle-note" id="toggle-note">Choisissez votre abonnement. (Spoiler : ça ne changera rien, c'est la même offre.)</p>
+      </div>
+    </section>
+
+    <!-- ── PLANS ── -->
+    <section class="plans-section">
+      <div class="container">
+        <div class="plans-grid">
+
+          <!-- Plan Mensuel -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <div class="plan-label">Mensuel</div>
+              <div class="plan-price">
+                <span class="price-amount">0</span>
+                <span class="price-currency">€</span>
+                <span class="price-period" data-monthly="/mois" data-yearly="/an" data-daily="/jour">/mois</span>
+              </div>
+              <p class="plan-tagline">Payez chaque mois. Enfin, rien.<br/>. </p>
+            </div>
+            <a href="https://app.consoalert.com/auth" class="plan-cta secondary">Commencer gratuitement</a>
+            <ul class="plan-features">
+              <li class="feature"><span class="check">✓</span>Surveillance 7j/7 via Linky</li>
+              <li class="feature"><span class="check">✓</span>Détection d'anomalies par IA</li>
+              <li class="feature"><span class="check">✓</span>Alertes en temps réel</li>
+              <li class="feature"><span class="check">✓</span>Multi-logements</li>
+              <li class="feature"><span class="check">✓</span>Sync Airbnb / Booking / Abritel / ical</li>
+              <li class="feature"><span class="check">✓</span>Rapports de consommation</li>
+              <li class="feature"><span class="check">✓</span>Accès à toutes les fonctionnalités actuelles</li>
+            </ul>
+            <div class="plan-footnote">
+              Aucune carte bancaire requise. (D'ailleurs, on ne saurait pas quoi en faire.)<br/>
+
+            </div>
+          </div>
+
+          <!-- Plan Annuel (recommandé / joke) -->
+          <div class="plan-card plan-featured">
+            <div class="plan-badge">C'est la moins chère — économisez 0€</div>
+            <div class="plan-header">
+              <div class="plan-label">Annuel</div>
+              <div class="plan-price">
+                <span class="price-amount">0</span>
+                <span class="price-currency">€</span>
+                <span class="price-period">/an</span>
+              </div>
+              <p class="plan-tagline">
+                Comparez : 0€ × 12 mois = 0€/an.  ✔
+                <em>Économie substantielle.</em>
+              </p>
+            </div>
+            <a href="https://app.consoalert.com/auth" class="plan-cta primary">Commencer gratuitement</a>
+            <ul class="plan-features">
+              <li class="feature"><span class="check">✓</span>Surveillance 7j/7 via Linky</li>
+              <li class="feature"><span class="check">✓</span>Détection d'anomalies par IA</li>
+              <li class="feature"><span class="check">✓</span>Alertes en temps réel</li>
+              <li class="feature"><span class="check">✓</span>Multi-logements</li>
+              <li class="feature"><span class="check">✓</span>Sync Airbnb / Booking / Abritel / ical</li>
+              <li class="feature"><span class="check">✓</span>Rapports de consommation</li>
+              <li class="feature"><span class="check">✓</span>Accès à toutes les fonctionnalités actuelles</li>
+            </ul>
+            <div class="plan-footnote">
+              Facturé 0€ en une seule fois par an.<br/>
+              Annulable à tout moment (en ne faisant rien).
+            </div>
+          </div>
+
+          <!-- Plan Futur -->
+          <div class="plan-card-inactiv">
+            <div class="plan-header">
+              <div class="plan-label">Un jour</div>
+              <div class="plan-price">
+                <span class="price-amount">??,?</span>
+                <span class="price-currency">€</span>
+                <span class="price-period">/mois</span>
+              </div>
+               <p class="mystery-tagline">À définir quelque part entre "accessible" et "viable".</p>
+
+            </div>
+            
+            <button class="mystery-btn" disabled>
+                M'alerter quand c'est prêt
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+              </button>
+            
+            <ul class="plan-features">
+              <li class="feature"><span class="check">🔒</span>Wattson a de l'ambition, beaucoup d'ambition.</li>
+              <li class="feature"><span class="check">🔒</span>Wattson 2X plus intelligent.</li>
+              <li class="feature"><span class="check">🔒</span>Trucs vraiment fous, incroyables.</li>
+              <li class="feature"><span class="check">🔒</span>Fonctionnalités secrètes.</li>
+
+            </ul>
+            <div class="plan-footnote" style="color: var(--color-slate-400); font-size:12px; margin-top:16px;">
+Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'est écrit ici sur internet. Donc c'est vrai.
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </section>
+
+
+
+    <!-- ── DON ── -->
+    <section class="donation-section">
+      <div class="container">
+        <div class="donation-card">
+          <div class="coffee-emoji">☕</div>
+          <h2 class="donation-title">Wattson bosse dûr pour offrir à son chat une belle vie. (vous avez la ref ?)</h2>
+          <p class="donation-desc">
+            ConsoAlert est gratuit, un peu parce qu'on pense que vous méritez un outil qui protège votre rentabilité sans vous facturer pour ça et beaucoup parceque c'est pas nous qui bossons. C'est wattson !!!
+            Mais si Wattson vous a évité une facture salée, retrouvé un chauffage allumé
+            ou déjoué une recharge de VE clandestine — et que vous voulez le remercier, vous pouvez lui payer un café.
+          </p>
+          <p class="donation-desc">
+            On ne va pas se mentir, on le transformera en bière et on ne sera pas peu fier de se dire que notre travail est reconnu par quelqu'un. </p>
+          <div class="donation-actions">
+            <a href="https://buymeacoffee.com/consoalert" target="_blank" rel="noopener" class="donation-btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" class="coffee-icon">
+                <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Offrir un café à Wattson
+            </a>
+            <p class="donation-micro">Sans obligation. Sans culpabilité. Mais avec beaucoup de gratitude.</p>
+          </div>
+          <div class="donation-amounts">
+            <div class="amount-pill">☕ 3€ = 1 café</div>
+            <div class="amount-pill">🍕 10€ = pizza de dev</div>
+            <div class="amount-pill">🚀 50€ = ok, on rêve...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ TARIFS ── -->
+    <section class="pricing-faq">
+      <div class="container">
+        <h2 class="faq-title">Questions sur les tarifs</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3 class="faq-q">C'est vraiment gratuit ?</h3>
+            <p class="faq-a">Oui. Vraiment. Pas de carte de crédit requise, pas de période d'essai qui se transforme en abonnement. On a mis "gratuit" huit fois sur cette page pour être sûrs que vous l'ayez compris.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Quelle est la différence entre les 2 plans ?</h3>
+            <p class="faq-a">La période de facturation. C'est tout. 0€/mois, 0€/an. Mathématiquement équivalents. Philosophiquement identiques. Choisissez en fonction de votre humeur.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Est-ce que ça va rester gratuit ?</h3>
+            <p class="faq-a">Les fonctionnalités actuelles : oui, pour toujours. Les nouvelles fonctionnalités à venir : peut-être pas. Elles seront irresistibles. Vous vous précipiterez pour les payer.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Comment vous financez-vous alors ?</h3>
+            <p class="faq-a">Nous vivons d'obole, d'espoir et d'un peu de café.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-q">Et si je veux annuler ?</h3>
+            <p class="faq-a">Annuler quoi, exactement ? Votre abonnement à 0€ ? Vous pouvez. Il y a un bouton supression de compte, bien caché. On s'est inspiré des SAAS payant pour çà.</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .pricing-page {
+    padding-top: 72px;
+  }
+
+  /* ── HERO ── */
+  .pricing-hero {
+    padding: var(--spacing-24) 0 var(--spacing-16);
+    text-align: center;
+    background: linear-gradient(180deg, #f0efff 0%, var(--color-body-bg) 100%);
+    border-bottom: 1px solid var(--color-slate-200);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--spacing-8);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-success-500);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .pricing-headline {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-6);
+  }
+
+  .headline-free {
+    background: linear-gradient(135deg, #635BFF 0%, #22c55e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pricing-sub {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    max-width: 560px;
+    margin: 0 auto var(--spacing-10);
+  }
+
+  /* ── BILLING TOGGLE ── */
+  .billing-toggle {
+    display: inline-flex;
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-full);
+    padding: 4px;
+    gap: 4px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .toggle-btn {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  .toggle-btn.active {
+    background: var(--color-blurple);
+    color: white;
+    box-shadow: 0 2px 8px rgba(99, 91, 255, 0.3);
+  }
+
+  .toggle-note {
+    font-size: 13px;
+    color: var(--color-slate-400);
+    font-style: italic;
+  }
+
+  /* ── PLANS ── */
+  .plans-section {
+    padding: var(--spacing-16) 0;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .plans-grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
+    }
+  }
+
+  .plan-card {
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .plan-card-inactiv {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.015) 10px,
+      rgba(0,0,0,0.015) 20px
+    );
+    border: 1px solid var(--color-slate-200);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  
+
+
+
+
+
+  .plan-card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-3px);
+  }
+
+  .plan-card.plan-featured {
+    background: var(--color-slate-900);
+    border-color: var(--color-blurple);
+    box-shadow: 0 0 0 2px var(--color-blurple), var(--shadow-xl);
+    color: white;
+  }
+
+  .plan-card.plan-featured:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 0 2px var(--color-blurple), 0 30px 60px rgba(99, 91, 255, 0.25);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-blurple);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 18px;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  .plan-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .plan-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-slate-400);
+  }
+
+  .plan-featured .plan-label {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    line-height: 1;
+  }
+
+  .price-amount {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--color-text-primary);
+  }
+
+  .plan-featured .price-amount { color: white; }
+
+  .price-currency {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+
+  .plan-featured .price-currency { color: rgba(255,255,255,0.6); }
+
+  .price-period {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-slate-400);
+  }
+
+  .plan-featured .price-period { color: rgba(255,255,255,0.5); }
+
+  .plan-tagline {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .plan-featured .plan-tagline { color: rgba(255,255,255,0.65); }
+
+  .plan-tagline em {
+    font-style: italic;
+    color: var(--color-success-500);
+    font-weight: 500;
+  }
+
+  .plan-tagline code {
+    font-family: monospace;
+    background: var(--color-slate-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--color-blurple);
+  }
+
+  /* CTAs */
+  .plan-cta {
+    display: block;
+    text-align: center;
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .plan-cta.primary {
+    background: var(--color-blurple);
+    color: white;
+    box-shadow: 0 4px 16px rgba(99, 91, 255, 0.35);
+  }
+
+  .plan-cta.primary:hover {
+    background: var(--color-blurple-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 91, 255, 0.45);
+  }
+
+  .plan-cta.secondary {
+    background: var(--color-slate-100);
+    color: var(--color-text-primary);
+  }
+
+  .plan-cta.secondary:hover {
+    background: var(--color-slate-200);
+    transform: translateY(-1px);
+  }
+
+  /* Features */
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+
+  .plan-featured .feature { color: rgba(255,255,255,0.8); }
+
+  .check {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.12);
+    color: var(--color-success-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .check-white {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+  }
+
+  .plan-footnote {
+    font-size: 12px;
+    color: var(--color-slate-400);
+    line-height: 1.5;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .plan-card:not(.plan-featured) .plan-footnote {
+    border-top-color: var(--color-slate-200);
+  }
+
+  .plans-footer-note {
+    text-align: center;
+    margin-top: var(--spacing-8);
+    font-size: 14px;
+    color: var(--color-slate-400);
+    font-style: italic;
+  }
+
+  /* ── FUTURE ── */
+  .future-section {
+    padding: var(--spacing-24) 0;
+    background: var(--color-slate-50);
+    border-top: 1px solid var(--color-slate-200);
+    border-bottom: 1px solid var(--color-slate-200);
+  }
+
+  .future-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-12);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .future-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-16);
+    }
+  }
+
+  .future-tag {
+    display: inline-block;
+    background: var(--color-slate-200);
+    color: var(--color-slate-600);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .future-title {
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-6);
+  }
+
+  .future-shrug {
+    color: var(--color-slate-400);
+    font-style: italic;
+  }
+
+  .future-desc {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .future-desc strong { color: var(--color-text-primary); }
+
+  .future-cta-row {
+    margin-top: var(--spacing-6);
+  }
+
+  .future-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-text-primary);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+
+  .future-cta svg { width: 16px; height: 16px; }
+
+  .future-cta:hover {
+    background: var(--color-slate-700);
+    transform: translateY(-1px);
+  }
+
+  /* Mystery card */
+  .mystery-card {
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .mystery-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.015) 10px,
+      rgba(0,0,0,0.015) 20px
+    );
+    pointer-events: none;
+  }
+
+  .mystery-header {
+    margin-bottom: 24px;
+  }
+
+  .mystery-plan-name {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-slate-400);
+    margin-bottom: 8px;
+  }
+
+  .mystery-price {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .mystery-amount {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    color: var(--color-slate-300);
+    filter: blur(2px);
+  }
+
+  .mystery-cur {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-slate-300);
+    align-self: flex-start;
+    margin-top: 10px;
+    filter: blur(2px);
+  }
+
+  .mystery-period {
+    font-size: 15px;
+    color: var(--color-slate-300);
+  }
+
+  .mystery-tagline {
+    font-size: 13px;
+    color: var(--color-slate-400);
+    font-style: italic;
+  }
+
+  .mystery-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .mystery-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--color-slate-400);
+  }
+
+  .lock-icon { font-size: 16px; }
+
+  .mystery-text {
+    filter: blur(3px);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .mystery-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    background: var(--color-slate-100);
+    color: var(--color-slate-400);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .mystery-btn svg { width: 16px; height: 16px; }
+
+  .mystery-disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--color-slate-400);
+    font-style: italic;
+    margin-top: 12px;
+  }
+
+  /* ── DONATION ── */
+  .donation-section {
+    padding: var(--spacing-24) 0;
+  }
+
+  .donation-card {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .coffee-emoji {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: var(--spacing-6);
+    animation: wiggle 3s ease-in-out infinite;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+  }
+
+  .donation-title {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    margin-bottom: var(--spacing-5);
+  }
+
+  .donation-desc {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .donation-actions {
+    margin: var(--spacing-8) 0 var(--spacing-6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+
+  .donation-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFDD00;
+    color: #1a1a1a;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 12px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(255, 221, 0, 0.4);
+  }
+
+  .donation-btn-primary:hover {
+    background: #FFE833;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(255, 221, 0, 0.5);
+  }
+
+  .coffee-icon { width: 22px; height: 22px; }
+
+  .donation-micro {
+    font-size: 13px;
+    color: var(--color-slate-400);
+    font-style: italic;
+  }
+
+  .donation-amounts {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .amount-pill {
+    background: var(--color-slate-100);
+    border: 1px solid var(--color-slate-200);
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+  }
+
+  /* ── PRICING FAQ ── */
+  .pricing-faq {
+    padding: var(--spacing-16) 0 var(--spacing-24);
+    background: var(--color-slate-50);
+    border-top: 1px solid var(--color-slate-200);
+  }
+
+  .faq-title {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .faq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-3);
+    line-height: 1.4;
+  }
+
+  .faq-a {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+</style>
+
+<script>
+  // Billing toggle — cosmetic, all prices stay 0
+  const btns = document.querySelectorAll<HTMLButtonElement>('.toggle-btn');
+  const note = document.getElementById('toggle-note');
+
+  const notes: Record<string, string> = {
+    monthly: "Choisissez votre fréquence de paiement. (Spoiler : ça ne changera pas le prix.)",
+    yearly:  "Vous économisez exactement 0€ par rapport au mensuel. C'est mathématique.",
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const period = btn.dataset.period as string;
+      if (note) note.textContent = notes[period] ?? notes.monthly;
+    });
+  });
+</script>
