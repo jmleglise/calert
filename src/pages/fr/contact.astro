@@ -688,12 +688,11 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-<script>
+<script define:vars={{ turnstileSiteKey: TURNSTILE_SITE_KEY }}>
   const form = document.getElementById('contact-form');
   const successState = document.getElementById('success-state');
   const formError = document.getElementById('form-error');
   const submitBtn = document.getElementById('submit-btn');
-  const turnstileSiteKey = ${JSON.stringify(TURNSTILE_SITE_KEY)};
   const turnstileInitError = 'La clé publique Turnstile est manquante ou le widget ne peut pas être chargé. Votre message ne peut pas être envoyé.';
   const genericFormError = 'Une erreur est survenue, veuillez réessayer plus tard.';
   let turnstileWidgetId = null;
