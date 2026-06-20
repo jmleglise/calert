@@ -693,12 +693,14 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   const successState = document.getElementById('success-state');
   const formError = document.getElementById('form-error');
   const submitBtn = document.getElementById('submit-btn');
-  const turnstileSiteKey = String(TURNSTILE_SITE_KEY || '');
+  const turnstileSiteKey = ${JSON.stringify(TURNSTILE_SITE_KEY)};
+  const turnstileInitError = 'La clé publique Turnstile est manquante ou le widget ne peut pas être chargé. Votre message ne peut pas être envoyé.';
+  const genericFormError = 'Une erreur est survenue, veuillez réessayer plus tard.';
   let turnstileWidgetId = null;
 
   function setFormError(message) {
     if (formError) {
-      formError.textContent = message;
+      formError.textContent = message || genericFormError;
     }
   }
 
@@ -725,13 +727,28 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 
   function initTurnstile() {
     const widgetHost = document.getElementById('turnstile-widget');
-    if (!widgetHost || !window.turnstile || !turnstileSiteKey) return;
+    const errorElement = document.getElementById('error-turnstile');
+
+    if (!turnstileSiteKey) {
+      errorElement?.classList.add('visible');
+      errorElement.textContent = turnstileInitError;
+      setFormError(turnstileInitError);
+      if (submitBtn) submitBtn.disabled = true;
+      return;
+    }
+
+    if (!widgetHost || !window.turnstile) {
+      errorElement?.classList.add('visible');
+      errorElement.textContent = turnstileInitError;
+      setFormError(turnstileInitError);
+      if (submitBtn) submitBtn.disabled = true;
+      return;
+    }
 
     turnstileWidgetId = window.turnstile.render(widgetHost, {
       sitekey: turnstileSiteKey,
       action: 'contact',
       callback() {
-        const errorElement = document.getElementById('error-turnstile');
         errorElement?.classList.remove('visible');
       },
     });

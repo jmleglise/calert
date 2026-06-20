@@ -1,115 +1,94 @@
-export async function onRequest({ request }) {
+type EnvKey = 'BREVO_API_KEY' | 'BREVO_FROM_EMAIL' | 'BREVO_FROM_NAME' | 'CONTACT_TO_EMAIL' | 'TURNSTILE_SECRET_KEY';
+
+type Env = Partial<Record<EnvKey, string>>;
+
+interface ProcessLike {
+  env?: Partial<Record<EnvKey, string>>;
+}
+
+interface GlobalWithProcess {
+  process?: ProcessLike;
+}
+
+interface ContactPayload {
+  nom?: unknown;
+  prenom?: unknown;
+  email?: unknown;
+  telephone?: unknown;
+  message?: unknown;
+  turnstileToken?: unknown;
+}
+
+interface TurnstileVerifyResponse {
+  success?: boolean;
+  'error-codes'?: string[];
+}
+
+interface PagesFunctionContext {
+  request: Request;
+  env: Env;
+}
+
+const jsonResponse = (body: Record<string, unknown>, init?: ResponseInit) =>
+  new Response(JSON.stringify(body), {
+    ...init,
+    headers: {
+      'Content-Type': 'application/json',
+      ...init?.headers,
+    },
+  });
+
+const toTrimmedString = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
+
+const getEnvValue = (env: Env, key: EnvKey) =>
+  env[key] || (globalThis as GlobalWithProcess).process?.env?.[key] || '';
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+export async function onRequest({ request, env }: PagesFunctionContext) {
   if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Méthode non autorisée' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json', Allow: 'POST' },
-    });
+    return jsonResponse(
+      { error: 'Méthode non autorisée' },
+      {
+        status: 405,
+        headers: { Allow: 'POST' },
+      },
+    );
   }
 
-  const BREVO_API_KEY = process.env.BREVO_API_KEY;
-  const BREVO_FROM_EMAIL = process.env.BREVO_FROM_EMAIL;
-  const BREVO_FROM_NAME = process.env.BREVO_FROM_NAME || 'ConsoAlert';
-  const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL;
-  const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
+  const BREVO_API_KEY = getEnvValue(env, 'BREVO_API_KEY');
+  const BREVO_FROM_EMAIL = getEnvValue(env, 'BREVO_FROM_EMAIL');
+  const BREVO_FROM_NAME = getEnvValue(env, 'BREVO_FROM_NAME') || 'ConsoAlert';
+  const CONTACT_TO_EMAIL = getEnvValue(env, 'CONTACT_TO_EMAIL');
+  const TURNSTILE_SECRET_KEY = getEnvValue(env, 'TURNSTILE_SECRET_KEY');
 
   if (!BREVO_API_KEY || !BREVO_FROM_EMAIL || !CONTACT_TO_EMAIL || !TURNSTILE_SECRET_KEY) {
-    return new Response(JSON.stringify({ error: 'Configuration manquante sur le serveur.' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return jsonResponse({ error: 'Configuration manquante sur le serveur.' }, { status: 500 });
   }
 
-  let payload;
+  let payload: ContactPayload;
   try {
-    payload = await request.json();
+    payload = (await request.json()) as ContactPayload;
   } catch {
-    return new Response(JSON.stringify({ error: 'Requête JSON invalide.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return jsonResponse({ error: 'Requête JSON invalide.' }, { status: 400 });
   }
 
-  const nom = String(payload.nom || '').trim();
-  const prenom = String(payload.prenom || '').trim();
-  const email = String(payload.email || '').trim();
-  const telephone = String(payload.telephone || '').trim();
-  const message = String(payload.message || '').trim();
-  const turnstileToken = String(payload.turnstileToken || '').trim();
+  const nom = toTrimmedString(payload.nom);
+  const prenom = toTrimmedString(payload.prenom);
+  const email = toTrimmedString(payload.email);
+  const telephone = toTrimmedString(payload.telephone);
+  const message = toTrimmedString(payload.message);
+  const turnstileToken = toTrimmedString(payload.turnstileToken);
 
   if (!nom || !prenom || !email || !message || !turnstileToken) {
-    return new Response(JSON.stringify({ error: 'Tous les champs obligatoires doivent être remplis.' }), {
-      status: 422,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return jsonResponse({ error: 'Tous les champs obligatoires doivent être remplis.' }, { status: 422 });
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return new Response(JSON.stringify({ error: 'Adresse email invalide.' }), {
-      status: 422,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  const verifyResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ secret: TURNSTILE_SECRET_KEY, response: turnstileToken }).toString(),
-  });
-
-  const verifyData = await verifyResponse.json();
-  if (!verifyData.success) {
-    return new Response(JSON.stringify({ error: 'Validation Turnstile échouée.' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  const escapeHtml = (value) =>
-    value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-
-  const htmlContent = `
-    <h1>Nouveau message de contact ConsoAlert</h1>
-    <p><strong>Nom :</strong> ${escapeHtml(nom)}</p>
-    <p><strong>Prénom :</strong> ${escapeHtml(prenom)}</p>
-    <p><strong>Email :</strong> ${escapeHtml(email)}</p>
-    <p><strong>Téléphone :</strong> ${escapeHtml(telephone) || 'Non fourni'}</p>
-    <p><strong>Message :</strong></p>
-    <pre style="white-space: pre-wrap; font-family: inherit;">${escapeHtml(message)}</pre>
-  `;
-
-  const textContent = `Nouveau message de contact ConsoAlert\n\nNom: ${nom}\nPrénom: ${prenom}\nEmail: ${email}\nTéléphone: ${telephone || 'Non fourni'}\n\nMessage:\n${message}`;
-
-  const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': BREVO_API_KEY,
-    },
-    body: JSON.stringify({
-      sender: { name: BREVO_FROM_NAME, email: BREVO_FROM_EMAIL },
-      to: [{ email: CONTACT_TO_EMAIL }],
-      subject: `Nouveau message ConsoAlert de ${prenom} ${nom}`,
-      htmlContent,
-      textContent,
-      replyTo: { email, name: `${prenom} ${nom}` },
-    }),
-  });
-
-  if (!brevoResponse.ok) {
-    const errorPayload = await brevoResponse.text();
-    return new Response(JSON.stringify({ error: 'Envoi Brevo échoué.', details: errorPayload }), {
-      status: 502,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  return new Response(JSON.stringify({ success: true }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
-}
+    return jsonResponse({ error: 'Adresse email invalide.' }, { status: 422 });
