@@ -140,11 +140,11 @@ const getBrevoMessage = (details) => {
 const classifyBrevoError = (response, details) => {
   const message = getBrevoMessage(details).toLowerCase();
 
-  if (response.status === 401 || response.status === 403 && message.includes('unauthorized')) {
+  if (response.status === 401 || (response.status === 403 && message.includes('unauthorized'))) {
     return 'BREVO_UNAUTHORIZED';
   }
 
-  if (message.includes('smtp account is not yet activated') || message.includes('transactional emails') && message.includes('not activated')) {
+  if (message.includes('smtp account is not yet activated') || (message.includes('transactional emails') && message.includes('not activated'))) {
     return 'BREVO_SMTP_NOT_ACTIVATED';
   }
 
@@ -193,7 +193,18 @@ const errorResponse = ({ requestId, code, detail, headers }) => {
   );
 };
 
-export async function onRequest({ request, env = {} }) {
+export async function onRequest(context) {
+  try {
+    return await handleContactRequest(context);
+  } catch (error) {
+    const requestId = createRequestId();
+    const detail = { unexpected: true };
+    logFailure({ requestId, code: 'BREVO_SEND_FAILED', detail, error });
+    return errorResponse({ requestId, code: 'BREVO_SEND_FAILED', detail });
+  }
+}
+
+async function handleContactRequest({ request, env = {} }) {
   const requestId = createRequestId();
 
   if (request.method !== 'POST') {
@@ -268,7 +279,14 @@ export async function onRequest({ request, env = {} }) {
     return errorResponse({ requestId, code: 'TURNSTILE_NETWORK_ERROR' });
   }
 
-  const verifyData = await readResponseBody(verifyResponse);
+  let verifyData;
+  try {
+    verifyData = await readResponseBody(verifyResponse);
+  } catch (error) {
+    const detail = { status: verifyResponse.status };
+    logFailure({ requestId, code: 'TURNSTILE_INVALID_RESPONSE', detail, error });
+    return errorResponse({ requestId, code: 'TURNSTILE_INVALID_RESPONSE', detail });
+  }
 
   if (!verifyData || typeof verifyData !== 'object') {
     const detail = { status: verifyResponse.status, body: verifyData };
@@ -317,7 +335,14 @@ export async function onRequest({ request, env = {} }) {
     return errorResponse({ requestId, code: 'BREVO_NETWORK_ERROR' });
   }
 
-  const brevoDetails = await readResponseBody(brevoResponse);
+  let brevoDetails;
+  try {
+    brevoDetails = await readResponseBody(brevoResponse);
+  } catch (error) {
+    const detail = { status: brevoResponse.status };
+    logFailure({ requestId, code: 'BREVO_NETWORK_ERROR', detail, error });
+    return errorResponse({ requestId, code: 'BREVO_NETWORK_ERROR', detail });
+  }
 
   if (!brevoResponse.ok) {
     const code = classifyBrevoError(brevoResponse, brevoDetails);
