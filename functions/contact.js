@@ -5,7 +5,7 @@ const ENV_KEYS = [
   'CONTACT_TO_EMAIL',
   'TURNSTILE_SECRET_KEY',
 ];
-
+ 
 const jsonResponse = (body, init = {}) =>
   new Response(JSON.stringify(body), {
     ...init,
@@ -82,7 +82,7 @@ export async function onRequest({ request, env = {} }) {
 
   let verifyData;
   try {
-    verifyData = await verifyResponse.json();
+  verifyData = await verifyResponse.json();
   } catch {
     return jsonResponse({ error: 'Validation Turnstile indisponible.' }, { status: 502 });
   }
@@ -108,3 +108,35 @@ export async function onRequest({ request, env = {} }) {
   `;
 
   const textContent = `Nouveau message de contact ConsoAlert\n\nNom: ${nom}\nPrénom: ${prenom}\nEmail: ${email}\nTéléphone: ${telephone || 'Non fourni'}\n\nMessage:\n${message}`;
+
+  const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'api-key': BREVO_API_KEY,
+    },
+    body: JSON.stringify({
+      sender: { email: BREVO_FROM_EMAIL, name: BREVO_FROM_NAME },
+      to: [{ email: CONTACT_TO_EMAIL }],
+      replyTo: { email, name: `${prenom} ${nom}` },
+      subject: `Nouveau message de contact ConsoAlert - ${prenom} ${nom}`,
+      htmlContent,
+      textContent,
+    }),
+  });
+
+  if (!brevoResponse.ok) {
+    let details = null;
+    try {
+      details = await brevoResponse.json();
+    } catch {
+      details = await brevoResponse.text();
+    }
+
+    console.error('Brevo email send failed', details);
+    return jsonResponse({ error: 'Impossible d’envoyer le message pour le moment.' }, { status: 502 });
+  }
+
+  return jsonResponse({ success: true });
+}
