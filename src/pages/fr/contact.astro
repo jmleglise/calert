@@ -61,7 +61,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               <ul class="aside-list">
                 <li>
                   <span class="aside-check">✓</span>
-                  ConsoAlert.com et Wattson sont développés à Paris.
+                  ConsoAlert et Wattson sont développés à Paris.
                 </li>
               </ul>
             </div>
@@ -70,8 +70,8 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               <div class="donation-emoji">☕</div>
               <h3 class="donation-aside-title">Offrir un café à Wattson</h3>
               <p class="donation-aside-desc">
-                Wattson tourne 24h/24 sans pause. Si son travail vous a aidés,
-                vous pouvez lui offrir un café, c'est notre seule source de motivation.
+                Wattson tourne 24h/24 sans pause. Si son travail vous a aidé,
+                vous pouvez lui payer un café, c'est note seule source de motivation.
                 
               </p>
               <a
@@ -85,7 +85,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
                 </svg>
                 Faire un don
               </a>
-              <p class="donation-aside-micro">Sans obligation. Wattson ne vous en voudra pas.</p>
+              <p class="donation-aside-micro">Sans obligation. Wattson ne vous jugera pas.</p>
             </div>
           </aside>
 
@@ -694,7 +694,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   const formError = document.getElementById('form-error');
   const submitBtn = document.getElementById('submit-btn');
   const turnstileInitError = 'La clé publique Turnstile est manquante ou le widget ne peut pas être chargé. Votre message ne peut pas être envoyé.';
-  const genericFormError = 'Une erreur est survenue, veuillez réessayer plus tard.';
+  const genericFormError = 'Impossible d’envoyer le message. Merci de réessayer plus tard.';
   let turnstileWidgetId = null;
 
   function setFormError(message) {
@@ -826,11 +826,22 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           result = null;
         }
       }
+
       if (!response.ok || result?.success !== true) {
         if (window.turnstile && turnstileWidgetId !== null) {
           window.turnstile.reset(turnstileWidgetId);
         }
-        setFormError(result?.error || 'Une erreur est survenue, veuillez réessayer.');
+
+        console.error('Contact form submission failed', {
+          status: response.status,
+          requestId: result?.requestId || response.headers.get('X-Contact-Request-Id'),
+          code: result?.code,
+          diagnostic: result?.diagnostic,
+          detail: result?.detail,
+          response: result,
+        });
+
+        setFormError(result?.error || genericFormError);
         return;
       }
 
@@ -841,10 +852,12 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
         successState.classList.add('visible');
       }
     } catch (err) {
+      console.error('Contact form request crashed before receiving a response', err);
+
       if (window.turnstile && turnstileWidgetId !== null) {
         window.turnstile.reset(turnstileWidgetId);
       }
-      setFormError('Impossible d’envoyer le message. Merci de réessayer plus tard.');
+      setFormError(genericFormError);
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
