@@ -61,7 +61,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               <ul class="aside-list">
                 <li>
                   <span class="aside-check">✓</span>
-                  ConsoAlert et Wattson sont développés à Paris.
+                  ConsoAlert.com et Wattson sont développés à Paris.
                 </li>
               </ul>
             </div>
@@ -70,8 +70,8 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               <div class="donation-emoji">☕</div>
               <h3 class="donation-aside-title">Offrir un café à Wattson</h3>
               <p class="donation-aside-desc">
-                Wattson tourne 24h/24 sans pause. Si son travail vous a aidé,
-                vous pouvez lui payer un café, c'est note seule source de motivation.
+                Wattson tourne 24h/24 sans pause. Si son travail vous a aidés,
+                vous pouvez lui offrir un café, c'est notre seule source de motivation.
                 
               </p>
               <a
@@ -85,7 +85,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
                 </svg>
                 Faire un don
               </a>
-              <p class="donation-aside-micro">Sans obligation. Wattson ne vous jugera pas.</p>
+              <p class="donation-aside-micro">Sans obligation. Wattson ne vous en voudra pas.</p>
             </div>
           </aside>
 
@@ -816,7 +816,16 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
         body: JSON.stringify(payload),
       });
 
-      const result = await response.json();
+      const responseText = await response.text();
+      let result = null;
+
+      if (responseText) {
+        try {
+          result = JSON.parse(responseText);
+        } catch {
+          result = null;
+        }
+      }
       if (!response.ok || result?.success !== true) {
         if (window.turnstile && turnstileWidgetId !== null) {
           window.turnstile.reset(turnstileWidgetId);

@@ -5,7 +5,7 @@ const ENV_KEYS = [
   'CONTACT_TO_EMAIL',
   'TURNSTILE_SECRET_KEY',
 ];
- 
+
 const jsonResponse = (body, init = {}) =>
   new Response(JSON.stringify(body), {
     ...init,
@@ -30,6 +30,18 @@ const escapeHtml = (value) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+
+const readResponseBody = async (response) => {
+  const text = await response.text();
+
+  if (!text) return null;
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    return text;
+  }
+};
 
 export async function onRequest({ request, env = {} }) {
   if (request.method !== 'POST') {
@@ -74,16 +86,21 @@ export async function onRequest({ request, env = {} }) {
     return jsonResponse({ error: 'Adresse email invalide.' }, { status: 422 });
   }
 
-  const verifyResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ secret: TURNSTILE_SECRET_KEY, response: turnstileToken }).toString(),
-  });
-
-  let verifyData;
+  let verifyResponse;
   try {
-  verifyData = await verifyResponse.json();
-  } catch {
+    verifyResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ secret: TURNSTILE_SECRET_KEY, response: turnstileToken }).toString(),
+    });
+  } catch (error) {
+    console.error('Turnstile verification request failed', error);
+    return jsonResponse({ error: 'Validation Turnstile indisponible.' }, { status: 502 });
+  }
+
+  const verifyData = await readResponseBody(verifyResponse);
+
+  if (!verifyData || typeof verifyData !== 'object') {
     return jsonResponse({ error: 'Validation Turnstile indisponible.' }, { status: 502 });
   }
 
@@ -109,30 +126,31 @@ export async function onRequest({ request, env = {} }) {
 
   const textContent = `Nouveau message de contact ConsoAlert\n\nNom: ${nom}\nPrénom: ${prenom}\nEmail: ${email}\nTéléphone: ${telephone || 'Non fourni'}\n\nMessage:\n${message}`;
 
-  const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'api-key': BREVO_API_KEY,
-    },
-    body: JSON.stringify({
-      sender: { email: BREVO_FROM_EMAIL, name: BREVO_FROM_NAME },
-      to: [{ email: CONTACT_TO_EMAIL }],
-      replyTo: { email, name: `${prenom} ${nom}` },
-      subject: `Nouveau message de contact ConsoAlert - ${prenom} ${nom}`,
-      htmlContent,
-      textContent,
-    }),
-  });
+  let brevoResponse;
+  try {
+    brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'api-key': BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        sender: { email: BREVO_FROM_EMAIL, name: BREVO_FROM_NAME },
+        to: [{ email: CONTACT_TO_EMAIL }],
+        replyTo: { email, name: `${prenom} ${nom}` },
+        subject: `Nouveau message de contact ConsoAlert - ${prenom} ${nom}`,
+        htmlContent,
+        textContent,
+      }),
+    });
+  } catch (error) {
+    console.error('Brevo email request failed', error);
+    return jsonResponse({ error: 'Service d’envoi indisponible. Merci de réessayer plus tard.' }, { status: 502 });
+  }
 
   if (!brevoResponse.ok) {
-    let details = null;
-    try {
-      details = await brevoResponse.json();
-    } catch {
-      details = await brevoResponse.text();
-    }
+    const details = await readResponseBody(brevoResponse);
 
     console.error('Brevo email send failed', details);
     return jsonResponse({ error: 'Impossible d’envoyer le message pour le moment.' }, { status: 502 });
