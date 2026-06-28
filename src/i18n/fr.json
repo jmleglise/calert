@@ -29,6 +29,7 @@
       {
         "id": "conciergerie",
         "icon": "🔥",
+        "cardTitle": "Pour les conciergeries qui protègent leurs clients.",
         "title": "Conciergeries, protégez vos propriétaires avant qu'ils ne découvrent leur facture.",
         "body": [
           "Pas toujours facile de vérifier ce que les locataires laissent allumé. Sans parler d'appareil piegeux disposant d'un programmateur que des locataires auraient pu laissé activés par inadvertance. ",
@@ -40,11 +41,14 @@
           "Soyez alerté avant votre propriétaire.",
           "Quantifiez le coût réel de chaque anomalie détectée.",
           "Valorisez votre service auprès de vos propriétaires. Nous vous préparons tout : Explications sur l'activation du service, et des rapports d'économies."
-        ]
+        ],
+        "visualClass": "visual-heater",
+        "visualHtml": "<div class=\"heater-bg\"></div><div class=\"heater-chart\"><div class=\"chart-bars\"><div class=\"bar\" style=\"height:30%\"></div><div class=\"bar\" style=\"height:35%\"></div><div class=\"bar\" style=\"height:28%\"></div><div class=\"bar bar-alert\" style=\"height:95%\"></div><div class=\"bar bar-alert\" style=\"height:90%\"></div><div class=\"bar bar-alert\" style=\"height:88%\"></div><div class=\"bar bar-alert\" style=\"height:92%\"></div></div><div class=\"chart-label-empty\">Logement vide</div><div class=\"alert-badge\"><span class=\"alert-dot\"></span>Anomalie détectée — Chauffage actif</div></div>"
       },
       {
         "id": "recharge-ve",
         "icon": "🚗",
+        "cardTitle": "Recharges de véhicules électriques : Refacturez les locataires pour les consommation hors norme.",
         "title": "Refacturez équitablement les recharges de véhicules électriques.",
         "body": [
           "Les véhicules électriques sont de plus en plus présents dans les locations saisonnières.",
@@ -56,11 +60,14 @@
           "Estimez automatiquement le coût associé.",
           "Générez un rapport de consommation détaillé.",
           "Préservez la rentabilité de chaque réservation."
-        ]
+        ],
+        "visualClass": "visual-savings",
+        "visualHtml": "<div class=\"savings-bg\"></div><div class=\"savings-content\"><div class=\"savings-ring\"><svg viewBox=\"0 0 120 120\"><circle cx=\"60\" cy=\"60\" r=\"48\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"10\"/><circle cx=\"60\" cy=\"60\" r=\"48\" fill=\"none\" stroke=\"url(#savings-grad)\" stroke-width=\"10\" stroke-dasharray=\"188 113\" stroke-linecap=\"round\" transform=\"rotate(-90 60 60)\"/><text x=\"60\" y=\"55\" text-anchor=\"middle\" font-size=\"20\" font-weight=\"700\" fill=\"#0f172a\">200€</text><text x=\"60\" y=\"72\" text-anchor=\"middle\" font-size=\"10\" fill=\"#64748b\">économisés</text><defs><linearGradient id=\"savings-grad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"#6366f1\"/><stop offset=\"100%\" stop-color=\"#4f46e5\"/></linearGradient></defs></svg></div><div class=\"savings-items\"><div class=\"saving-item\"><span class=\"saving-label\">Sèche-serviette 1000W</span><span class=\"saving-value positive\">+€€€</span></div><div class=\"saving-item\"><span class=\"saving-label\">Abonnement Wattson</span><span class=\"saving-value negative\">–€</span></div><div class=\"saving-divider\"></div><div class=\"saving-item bold\"><span class=\"saving-label\">ROI en 48h</span><span class=\"saving-value positive\">✓</span></div></div></div>"
       },
       {
         "id": "multi-logements",
         "icon": "📊",
+        "cardTitle": "Centralisez la surveillance de tous vos logements.",
         "title": "Centralisez la surveillance de tous vos logements.",
         "body": [
           "Lorsque l'on gère plusieurs biens, surveiller chaque compteur devient rapidement impossible.",
@@ -72,11 +79,14 @@
           "Une surveillance identique quel que soit le nombre de logements.",
           "Des alertes consolidées dans un seul espace.",
           "Une gestion 100 % à distance sans déplacement."
-        ]
+        ],
+        "visualClass": "visual-squat",
+        "visualHtml": "<div class=\"squat-bg\"></div><div class=\"squat-timeline\"><div class=\"timeline-row\"><span class=\"timeline-date\">Lun</span><div class=\"timeline-bar empty\"></div><span class=\"timeline-wh\">0 Wh</span></div><div class=\"timeline-row\"><span class=\"timeline-date\">Mar</span><div class=\"timeline-bar empty\"></div><span class=\"timeline-wh\">0 Wh</span></div><div class=\"timeline-row\"><span class=\"timeline-date\">Mer</span><div class=\"timeline-bar empty\"></div><span class=\"timeline-wh\">0 Wh</span></div><div class=\"timeline-row alert\"><span class=\"timeline-date\">Jeu</span><div class=\"timeline-bar squat-bar\"></div><span class=\"timeline-wh alert-text\">3.2 kWh ⚠️</span></div></div><div class=\"squat-alert\"><svg viewBox=\"0 0 20 20\" fill=\"none\" class=\"squat-icon\"><path d=\"M10 2a8 8 0 100 16A8 8 0 0010 2zm0 4v4m0 4v.01\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>Occupation suspecte détectée</div>"
       },
       {
         "id": "residence-secondaire",
         "icon": "🏠",
+        "cardTitle": "Gardez un œil sur votre résidence secondaire.",
         "title": "Gardez un œil sur votre résidence secondaire.",
         "body": [
           "Vous êtes à 200 km. Puis un doute apparaît. Avez-vous bien coupé le chauffage ? Débranché le congélateur ? Arrêté la climatisation ?",
@@ -88,11 +98,14 @@
           "Soyez alerté dès qu'une consommation inhabituelle apparaît.",
           "Consultez la consommation depuis n'importe où.",
           "Réagissez avant que la situation ne devienne coûteuse."
-        ]
+        ],
+        "visualClass": "visual-ev",
+        "visualHtml": "<div class=\"ev-bg\"></div><div class=\"ev-content\"><div class=\"ev-night-chart\"><div class=\"ev-label\">Consommation nocturne</div><div class=\"ev-timeline\"><div class=\"ev-slot\" style=\"height:10%\"></div><div class=\"ev-slot\" style=\"height:12%\"></div><div class=\"ev-slot ev-charging\" style=\"height:85%\"></div><div class=\"ev-slot ev-charging\" style=\"height:88%\"></div><div class=\"ev-slot ev-charging\" style=\"height:90%\"></div><div class=\"ev-slot ev-charging\" style=\"height:87%\"></div><div class=\"ev-slot ev-charging\" style=\"height:89%\"></div><div class=\"ev-slot ev-charging\" style=\"height:86%\"></div><div class=\"ev-slot\" style=\"height:11%\"></div><div class=\"ev-slot\" style=\"height:9%\"></div></div><div class=\"ev-hours\"><span>22h</span><span>00h</span><span>02h</span><span>04h</span><span>06h</span></div></div><div class=\"ev-cost-badge\"><span class=\"ev-cost-value\">+20€</span><span class=\"ev-cost-label\">récupérables</span></div></div>"
       },
       {
         "id": "anomalies",
         "icon": "⚡",
+        "cardTitle": "Détectez les anomalies avant votre facture.",
         "title": "Détectez les anomalies avant votre facture.",
         "body": [
           "La plupart des propriétaires découvrent une surconsommation plusieurs semaines après son apparition.",
@@ -104,11 +117,14 @@
           "Alertes précoces avant réception de la facture.",
           "Estimation du coût potentiel de l'anomalie.",
           "Historique complet des événements détectés."
-        ]
+        ],
+        "visualClass": "visual-clim",
+        "visualHtml": "<div class=\"clim-bg\"></div><div class=\"clim-content\"><div class=\"clim-gauge\"><svg viewBox=\"0 0 200 110\"><path d=\"M20 100 A80 80 0 0 1 180 100\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"14\" stroke-linecap=\"round\"/><path d=\"M20 100 A80 80 0 0 1 180 100\" fill=\"none\" stroke=\"url(#clim-grad)\" stroke-width=\"14\" stroke-linecap=\"round\" stroke-dasharray=\"220 40\"/><text x=\"100\" y=\"90\" text-anchor=\"middle\" font-size=\"28\" font-weight=\"700\" fill=\"#ef4444\">+340%</text><text x=\"100\" y=\"108\" text-anchor=\"middle\" font-size=\"11\" fill=\"#64748b\">vs seuil normal</text><defs><linearGradient id=\"clim-grad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"#22c55e\"/><stop offset=\"60%\" stop-color=\"#f59e0b\"/><stop offset=\"100%\" stop-color=\"#ef4444\"/></linearGradient></defs></svg></div><div class=\"clim-stats\"><div class=\"clim-stat\"><span class=\"clim-stat-v\">18°C</span><span class=\"clim-stat-l\">Consigne</span></div><div class=\"clim-stat\"><span class=\"clim-stat-v\">35°C</span><span class=\"clim-stat-l\">Extérieur</span></div></div></div>"
       },
       {
         "id": "logements-vacants",
         "icon": "🔒",
+        "cardTitle": "C'est aussi un excellent détecteur anti-squat pour les résidences secondaires et les périodes innocupées !",
         "title": "Surveillez vos logements vacants comme si vous étiez sur place.",
         "body": [
           "Un logement vide possède une signature énergétique relativement stable.",
@@ -120,11 +136,14 @@
           "Détection des consommations anormales.",
           "Alertes immédiates en cas de changement inhabituel.",
           "Protection renforcée des biens vacants."
-        ]
+        ],
+        "visualClass": "visual-mining",
+        "visualHtml": "<div class=\"mining-bg\"></div><div class=\"mining-content\"><div class=\"mining-chart\"><div class=\"mining-line\"><svg viewBox=\"0 0 280 100\" preserveAspectRatio=\"none\"><polyline points=\"0,85 40,80 80,82 120,20 160,18 200,15 240,17 280,16\" fill=\"none\" stroke=\"url(#mining-line)\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"0,85 40,80 80,82 120,20 160,18 200,15 240,17 280,16\" fill=\"url(#mining-fill)\" stroke=\"none\"/><defs><linearGradient id=\"mining-line\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"#22c55e\"/><stop offset=\"45%\" stop-color=\"#f59e0b\"/><stop offset=\"100%\" stop-color=\"#ef4444\"/></linearGradient><linearGradient id=\"mining-fill\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\"><stop offset=\"0%\" stop-color=\"#ef4444\" stop-opacity=\"0.2\"/><stop offset=\"100%\" stop-color=\"#ef4444\" stop-opacity=\"0\"/></linearGradient></defs></svg></div></div><div class=\"mining-alert\"><div class=\"mining-stat\"><span class=\"mining-big\">124 kWh/j</span><span class=\"mining-sub\">Consommation actuelle</span></div><div class=\"mining-loss\"><span>–30€/jour</span></div></div></div>"
       },
       {
         "id": "budget-energie",
         "icon": "💡",
+        "cardTitle": "Comprenez où part réellement votre budget énergie.",
         "title": "Comprenez où part réellement votre budget énergie.",
         "body": [
           "Les dépenses énergétiques ne proviennent pas toujours des équipements les plus visibles.",
@@ -136,11 +155,14 @@
           "Identification des comportements énergétiques anormaux.",
           "Comparaison entre périodes occupées et vacantes.",
           "Estimation des économies réalisables."
-        ]
+        ],
+        "visualClass": "visual-boiler",
+        "visualHtml": "<div class=\"boiler-bg\"></div><div class=\"boiler-content\"><div class=\"boiler-cycles\"><div class=\"boiler-label\">Cycles de chauffe / 24h</div><div class=\"boiler-grid\"><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-peak\"></div><div class=\"boiler-cell cell-peak\"></div><div class=\"boiler-cell cell-off\"></div><div class=\"boiler-cell cell-off\"></div><div class=\"boiler-cell cell-off\"></div><div class=\"boiler-cell cell-off\"></div><div class=\"boiler-cell cell-off\"></div><div class=\"boiler-cell cell-off\"></div><div class=\"boiler-cell cell-mid\"></div><div class=\"boiler-cell cell-mid\"></div><div class=\"boiler-cell cell-mid\"></div><div class=\"boiler-cell cell-mid\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div><div class=\"boiler-cell cell-on\"></div></div><div class=\"boiler-time-labels\"><span>00h</span><span>06h</span><span>12h</span><span>18h</span><span>24h</span></div></div><div class=\"boiler-verdict\"><span class=\"verdict-icon\">⚠️</span>Chauffe continue — Thermostat défaillant</div></div>"
       },
       {
         "id": "activation",
         "icon": "🚀",
+        "cardTitle": "Comment çà marche ? En 2 minutes c'est prêt !",
         "title": "Activez la surveillance en moins de deux minutes.",
         "body": [
           "Contrairement aux systèmes domotiques traditionnels, Wattson ne nécessite aucun équipement.",
@@ -152,11 +174,14 @@
           "Aucun matériel à acheter ou installer.",
           "Mise en service immédiate à distance.",
           "Surveillance totalement autonome après activation."
-        ]
+        ],
+        "visualClass": "visual-fault",
+        "visualHtml": "<div class=\"fault-bg\"></div><div class=\"fault-content\"><div class=\"fault-signal\"><svg viewBox=\"0 0 280 80\" preserveAspectRatio=\"none\"><polyline points=\"0,40 30,40 35,10 40,70 45,30 50,50 55,40 80,40 85,5 90,75 95,35 100,40 130,40 135,15 140,65 145,20 150,40 180,40 185,8 190,72 195,25 200,40 240,40 245,12 250,68 255,30 260,40 280,40\" fill=\"none\" stroke=\"#ef4444\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></div><div class=\"fault-alerts\"><div class=\"fault-alert\"><span class=\"fault-time\">02:14</span><span class=\"fault-msg\">Pic anormal +850W</span></div><div class=\"fault-alert\"><span class=\"fault-time\">02:17</span><span class=\"fault-msg\">Pic anormal +900W</span></div><div class=\"fault-alert critical\"><span class=\"fault-time\">02:21</span><span class=\"fault-msg\">Court-circuit probable</span></div></div></div>"
       },
       {
         "id": "granularite",
         "icon": "📈",
+        "cardTitle": "Analysez votre consommation toutes les 30 minutes.",
         "title": "Analysez votre consommation toutes les 30 minutes.",
         "body": [
           "Grâce aux données Linky, Wattson peut analyser la consommation électrique avec une précision de 30 minutes.",
@@ -168,11 +193,14 @@
           "Visualisation précise des pics de consommation.",
           "Analyse des périodes d'exploitation du logement.",
           "Compréhension fine des usages énergétiques."
-        ]
+        ],
+        "visualClass": "visual-ical",
+        "visualHtml": "<div class=\"ical-bg\"></div><div class=\"ical-content\"><div class=\"ical-sources\"><div class=\"ical-source airbnb\"><div class=\"source-dot dot-airbnb\"></div><span>Airbnb</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source booking\"><div class=\"source-dot dot-booking\"></div><span>Booking.com</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source abritel\"><div class=\"source-dot dot-abritel\"></div><span>Abritel</span><span class=\"source-status synced\">Synced</span></div></div><div class=\"ical-calendar\"><div class=\"ical-week\"><div class=\"ical-day-label\">L</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">J</div><div class=\"ical-day-label\">V</div><div class=\"ical-day-label\">S</div><div class=\"ical-day-label\">D</div><div class=\"ical-day empty\"></div><div class=\"ical-day empty\"></div><div class=\"ical-day occupied airbnb-day\">14</div><div class=\"ical-day occupied airbnb-day\">15</div><div class=\"ical-day occupied booking-day\">16</div><div class=\"ical-day occupied booking-day\">17</div><div class=\"ical-day empty\">18</div></div></div></div>"
       },
       {
         "id": "ical-sync",
         "icon": "📅",
+        "cardTitle": "Automatisez la surveillance selon l'occupation réelle de vos logements.",
         "title": "Automatisez la surveillance selon l'occupation réelle de vos logements.",
         "body": [
           "Une consommation normale lorsque le logement est occupé peut devenir anormale lorsqu'il est censé être vide.",
@@ -184,7 +212,9 @@
           "Compatibilité Airbnb, Booking, Abritel et PMS.",
           "Distinction automatique entre périodes occupées et vacantes.",
           "Alertes beaucoup plus pertinentes grâce au contexte réel du logement."
-        ]
+        ],
+        "visualClass": "visual-dashboard",
+        "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Studio Marais</span><span class=\"prop-status\">Normal — 1.2 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">T2 Lyon Part-Dieu</span><span class=\"prop-status\">Vide — 0.1 kWh</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Villa Nice</span><span class=\"prop-status alert-status\">Anomalie — 8.4 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Apt. Bordeaux</span><span class=\"prop-status\">Occupé — 2.8 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Chalet Megève</span><span class=\"prop-status\">Vide — 0.2 kWh</span></div></div></div></div>"
       }
     ]
   },
