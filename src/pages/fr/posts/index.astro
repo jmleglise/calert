@@ -1,0 +1,109 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Pagination from '../../../components/blog/Pagination.astro';
+import TagList from '../../../components/blog/TagList.astro';
+import { getAbsoluteUrl, getPublishedPosts, getTrendingTags, paginate } from '../../../lib/blog';
+
+const posts = await getPublishedPosts();
+const tags = getTrendingTags(posts);
+const page = paginate(posts);
+const title = 'Articles ConsoAlert : Linky, énergie et location courte durée';
+const description = 'Conseils pratiques pour surveiller vos consommations électriques, détecter les anomalies Linky et protéger vos logements en location courte durée.';
+---
+
+<Layout
+  title={`${title} | ConsoAlert`}
+  description={description}
+  canonical={getAbsoluteUrl('/fr/posts/')}
+  alternates={[{ lang: 'fr', href: getAbsoluteUrl('/fr/posts/') }, { lang: 'x-default', href: getAbsoluteUrl('/fr/posts/') }]}
+>
+  <Header />
+  <main class="blog-page">
+    <section class="blog-hero">
+      <p class="eyebrow">Blog ConsoAlert</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </section>
+
+    <section class="blog-shell">
+      <div class="post-list" aria-label="Articles récents">
+        {page.items.map((post) => <PostCard post={post} />)}
+        <Pagination currentPage={page.currentPage} totalPages={page.totalPages} basePath="/fr/posts/" />
+      </div>
+      <aside class="sidebar">
+        <TagList tags={tags} />
+      </aside>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-page {
+    padding: calc(72px + var(--spacing-20)) var(--spacing-6) var(--spacing-20);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(99, 91, 255, 0.13), transparent 34rem),
+      radial-gradient(circle at 90% 0%, rgba(34, 197, 94, 0.08), transparent 30rem),
+      var(--color-body-bg);
+  }
+
+  .blog-hero,
+  .blog-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .blog-hero {
+    margin-bottom: var(--spacing-16);
+    max-width: 860px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    color: var(--color-blurple);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-4);
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    letter-spacing: -0.06em;
+    margin-bottom: var(--spacing-5);
+  }
+
+  .blog-hero > p:last-child {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .blog-shell {
+    display: grid;
+    gap: var(--spacing-8);
+  }
+
+  .post-list {
+    display: grid;
+    gap: var(--spacing-6);
+  }
+
+  .sidebar {
+    align-self: start;
+  }
+
+  @media (min-width: 980px) {
+    .blog-shell {
+      grid-template-columns: minmax(0, 1fr) 320px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 96px;
+    }
+  }
+</style>
