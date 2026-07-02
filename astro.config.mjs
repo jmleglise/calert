@@ -11,5 +11,5 @@ export default defineConfig({
     }
   },
   output: 'static',
-  site: 'https://consoalert.com'
+  site: 'https://www.consoalert.com'
 });

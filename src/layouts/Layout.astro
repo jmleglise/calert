@@ -4,9 +4,23 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  canonical?: string;
+  alternates?: Array<{ lang: string; href: string }>;
+  keywords?: string[];
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description = 'Agent IA intelligent qui surveille vos logements 24h/24 via Linky. Detecte anomalies, squat, abus. Sans boitier.' } = Astro.props;
+const {
+  title,
+  description = 'Agent IA intelligent qui surveille vos logements 24h/24 via Linky. Detecte anomalies, squat, abus. Sans boitier.',
+  canonical,
+  alternates = [
+    { lang: 'fr', href: 'https://www.consoalert.com/fr/' },
+    { lang: 'x-default', href: 'https://www.consoalert.com/fr/' },
+  ],
+  keywords = [],
+  structuredData,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -15,10 +29,30 @@ const { title, description = 'Agent IA intelligent qui surveille vos logements 2
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <meta name="generator" content={Astro.generator} />
+    {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang="fr" href="https://consoalert.com/fr/" />
-    <link rel="alternate" hreflang="x-default" href="https://consoalert.com/fr/" />
+    {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous" />
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+    <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVja52m3J4EHhhu4U21YYmJrRT7se9P2J607zZnGixY79xXewa5fN4rp" crossorigin="anonymous"></script>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.renderMathInElement) {
+          window.renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '\\[', right: '\\]', display: true },
+            ],
+            throwOnError: false,
+          });
+        }
+      });
+    </script>
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <title>{title}</title>
   </head>
   <body>

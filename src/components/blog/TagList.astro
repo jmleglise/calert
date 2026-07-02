@@ -1,0 +1,71 @@
+---
+import type { BlogTag } from '../../lib/blog';
+
+interface Props {
+  tags: BlogTag[];
+  activeTag?: string;
+  title?: string;
+}
+
+const { tags, activeTag, title = 'Trending tags' } = Astro.props;
+---
+
+<section class="tag-panel" aria-labelledby="tag-panel-title">
+  <h2 id="tag-panel-title">{title}</h2>
+  <div class="tag-cloud">
+    {tags.map((tag) => (
+      <a class:list={["tag-chip", { active: tag.slug === activeTag }]} href={`/fr/posts/${tag.slug}/`}>
+        <span>{tag.name}</span>
+        <small>{tag.count}</small>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .tag-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-6);
+  }
+
+  .tag-panel h2 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+  }
+
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: var(--color-text-secondary);
+    background: var(--color-slate-50);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-full);
+    padding: 0.45rem 0.8rem;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .tag-chip:hover,
+  .tag-chip.active {
+    color: white;
+    background: var(--color-blurple);
+    border-color: var(--color-blurple);
+    transform: translateY(-1px);
+  }
+
+  .tag-chip small {
+    opacity: 0.76;
+    font-size: var(--font-size-xs);
+  }
+</style>
