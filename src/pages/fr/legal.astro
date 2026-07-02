@@ -1,0 +1,405 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Mentions légales & Conditions • ConsoAlert"
+  description="Mentions légales, conditions d'utilisation et politique de protection des données personnelles (RGPD) du service ConsoAlert."
+>
+
+<Header />
+
+<main class="contact-page">
+
+  <section class="contact-hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span> Informations juridiques
+      </div>
+
+      <h1 class="contact-headline">
+        Mentions légales &<br />
+        <span class="headline-accent">Conditions d'utilisation</span>
+      </h1>
+
+
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <aside class="legal-nav">
+          <div class="nav-card">
+            <h3>Sommaire</h3>
+            <ul>
+              <li><a href="#mentions">Mentions légales</a></li>
+              <li><a href="#service">Le service</a></li>
+              <li><a href="#responsabilite">Responsabilité & IA</a></li>
+              <li><a href="#independance">Indépendance vis-à-vis d'Enedis</a></li>
+              <li><a href="#rgpd">Données personnelles (RGPD)</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <article class="legal-content">
+
+          <section class="legal-card" id="mentions">
+            <h2>Mentions légales</h2>
+            <p>
+              Le présent site internet est édité sous le nom
+              <strong>ConsoAlert.com</strong>
+              {/*  par la société
+              <strong>TFIG</strong>
+                  */}        
+            </p>
+            <p>
+              ConsoAlert est un service en ligne permettant d'analyser les
+              données de consommation électrique communiquées avec le
+              consentement de l'utilisateur afin de détecter certaines
+              anomalies susceptibles d'intéresser les propriétaires ou les
+              gestionnaires de biens immobiliers.
+            </p>
+            <p>
+              Les données traitées par le service sont hébergées exclusivement
+              au sein de centres de données situés dans l'Union Européenne.
+            </p>
+
+          </section>
+
+          <section class="legal-card" id="service">
+            <h2>Le service</h2>
+            <p>
+              ConsoAlert est actuellement proposé gratuitement. 
+              Cette gratuité n'engage pas ConsoAlert pour l'avenir. 
+              Le service pourra évoluer, devenir partiellement ou totalement payant, être enrichi, limité ou interrompu à tout moment.
+            </p>
+            <p>
+              L'utilisation du service est entièrement facultative. 
+              Aucun utilisateur n'a l'obligation d'utiliser ConsoAlert, tout comme ConsoAlert n'a aucune obligation de maintenir le service pour une durée déterminée. Il n'existe entre l'utilisateur et ConsoAlert aucune relation contractuelle de durée.
+            </p>
+            <p>
+              Chaque utilisateur reste libre de créer un compte, de cesser d'utiliser le service ou de supprimer son compte à tout moment.
+            </p>
+            <p>
+              De la même manière, ConsoAlert se réserve le droit de modifier, suspendre, interrompre ou arrêter tout ou partie du service, temporairement ou définitivement, à tout moment, sans préavis ni indemnité. De plus, ConsoAlert se réserve la possibilité de clôturer ou supprimer un compte utilisateur à tout moment, de manière discrétionnaire et sans justification.
+            </p>
+            <p>
+              L'utilisation du service implique l'acceptation pleine et entière des présentes conditions.
+            </p>
+          </section>
+
+          <section class="legal-card" id="responsabilite">
+            <h2>Responsabilité & Algorithmes</h2>
+            <p>
+              ConsoAlert est un outil d'assistance et de vigilance. 
+              Il ne remplace en aucun cas votre propre vigilance, les vérifications physiques sur place, ni les contrôles réguliers devant être réalisés par les propriétaires, les gestionnaires, les conciergeries ou tout autre intervenant.
+            </p>
+            <p>
+              Les informations, alertes, estimations, prédictions et recommandations générées par le service reposent notamment sur des traitements automatisés, des modèles statistiques ainsi que des algorithmes d'intelligence artificielle (IA).
+            </p>
+            <p>
+              Par nature, ces technologies ne sont pas infaillibles et sont susceptibles de produire des <strong>faux positifs</strong> (déclencher une alerte alors qu'il n'y a pas d'anomalie) ou des <strong>faux négatifs</strong> (ne pas détecter une anomalie réelle). En conséquence, l'absence d'alerte ne garantit en rien l'absence d'anomalie, et l'existence d'une alerte ne constitue pas une certitude absolue.
+            </p>
+            <p>
+              <strong>Toutes les décisions prises à partir des données ou des alertes fournies par ConsoAlert demeurent sous la seule et unique responsabilité de l'utilisateur.</strong>
+            </p>
+            <p>
+              Le service est fourni strictement <strong>« en l'état »</strong>, sans aucune garantie de disponibilité, de continuité, d'exactitude, d'exhaustivité, de fiabilité ni de résultat de détection.
+            </p>
+            <p>
+              Dans toute la mesure autorisée par la législation applicable, la responsabilité de ConsoAlert est limitée au maximum. ConsoAlert ne pourra être tenu responsable des pertes, dommages, préjudices matériels ou immatériels, consommations électriques inhabituelles, surcharges de factures, dysfonctionnements d'appareils, fraudes, occupations illégales, économies non réalisées, pertes financières, pertes d'exploitation, ou de toute décision prise par l'utilisateur résultant directement ou indirectement de l'utilisation, de la mauvaise utilisation ou de l'indisponibilité du service.
+            </p>
+          </section>
+
+          <section class="legal-card" id="independance">
+            <h2>Indépendance vis-à-vis d'Enedis</h2>
+            <p>
+              ConsoAlert est un service totalement indépendant. 
+              ConsoAlert n'est ni édité, ni exploité, ni partenaire, ni recommandé, ni validé par la société Enedis.
+            </p>
+            <p>
+              Les données de consommation d'un logement (issues du compteur Linky) sont accessibles uniquement lorsque l'utilisateur a explicitement et formellement donné son consentement à ConsoAlert, directement sur l'interface sécurisée d'Enedis.
+            </p>
+            <p>
+              <strong>Ce consentement est révocable à tout moment.</strong> L'utilisateur peut retirer cette autorisation en toute liberté et en quelques clics depuis son espace personnel sur le site ou l'application d'Enedis. Dès la révocation du consentement, ConsoAlert cesse immédiatement et définitivement de recevoir les nouvelles données de consommation du compteur concerné.
+            </p>
+          </section>
+
+          <section class="legal-card" id="rgpd">
+            <h2>Protection des données (RGPD)</h2>
+            <p>
+              Notre politique est simple, sobre et transparente :
+            </p>
+            <ul>
+              <li>
+                <strong>Hébergement :</strong> Toutes les données stockées par ConsoAlert sont hébergées à Zurich - Suisse. A noter que le site ne produit pas de données. Les données sont obtenues de partenaires tiers et sont analysées en temps réel pour déclencher des communications. Le résultat des calculs n'est pas stocké. 
+              </li>
+              <li>
+                <strong>Zéro cookie de suivi :</strong> Ce site internet n'utilise aucun cookie de suivi publicitaire, aucun outil de ciblage, ni aucun tracker comportemental. 
+              </li>
+              <li>
+                <strong>Emails transactionnels uniquement :</strong> Votre adresse email est collectée uniquement pour les besoins stricts du service (création de compte, alertes de consommation configurées par vos soins, réinitialisation de mot de passe). Vous ne recevrez aucune newsletter publicitaire ni aucune sollicitation commerciale de notre part.
+              </li>
+              <li>
+                <strong>Droit à l'effacement définitif :</strong> Conformément au RGPD, vous disposez d'un droit de rectification et d'effacement de vos données. Les seules données détenues par ConsoAlert sont accessibles sur la page profil. Si vous décidez de supprimer votre compte ConsoAlert, cette action entraîne la <strong>suppression définitive, immédiate et totalement irréversible</strong> de l'intégralité de vos informations personnelles et de vos historiques de consommation de nos bases de données. Aucun historique n'est conservé.
+              </li>
+            </ul>
+          </section>
+
+          <section class="legal-card" id="contact">
+            <h2>Contact</h2>
+            <p>
+              Pour toute question relative aux présentes informations, à l'exercice de vos droits RGPD ou au fonctionnement général du service, vous pouvez contacter ConsoAlert à l'adresse suivante :
+            </p>
+
+            <div class="legal-email">
+              <span class="email-part">legal</span>
+              <svg viewBox="0 0 24 24" class="mail-icon" aria-hidden="true">
+                <text x="0" y="18" font-size="20" font-family="sans-serif" fill="currentColor">@</text>
+              </svg>
+              <span class="email-part">consoalert</span>
+              <svg viewBox="0 0 8 8" class="dot-icon" aria-hidden="true">
+                <circle cx="4" cy="5" r="1.5" fill="currentColor"/>
+              </svg>
+              <span class="email-part">com</span>
+            </div>
+
+
+          </section>
+
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<Footer />
+
+</Layout>
+
+<style>
+  .contact-page {
+    padding-top: 72px;
+  }
+
+  /* ── HERO ── */
+  .contact-hero {
+    padding: var(--spacing-24) 0 var(--spacing-16);
+    text-align: center;
+    background: linear-gradient(180deg, #edf8ff 0%, var(--color-body-bg) 100%);
+    border-bottom: 1px solid var(--color-slate-200);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid var(--color-slate-200);
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--spacing-8);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-blurple);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .contact-headline {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-6);
+  }
+
+  .headline-accent {
+    background: linear-gradient(135deg, #0ea5e9 0%, #635BFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .contact-sub {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-10);
+  }
+
+  /* ── CONTACT SECTION & LAYOUT ── */
+  .contact-section {
+    padding: var(--spacing-16) 0 var(--spacing-24);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-12);
+    align-items: start;
+  }
+
+  @media (min-width: 960px) {
+    .contact-layout {
+      grid-template-columns: 340px 1fr;
+      gap: var(--spacing-16);
+    }
+  }
+
+  /* ── SOMMAIRE NAV ── */
+  .legal-nav {
+    position: sticky;
+    top: 100px;
+  }
+
+  .nav-card {
+    background: white;
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-slate-200);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .nav-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-4);
+    padding-left: var(--spacing-2);
+  }
+
+  .nav-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-card li a {
+    display: block;
+    padding: var(--spacing-2) var(--spacing-3);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+  }
+
+  .nav-card li a:hover {
+    background: var(--color-slate-50);
+    color: var(--color-blurple);
+  }
+
+  /* ── CONTENT CARDS ── */
+  .legal-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+  }
+
+  .legal-card {
+    background: white;
+    padding: var(--spacing-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-slate-200);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .legal-card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-4);
+    letter-spacing: -0.02em;
+  }
+
+  .legal-card p {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .legal-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-card ul {
+    padding-left: var(--spacing-5);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .legal-card li {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .legal-card strong {
+    color: var(--color-text-primary);
+  }
+
+  .muted {
+    font-size: 13px !important;
+    color: var(--color-text-muted) !important;
+    font-style: italic;
+  }
+
+  /* ── EMAIL OBFUSCATION SYSTEM (FIXED SVG SIZE) ── */
+  .legal-email {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-slate-50);
+    padding: 6px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-slate-200);
+    font-family: var(--font-sans, system-ui, sans-serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    user-select: none; /* Rend la capture automatique de texte plus ardue */
+  }
+
+  .email-part {
+    line-height: 1;
+  }
+
+  /* Les SVGs héritent maintenant exactement de la hauteur de ligne du texte (1em) */
+  .mail-icon {
+    height: 1em;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--color-text-primary);
+    margin: 0 1px;
+  }
+
+  .dot-icon {
+    height: 1em;
+    width: 0.4em; /* Plus étroit pour correspondre à un simple point structurel */
+    display: inline-block;
+    vertical-align: middle;
+    color: var(--color-text-primary);
+  }
+</style>

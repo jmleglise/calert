@@ -9,11 +9,11 @@ translationKey: "ical-bookings-electric-consumption"
 
 ## Le contexte change tout
 
-Une consommation élevée peut être normale pendant un séjour et anormale lorsque le logement est vide. Le calendrier apporte le contexte indispensable.
+Une consommation élevée peut être normale pendant un séjour et anormale lorsque le logement est vide. Le contexte est donc indispensable à l'interprétation des consommations.
 
 ## Automatiser la distinction
 
-En croisant les réservations avec les données Linky, ConsoAlert peut adapter les seuils selon que le logement est occupé, vacant ou en préparation.
+Notre système est suffisamment intelligent pour ne pas avoir à vous demander de remplir un calendrier. Vous avez autre chose à faire ! Wattson, notre Agent Intelligent détecte l'occupation, et adapte sa détection en en conséquence.
 
 ## Des alertes plus fiables
 

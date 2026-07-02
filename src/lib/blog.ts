@@ -99,3 +99,147 @@ export function getPaginationUrl(basePath: string, page: number) {
   const normalizedBase = basePath.endsWith('/') ? basePath : `${basePath}/`;
   return page === 1 ? normalizedBase : `${normalizedBase}${page}/`;
 }
+
+export type RenderedMarkdown = {
+  html: string;
+  headings: Array<{ depth: number; slug: string; text: string }>;
+};
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function protectMath(value: string) {
+  const mathSegments: string[] = [];
+  const tokenFor = (segment: string) => {
+    const token = `@@MATH_${mathSegments.length}@@`;
+    mathSegments.push(segment);
+    return token;
+  };
+
+  const text = value
+    .replace(/\$\$[\s\S]+?\$\$/g, tokenFor)
+    .replace(/\\\[[\s\S]+?\\\]/g, tokenFor)
+    .replace(/\\\([\s\S]+?\\\)/g, tokenFor)
+    .replace(/\$(?!\$)(?:\\.|[^$])+?\$/g, tokenFor);
+
+  return { text, mathSegments };
+}
+
+function restoreMath(value: string, mathSegments: string[]) {
+  return value.replace(/@@MATH_(\d+)@@/g, (_, index) => mathSegments[Number(index)] ?? '');
+}
+
+function formatInline(value: string) {
+  const { text, mathSegments } = protectMath(value);
+  let formatted = escapeHtml(text)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  formatted = restoreMath(formatted, mathSegments);
+  return formatted;
+}
+
+export function renderMarkdownWithMath(markdown: string): RenderedMarkdown {
+  const headings: RenderedMarkdown['headings'] = [];
+  const blocks: string[] = [];
+  const lines = markdown.replace(/\r\n/g, '\n').split('\n');
+  let paragraph: string[] = [];
+  let listItems: string[] = [];
+  let blockquote: string[] = [];
+  let codeFence: string[] | null = null;
+
+  const flushParagraph = () => {
+    if (paragraph.length > 0) {
+      blocks.push(`<p>${formatInline(paragraph.join(' '))}</p>`);
+      paragraph = [];
+    }
+  };
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      blocks.push(`<ul>${listItems.map((item) => `<li>${formatInline(item)}</li>`).join('')}</ul>`);
+      listItems = [];
+    }
+  };
+
+  const flushBlockquote = () => {
+    if (blockquote.length > 0) {
+      blocks.push(`<blockquote><p>${formatInline(blockquote.join(' '))}</p></blockquote>`);
+      blockquote = [];
+    }
+  };
+
+  const flushOpenBlocks = () => {
+    flushParagraph();
+    flushList();
+    flushBlockquote();
+  };
+
+  for (const line of lines) {
+    if (line.trim().startsWith('```')) {
+      if (codeFence) {
+        blocks.push(`<pre><code>${escapeHtml(codeFence.join('\n'))}</code></pre>`);
+        codeFence = null;
+      } else {
+        flushOpenBlocks();
+        codeFence = [];
+      }
+      continue;
+    }
+
+    if (codeFence) {
+      codeFence.push(line);
+      continue;
+    }
+
+    if (!line.trim()) {
+      flushOpenBlocks();
+      continue;
+    }
+
+    const headingMatch = /^(#{2,4})\s+(.+)$/.exec(line);
+    if (headingMatch) {
+      flushOpenBlocks();
+      const depth = headingMatch[1].length;
+      const text = headingMatch[2].trim();
+      const slug = slugify(text);
+      headings.push({ depth, slug, text });
+      blocks.push(`<h${depth} id="${slug}">${formatInline(text)}</h${depth}>`);
+      continue;
+    }
+
+    const listMatch = /^[-*]\s+(.+)$/.exec(line);
+    if (listMatch) {
+      flushParagraph();
+      flushBlockquote();
+      listItems.push(listMatch[1].trim());
+      continue;
+    }
+
+    const blockquoteMatch = /^>\s?(.+)$/.exec(line);
+    if (blockquoteMatch) {
+      flushParagraph();
+      flushList();
+      blockquote.push(blockquoteMatch[1].trim());
+      continue;
+    }
+
+    flushList();
+    flushBlockquote();
+    paragraph.push(line.trim());
+  }
+
+  if (codeFence) {
+    blocks.push(`<pre><code>${escapeHtml(codeFence.join('\n'))}</code></pre>`);
+  }
+  flushOpenBlocks();
+
+  return { html: blocks.join('\n'), headings };
+}

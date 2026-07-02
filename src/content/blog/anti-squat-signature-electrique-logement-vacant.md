@@ -9,7 +9,7 @@ translationKey: "vacant-home-electric-signature"
 
 ## Une consommation de fond prévisible
 
-Un logement vacant possède souvent une consommation minimale liée aux équipements permanents. Une rupture nette de ce profil mérite attention.
+Un logement vacant possède une consommation résiduelle minimale liée aux équipements permanents. Une rupture nette de ce profil mérite attention.
 
 ## Ce que l’électricité peut indiquer
 

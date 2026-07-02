@@ -19,6 +19,7 @@ import {
   getTrendingTags,
   paginate,
   slugify,
+  renderMarkdownWithMath,
 } from '../../../lib/blog';
 
 export async function getStaticPaths() {
@@ -55,7 +56,7 @@ const isPost = type === 'post';
 const post = Astro.props.post;
 const tag = Astro.props.tag;
 const pageNumber = Astro.props.page ?? 1;
-let Content;
+let articleHtml = '';
 let headings = [];
 let title = '';
 let description = '';
@@ -68,8 +69,8 @@ let basePath = '/fr/posts/';
 let tocHeadings = [];
 
 if (isPost) {
-  const rendered = await post.render();
-  Content = rendered.Content;
+  const rendered = renderMarkdownWithMath(post.body);
+  articleHtml = rendered.html;
   headings = rendered.headings;
   tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
   title = `${post.data.title} | ConsoAlert`;
@@ -128,7 +129,7 @@ if (isPost) {
 
         <div class="article-grid">
           <div class="article-content">
-            <Content />
+            <Fragment set:html={articleHtml} />
           </div>
           <aside class="article-sidebar">
             {tocHeadings.length > 0 && (
