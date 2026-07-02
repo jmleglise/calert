@@ -114,16 +114,16 @@ if (isPost) {
     <main class="article-page">
       <article class="article-shell">
         <header class="article-header">
-          <nav aria-label="Fil d’Ariane" class="breadcrumb"><a href="/fr/posts/">Articles</a><span>/</span><span>{post.data.title}</span></nav>
-          <div class="article-meta">
-            <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-            <span aria-hidden="true">•</span>
-            <span>{getReadingTime(post)} min de lecture</span>
-          </div>
+          <nav aria-label="Fil d’Ariane" class="breadcrumb"><a href="/fr/posts/">{"<= "}Liste des Articles</a></nav>
+ 
           <h1>{post.data.title}</h1>
           <p>{post.data.description}</p>
           <div class="article-tags">
+            <div class="grid place-items-center h-40">
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+            <span aria-hidden="true">•</span>
             {post.data.tags.map((tagName) => <a href={`/fr/posts/${slugify(tagName)}/`}>#{tagName}</a>)}
+          </div>
           </div>
         </header>
 

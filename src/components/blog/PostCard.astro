@@ -14,9 +14,11 @@ const { post } = Astro.props;
   <p>{post.data.description}</p>
 
   <div class="post-tags" aria-label="Tags de l’article">
+<div class="grid place-items-center h-40">
   <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
     <span aria-hidden="true">•</span>
     {post.data.tags.map((tag) => <a href={`/fr/posts/${slugify(tag)}/`}>#{tag}</a>)}
+  </div>
   </div>
 </article>
 

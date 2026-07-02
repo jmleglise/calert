@@ -10,8 +10,8 @@ import { getAbsoluteUrl, getPublishedPosts, getTrendingTags, paginate } from '..
 const posts = await getPublishedPosts();
 const tags = getTrendingTags(posts);
 const page = paginate(posts);
-const title = 'Articles ConsoAlert : Linky, énergie et location courte durée';
-const description = 'Conseils pratiques pour surveiller vos consommations électriques, détecter les anomalies Linky et protéger vos logements en location courte durée.';
+const title = 'Linky, énergie et location courte durée';
+const description = 'Apprenez-en plus sur le service ConsoAlert, ses fonctionnalités, son Intelligence Artificelle, et comment surveiller la consommation électrique de vos locations saisonnières et résidences secondaires , pour les protéger.';
 ---
 
 <Layout
@@ -23,7 +23,7 @@ const description = 'Conseils pratiques pour surveiller vos consommations élect
   <Header />
   <main class="blog-page">
     <section class="blog-hero">
-      <p class="eyebrow">Blog ConsoAlert</p>
+
       <h1>{title}</h1>
       <p>{description}</p>
     </section>
