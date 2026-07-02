@@ -1,0 +1,399 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Pagination from '../../../components/blog/Pagination.astro';
+import TagList from '../../../components/blog/TagList.astro';
+import {
+  POSTS_PER_PAGE,
+  formatDate,
+  getAbsoluteUrl,
+  getAllTags,
+  getPaginationUrl,
+  getPostSlug,
+  getPostUrl,
+  getPostsByTag,
+  getPublishedPosts,
+  getReadingTime,
+  getTrendingTags,
+  paginate,
+  slugify,
+  renderMarkdownWithMath,
+} from '../../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const tags = getAllTags(posts);
+  const paths = [];
+
+  for (const post of posts) {
+    paths.push({ params: { slug: getPostSlug(post) }, props: { type: 'post', post } });
+  }
+
+  const allPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  for (let page = 2; page <= allPages; page += 1) {
+    paths.push({ params: { slug: String(page) }, props: { type: 'list', page } });
+  }
+
+  for (const tag of tags) {
+    const taggedPosts = getPostsByTag(posts, tag.slug);
+    const totalPages = Math.ceil(taggedPosts.length / POSTS_PER_PAGE);
+    paths.push({ params: { slug: tag.slug }, props: { type: 'tag', tag, page: 1 } });
+
+    for (let page = 2; page <= totalPages; page += 1) {
+      paths.push({ params: { slug: `${tag.slug}/${page}` }, props: { type: 'tag', tag, page } });
+    }
+  }
+
+  return paths;
+}
+
+const posts = await getPublishedPosts();
+const tags = getTrendingTags(posts);
+const { type } = Astro.props;
+const isPost = type === 'post';
+const post = Astro.props.post;
+const tag = Astro.props.tag;
+const pageNumber = Astro.props.page ?? 1;
+let articleHtml = '';
+let headings = [];
+let title = '';
+let description = '';
+let canonical = '';
+let alternates = [];
+let keywords = [];
+let structuredData;
+let page;
+let basePath = '/fr/posts/';
+let tocHeadings = [];
+
+if (isPost) {
+  const rendered = renderMarkdownWithMath(post.body);
+  articleHtml = rendered.html;
+  headings = rendered.headings;
+  tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+  title = `${post.data.title} | ConsoAlert`;
+  description = post.data.description;
+  canonical = getAbsoluteUrl(getPostUrl(post));
+  alternates = [{ lang: 'fr', href: canonical }, { lang: 'x-default', href: canonical }];
+  keywords = [...new Set([...post.data.tags, ...post.data.keywords])];
+  structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+    dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+    inLanguage: 'fr-FR',
+    mainEntityOfPage: canonical,
+    url: canonical,
+    author: { '@type': 'Organization', name: 'ConsoAlert' },
+    publisher: { '@type': 'Organization', name: 'ConsoAlert', url: 'https://www.consoalert.com' },
+    keywords,
+  };
+} else {
+  const isTag = type === 'tag';
+  const sourcePosts = isTag ? getPostsByTag(posts, tag.slug) : posts;
+  page = paginate(sourcePosts, pageNumber);
+  basePath = isTag ? `/fr/posts/${tag.slug}/` : '/fr/posts/';
+  const pageTitle = isTag ? `Articles sur ${tag.name}` : 'Articles ConsoAlert';
+  title = `${pageTitle}${page.currentPage > 1 ? ` - page ${page.currentPage}` : ''} | ConsoAlert`;
+  description = isTag
+    ? `Tous les articles ConsoAlert associés au tag ${tag.name}. Conseils Linky, énergie et surveillance des logements.`
+    : 'Conseils pratiques pour surveiller vos consommations électriques, détecter les anomalies Linky et protéger vos logements.';
+  canonical = getAbsoluteUrl(getPaginationUrl(basePath, page.currentPage));
+  alternates = [{ lang: 'fr', href: canonical }, { lang: 'x-default', href: canonical }];
+  keywords = isTag ? [tag.name, 'ConsoAlert', 'Linky', 'consommation électrique'] : ['ConsoAlert', 'Linky', 'consommation électrique', 'location courte durée'];
+}
+---
+
+<Layout title={title} description={description} canonical={canonical} alternates={alternates} structuredData={structuredData} keywords={keywords}>
+  <Header />
+  {isPost ? (
+    <main class="article-page">
+      <article class="article-shell">
+        <header class="article-header">
+          <nav aria-label="Fil d’Ariane" class="breadcrumb"><a href="/fr/posts/">Articles</a><span>/</span><span>{post.data.title}</span></nav>
+          <div class="article-meta">
+            <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+            <span aria-hidden="true">•</span>
+            <span>{getReadingTime(post)} min de lecture</span>
+          </div>
+          <h1>{post.data.title}</h1>
+          <p>{post.data.description}</p>
+          <div class="article-tags">
+            {post.data.tags.map((tagName) => <a href={`/fr/posts/${slugify(tagName)}/`}>#{tagName}</a>)}
+          </div>
+        </header>
+
+        <div class="article-grid">
+          <div class="article-content">
+            <Fragment set:html={articleHtml} />
+          </div>
+          <aside class="article-sidebar">
+            {tocHeadings.length > 0 && (
+              <section class="toc-panel" aria-labelledby="toc-title">
+                <h2 id="toc-title">Sommaire</h2>
+                <ol>
+                  {tocHeadings.map((heading) => <li class={`depth-${heading.depth}`}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+                </ol>
+              </section>
+            )}
+            <TagList tags={tags} />
+          </aside>
+        </div>
+      </article>
+    </main>
+  ) : (
+    <main class="blog-page compact">
+      <section class="blog-hero">
+        <p class="eyebrow">{type === 'tag' ? 'Tag' : 'Blog ConsoAlert'}</p>
+        <h1>{type === 'tag' ? `Articles sur ${tag.name}` : 'Articles ConsoAlert'}</h1>
+        <p>{description}</p>
+      </section>
+      <section class="blog-shell">
+        <div class="post-list">
+          {page.items.map((item) => <PostCard post={item} />)}
+          <Pagination currentPage={page.currentPage} totalPages={page.totalPages} basePath={basePath} />
+        </div>
+        <aside class="sidebar"><TagList tags={tags} activeTag={type === 'tag' ? tag.slug : undefined} /></aside>
+      </section>
+    </main>
+  )}
+  <Footer />
+</Layout>
+
+<style is:global>
+  .blog-page,
+  .article-page {
+    padding: calc(72px + var(--spacing-20)) var(--spacing-6) var(--spacing-20);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(99, 91, 255, 0.13), transparent 34rem),
+      radial-gradient(circle at 90% 0%, rgba(34, 197, 94, 0.08), transparent 30rem),
+      var(--color-body-bg);
+  }
+
+  .blog-page.compact {
+    padding-top: calc(72px + var(--spacing-16));
+  }
+
+  .blog-hero,
+  .blog-shell,
+  .article-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .blog-hero {
+    margin-bottom: var(--spacing-16);
+    max-width: 860px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    color: var(--color-blurple);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .blog-hero h1,
+  .article-header h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    letter-spacing: -0.06em;
+    margin-bottom: var(--spacing-5);
+  }
+
+  .blog-hero > p:last-child,
+  .article-header > p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .blog-shell,
+  .article-grid {
+    display: grid;
+    gap: var(--spacing-8);
+  }
+
+  .post-list {
+    display: grid;
+    gap: var(--spacing-6);
+  }
+
+  .sidebar,
+  .article-sidebar {
+    align-self: start;
+  }
+
+  .article-header {
+    max-width: 860px;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .breadcrumb,
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    color: var(--color-slate-500);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .breadcrumb a {
+    color: var(--color-blurple);
+    font-weight: 700;
+  }
+
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-6);
+  }
+
+  .article-tags a {
+    color: var(--color-blurple);
+    background: var(--color-primary-50);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .article-content {
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+    padding: clamp(var(--spacing-6), 5vw, var(--spacing-12));
+  }
+
+  .article-content :where(h2, h3, h4) {
+    scroll-margin-top: 100px;
+    letter-spacing: -0.03em;
+    margin-top: var(--spacing-10);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .article-content h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .article-content h3 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .article-content p,
+  .article-content li {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .article-content p + p,
+  .article-content ul,
+  .article-content ol,
+  .article-content blockquote,
+  .article-content .math-display {
+    margin-top: var(--spacing-5);
+  }
+
+  .article-content ul,
+  .article-content ol {
+    padding-left: var(--spacing-6);
+  }
+
+  .article-content a {
+    color: var(--color-blurple);
+    font-weight: 700;
+  }
+
+  .article-content blockquote {
+    border-left: 4px solid var(--color-blurple);
+    background: var(--color-primary-50);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-5);
+  }
+
+  .article-content code {
+    background: var(--color-slate-100);
+    border-radius: var(--radius-sm);
+    padding: 0.1rem 0.35rem;
+  }
+
+  .article-sidebar {
+    display: grid;
+    gap: var(--spacing-6);
+  }
+
+  .toc-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-6);
+  }
+
+  .toc-panel h2 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .toc-panel ol {
+    display: grid;
+    gap: var(--spacing-3);
+    list-style: none;
+  }
+
+  .toc-panel li.depth-3 {
+    padding-left: var(--spacing-4);
+  }
+
+  .toc-panel a {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .toc-panel a:hover {
+    color: var(--color-blurple);
+  }
+
+  .math-inline,
+  .math-display {
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .math-display {
+    display: block;
+    overflow-x: auto;
+    color: var(--color-text-primary);
+    background: var(--color-slate-50);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-4);
+    text-align: center;
+  }
+
+  @media (min-width: 980px) {
+    .blog-shell {
+      grid-template-columns: minmax(0, 1fr) 320px;
+    }
+
+    .article-grid {
+      grid-template-columns: minmax(0, 1fr) 320px;
+    }
+
+    .sidebar,
+    .article-sidebar {
+      position: sticky;
+      top: 96px;
+    }
+  }
+</style>
