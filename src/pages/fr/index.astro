@@ -8,9 +8,57 @@ import Legal from '../../components/Legal.astro';
 import FAQ from '../../components/FAQ.astro';
 import Footer from '../../components/Footer.astro';
 import fr from '../../i18n/fr.json';
+
+const canonical = 'https://www.consoalert.com/fr/';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.consoalert.com/#organization',
+      name: 'ConsoAlert',
+      url: canonical,
+      description:
+        'ConsoAlert propose un service de surveillance intelligente de la consommation électrique des logements à partir des données Linky.',
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://www.consoalert.com/#application',
+      name: 'ConsoAlert',
+      url: canonical,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      inLanguage: 'fr-FR',
+      provider: {
+        '@id': 'https://www.consoalert.com/#organization',
+      },
+      description:
+        'ConsoAlert est un service de surveillance intelligente de la consommation électrique des logements. Son agent Wattson analyse les données de consommation issues de Linky afin de détecter des comportements inhabituels et d’alerter les propriétaires ou gestionnaires.',
+      featureList: [
+        'Surveillance de la consommation électrique des logements',
+        'Analyse des données de consommation Linky',
+        'Détection de consommations inhabituelles',
+        'Alertes en cas d’anomalie détectée',
+        'Surveillance de plusieurs logements',
+        'Prise en compte des périodes occupées et vacantes',
+      ],
+      audience: {
+        '@type': 'Audience',
+        audienceType:
+          'Propriétaires, conciergeries, gestionnaires de locations courte durée, gestionnaires multi-logements et propriétaires de résidences secondaires',
+      },
+    },
+  ],
+};
 ---
 
-<Layout title={`${fr.meta.title} | ConsoAlert`} description={fr.meta.description}>
+<Layout
+  title={`${fr.meta.title} | ConsoAlert`}
+  description={fr.meta.description}
+  canonical={canonical}
+  structuredData={structuredData}
+>
   <Header />
   <main>
     <Hero />
