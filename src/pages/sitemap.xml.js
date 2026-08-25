@@ -1,33 +1,78 @@
-import { getPublishedPosts, getPostUrl, getAllTags, getPostsByTag, SITE_URL, POSTS_PER_PAGE } from '../lib/blog';
+import {
+  getPublishedPosts,
+  getPostUrl,
+  getAllTags,
+  getPostsByTag,
+  SITE_URL,
+} from '../lib/blog';
+
+function getPostLastMod(post) {
+  return post.data.updatedDate ?? post.data.pubDate;
+}
+
+function getLatestLastMod(posts) {
+  if (posts.length === 0) return undefined;
+
+  return new Date(
+    Math.max(...posts.map((post) => getPostLastMod(post).getTime()))
+  ).toISOString();
+}
+
+function escapeXml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
 
 export async function GET() {
   const posts = await getPublishedPosts();
   const tags = getAllTags(posts);
+
   const urls = [
-    { loc: '/fr/', priority: '1.0' },
-    { loc: '/fr/pricing', priority: '0.8' },
-    { loc: '/fr/contact', priority: '0.7' },
-    { loc: '/fr/posts/', priority: '0.9' },
+    { loc: '/fr/' },
+    { loc: '/fr/pricing' },
+    { loc: '/fr/contact' },
+    {
+      loc: '/fr/posts/',
+      lastmod: getLatestLastMod(posts),
+    },
   ];
 
-  const listPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-  for (let page = 2; page <= listPages; page += 1) {
-    urls.push({ loc: `/fr/posts/${page}/`, priority: '0.6' });
-  }
-
+  // Pages de tags uniquement — pas de pagination
   for (const tag of tags) {
-    urls.push({ loc: `/fr/posts/${tag.slug}/`, priority: '0.7' });
-    const tagPages = Math.ceil(getPostsByTag(posts, tag.slug).length / POSTS_PER_PAGE);
-    for (let page = 2; page <= tagPages; page += 1) {
-      urls.push({ loc: `/fr/posts/${tag.slug}/${page}/`, priority: '0.5' });
-    }
+    const tagPosts = getPostsByTag(posts, tag.slug);
+
+    urls.push({
+      loc: `/fr/posts/${tag.slug}/`,
+      lastmod: getLatestLastMod(tagPosts),
+    });
   }
 
+  // Articles individuels
   for (const post of posts) {
-    urls.push({ loc: getPostUrl(post), priority: '0.8', lastmod: (post.data.updatedDate ?? post.data.pubDate).toISOString() });
+    urls.push({
+      loc: getPostUrl(post),
+      lastmod: getPostLastMod(post).toISOString(),
+    });
   }
 
-  const body = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url>\n    <loc>${new URL(url.loc, SITE_URL).toString()}</loc>${url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : ''}\n    <priority>${url.priority}</priority>\n  </url>`).join('\n')}\n</urlset>`;
+  const body = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map((url) => {
+    const loc = escapeXml(new URL(url.loc, SITE_URL).toString());
+
+    return `  <url>
+    <loc>${loc}</loc>${
+      url.lastmod ? `\n    <lastmod>${url.lastmod}</lastmod>` : ''
+    }
+  </url>`;
+  })
+  .join('\n')}
+</urlset>`;
 
   return new Response(body, {
     headers: {
