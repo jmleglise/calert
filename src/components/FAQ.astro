@@ -188,7 +188,7 @@ const items = [
 <script>
   const faqItems = document.querySelectorAll('[data-faq-item]');
 
-  const closeItem = (item) => {
+  const closeItem = (item: Element) => {
     const trigger = item.querySelector('[data-faq-trigger]');
     const answer = item.querySelector('[data-faq-answer]');
 
