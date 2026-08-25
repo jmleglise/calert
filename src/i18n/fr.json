@@ -80,8 +80,8 @@
           "Des alertes consolidées dans un seul espace.",
           "Une gestion 100 % à distance sans déplacement."
         ],
-        "visualClass": "visual-squat",
-        "visualHtml": "<div class=\"squat-bg\"></div><div class=\"squat-timeline\"><div class=\"timeline-row\"><span class=\"timeline-date\">Lun</span><div class=\"timeline-bar empty\"></div><span class=\"timeline-wh\">0 Wh</span></div><div class=\"timeline-row\"><span class=\"timeline-date\">Mar</span><div class=\"timeline-bar empty\"></div><span class=\"timeline-wh\">0 Wh</span></div><div class=\"timeline-row\"><span class=\"timeline-date\">Mer</span><div class=\"timeline-bar empty\"></div><span class=\"timeline-wh\">0 Wh</span></div><div class=\"timeline-row alert\"><span class=\"timeline-date\">Jeu</span><div class=\"timeline-bar squat-bar\"></div><span class=\"timeline-wh alert-text\">3.2 kWh ⚠️</span></div></div><div class=\"squat-alert\"><svg viewBox=\"0 0 20 20\" fill=\"none\" class=\"squat-icon\"><path d=\"M10 2a8 8 0 100 16A8 8 0 0010 2zm0 4v4m0 4v.01\" stroke=\"white\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg>Occupation suspecte détectée</div>"
+        "visualClass": "visual-dashboard",
+        "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Studio Marais</span><span class=\"prop-status\">Normal — 1.2 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">T2 Lyon Part-Dieu</span><span class=\"prop-status\">Vide — 0.1 kWh</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Villa Nice</span><span class=\"prop-status alert-status\">Anomalie — 8.4 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Apt. Bordeaux</span><span class=\"prop-status\">Occupé — 2.8 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Chalet Megève</span><span class=\"prop-status\">Vide — 0.2 kWh</span></div></div></div></div>"
       },
       {
         "id": "residence-secondaire",
@@ -128,13 +128,13 @@
         "title": "Surveillez vos logements vacants comme si vous étiez sur place.",
         "body": [
           "Un logement vide possède une signature énergétique relativement stable.",
-          "Lorsqu'une activité électrique inhabituelle apparaît soudainement, cela peut révéler un appareil oublié, une panne ou une occupation non prévue.",
+          "Lorsqu'une activité électrique inhabituelle apparaît soudainement, cela peut révéler un appareil programmé oublié, une panne ou une occupation non prévue.",
           "Wattson surveille les logements vacants en permanence et détecte immédiatement les changements de comportement énergétique."
         ],
         "bullets": [
           "Surveillance automatique des logements inoccupés.",
-          "Détection des consommations anormales.",
-          "Alertes immédiates en cas de changement inhabituel.",
+          "Chaque minute compte, l'alerte est immédiate.",
+          "Qu'il s'agisse d'un maintien dans les lieux ou d'une entrée par effraction.",
           "Protection renforcée des biens vacants."
         ],
         "visualClass": "visual-mining",
@@ -178,25 +178,7 @@
         "visualClass": "visual-fault",
         "visualHtml": "<div class=\"fault-bg\"></div><div class=\"fault-content\"><div class=\"fault-signal\"><svg viewBox=\"0 0 280 80\" preserveAspectRatio=\"none\"><polyline points=\"0,40 30,40 35,10 40,70 45,30 50,50 55,40 80,40 85,5 90,75 95,35 100,40 130,40 135,15 140,65 145,20 150,40 180,40 185,8 190,72 195,25 200,40 240,40 245,12 250,68 255,30 260,40 280,40\" fill=\"none\" stroke=\"#ef4444\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></div><div class=\"fault-alerts\"><div class=\"fault-alert\"><span class=\"fault-time\">02:14</span><span class=\"fault-msg\">Pic anormal +850W</span></div><div class=\"fault-alert\"><span class=\"fault-time\">02:17</span><span class=\"fault-msg\">Pic anormal +900W</span></div><div class=\"fault-alert critical\"><span class=\"fault-time\">02:21</span><span class=\"fault-msg\">Court-circuit probable</span></div></div></div>"
       },
-      {
-        "id": "granularite",
-        "icon": "📈",
-        "cardTitle": "Analysez votre consommation toutes les 30 minutes.",
-        "title": "Analysez votre consommation toutes les 30 minutes.",
-        "body": [
-          "Grâce aux données Linky, Wattson peut analyser la consommation électrique avec une précision de 30 minutes.",
-          "Cette granularité permet de mieux comprendre ce qui se passe réellement dans un logement.",
-          "Pour les locations saisonnières, les horaires habituels de check-in et check-out permettent même d'isoler les périodes de ménage, de préparation ou de blanchisserie."
-        ],
-        "bullets": [
-          "Historique détaillé au pas de 30 minutes.",
-          "Visualisation précise des pics de consommation.",
-          "Analyse des périodes d'exploitation du logement.",
-          "Compréhension fine des usages énergétiques."
-        ],
-        "visualClass": "visual-ical",
-        "visualHtml": "<div class=\"ical-bg\"></div><div class=\"ical-content\"><div class=\"ical-sources\"><div class=\"ical-source airbnb\"><div class=\"source-dot dot-airbnb\"></div><span>Airbnb</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source booking\"><div class=\"source-dot dot-booking\"></div><span>Booking.com</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source abritel\"><div class=\"source-dot dot-abritel\"></div><span>Abritel</span><span class=\"source-status synced\">Synced</span></div></div><div class=\"ical-calendar\"><div class=\"ical-week\"><div class=\"ical-day-label\">L</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">J</div><div class=\"ical-day-label\">V</div><div class=\"ical-day-label\">S</div><div class=\"ical-day-label\">D</div><div class=\"ical-day empty\"></div><div class=\"ical-day empty\"></div><div class=\"ical-day occupied airbnb-day\">14</div><div class=\"ical-day occupied airbnb-day\">15</div><div class=\"ical-day occupied booking-day\">16</div><div class=\"ical-day occupied booking-day\">17</div><div class=\"ical-day empty\">18</div></div></div></div>"
-      },
+      
       {
         "id": "ical-sync",
         "icon": "📅",
@@ -213,8 +195,8 @@
           "Distinction automatique entre périodes occupées et vacantes.",
           "Alertes beaucoup plus pertinentes grâce au contexte réel du logement."
         ],
-        "visualClass": "visual-dashboard",
-        "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Studio Marais</span><span class=\"prop-status\">Normal — 1.2 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">T2 Lyon Part-Dieu</span><span class=\"prop-status\">Vide — 0.1 kWh</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Villa Nice</span><span class=\"prop-status alert-status\">Anomalie — 8.4 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Apt. Bordeaux</span><span class=\"prop-status\">Occupé — 2.8 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Chalet Megève</span><span class=\"prop-status\">Vide — 0.2 kWh</span></div></div></div></div>"
+        "visualClass": "visual-ical",
+        "visualHtml": "<div class=\"ical-bg\"></div><div class=\"ical-content\"><div class=\"ical-sources\"><div class=\"ical-source airbnb\"><div class=\"source-dot dot-airbnb\"></div><span>Airbnb</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source booking\"><div class=\"source-dot dot-booking\"></div><span>Booking.com</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source abritel\"><div class=\"source-dot dot-abritel\"></div><span>Abritel</span><span class=\"source-status synced\">Synced</span></div></div><div class=\"ical-calendar\"><div class=\"ical-week\"><div class=\"ical-day-label\">L</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">J</div><div class=\"ical-day-label\">V</div><div class=\"ical-day-label\">S</div><div class=\"ical-day-label\">D</div><div class=\"ical-day empty\"></div><div class=\"ical-day empty\"></div><div class=\"ical-day occupied airbnb-day\">14</div><div class=\"ical-day occupied airbnb-day\">15</div><div class=\"ical-day occupied booking-day\">16</div><div class=\"ical-day occupied booking-day\">17</div><div class=\"ical-day empty\">18</div></div></div></div>"
       }
     ]
   },
