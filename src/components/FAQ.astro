@@ -177,10 +177,6 @@ const items = [
     transition: max-height var(--transition-normal) ease-out;
   }
 
-  .faq-item.open .faq-answer {
-    max-height: 200px;
-  }
-
   .faq-answer-text {
     padding: 0 var(--spacing-6) var(--spacing-6);
     font-size: var(--font-size-base);
@@ -192,21 +188,44 @@ const items = [
 <script>
   const faqItems = document.querySelectorAll('[data-faq-item]');
 
+  const closeItem = (item) => {
+    const trigger = item.querySelector('[data-faq-trigger]');
+    const answer = item.querySelector('[data-faq-answer]');
+
+    item.classList.remove('open');
+    trigger?.setAttribute('aria-expanded', 'false');
+
+    if (answer instanceof HTMLElement) {
+      answer.style.maxHeight = '0px';
+    }
+  };
+
   faqItems.forEach(item => {
     const trigger = item.querySelector('[data-faq-trigger]');
+    const answer = item.querySelector('[data-faq-answer]');
 
-    trigger?.addEventListener('click', () => {
+    if (!(trigger instanceof HTMLElement) || !(answer instanceof HTMLElement)) return;
+
+    trigger.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
 
-      // Close all others
-      faqItems.forEach(other => other.classList.remove('open'));
+      faqItems.forEach(closeItem);
 
-      // Toggle current
       if (!isOpen) {
         item.classList.add('open');
         trigger.setAttribute('aria-expanded', 'true');
-      } else {
-        trigger.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    faqItems.forEach(item => {
+      if (!item.classList.contains('open')) return;
+
+      const answer = item.querySelector('[data-faq-answer]');
+      if (answer instanceof HTMLElement) {
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
       }
     });
   });
