@@ -57,6 +57,7 @@ const post = Astro.props.post;
 const tag = Astro.props.tag;
 const pageNumber = Astro.props.page ?? 1;
 let articleHtml = '';
+let hasMath = false;
 let headings = [];
 let title = '';
 let description = '';
@@ -64,6 +65,10 @@ let canonical = '';
 let alternates = [];
 let keywords = [];
 let structuredData;
+let noindex = false;
+let publishedTime;
+let modifiedTime;
+let ogType = 'website';
 let page;
 let basePath = '/fr/posts/';
 let tocHeadings = [];
@@ -71,6 +76,7 @@ let tocHeadings = [];
 if (isPost) {
   const rendered = renderMarkdownWithMath(post.body);
   articleHtml = rendered.html;
+  hasMath = rendered.hasMath;
   headings = rendered.headings;
   tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
   title = `${post.data.title} | ConsoAlert`;
@@ -78,7 +84,10 @@ if (isPost) {
   canonical = getAbsoluteUrl(getPostUrl(post));
   alternates = [{ lang: 'fr', href: canonical }, { lang: 'x-default', href: canonical }];
   keywords = [...new Set([...post.data.tags, ...post.data.keywords])];
-  structuredData = {
+  ogType = 'article';
+  publishedTime = post.data.pubDate.toISOString();
+  modifiedTime = (post.data.updatedDate ?? post.data.pubDate).toISOString();
+  structuredData = [{
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.data.title,
@@ -91,7 +100,16 @@ if (isPost) {
     author: { '@type': 'Organization', name: 'ConsoAlert' },
     publisher: { '@type': 'Organization', name: 'ConsoAlert', url: 'https://www.consoalert.com' },
     keywords,
-  };
+  }, {
+    // Le fil d'Ariane existait visuellement mais n'etait pas declare.
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: getAbsoluteUrl('/fr/') },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: getAbsoluteUrl('/fr/posts/') },
+      { '@type': 'ListItem', position: 3, name: post.data.title, item: canonical },
+    ],
+  }];
 } else {
   const isTag = type === 'tag';
   const sourcePosts = isTag ? getPostsByTag(posts, tag.slug) : posts;
@@ -105,16 +123,30 @@ if (isPost) {
   canonical = getAbsoluteUrl(getPaginationUrl(basePath, page.currentPage));
   alternates = [{ lang: 'fr', href: canonical }, { lang: 'x-default', href: canonical }];
   keywords = isTag ? [tag.name, 'ConsoAlert', 'Linky', 'consommation électrique'] : ['ConsoAlert', 'Linky', 'consommation électrique', 'location courte durée'];
+  // Listes de tags et pages de pagination : contenu quasi duplique d'un tag a
+  // l'autre. On les garde navigables (follow) mais hors de l'index.
+  noindex = true;
 }
 ---
 
-<Layout title={title} description={description} canonical={canonical} alternates={alternates} structuredData={structuredData} keywords={keywords}>
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  alternates={alternates}
+  structuredData={structuredData}
+  noindex={noindex}
+  math={hasMath}
+  ogType={ogType}
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+>
   <Header />
   {isPost ? (
-    <main class="article-page">
+    <main id="main" class="article-page">
       <article class="article-shell">
         <header class="article-header">
-          <nav aria-label="Fil d’Ariane" class="breadcrumb"><a href="/fr/posts/">{"<= "}Liste des Articles</a></nav>
+          <nav aria-label="Fil d’Ariane" class="breadcrumb"><a href="/fr/posts/">← Liste des articles</a></nav>
  
           <h1>{post.data.title}</h1>
           <p>{post.data.description}</p>
@@ -146,7 +178,7 @@ if (isPost) {
       </article>
     </main>
   ) : (
-    <main class="blog-page compact">
+    <main id="main" class="blog-page compact">
       <section class="blog-hero">
         <p class="eyebrow">{type === 'tag' ? 'Tag' : 'Blog ConsoAlert'}</p>
         <h1>{type === 'tag' ? `Articles sur ${tag.name}` : 'Articles ConsoAlert'}</h1>
@@ -201,8 +233,9 @@ if (isPost) {
 
   .blog-hero h1,
   .article-header h1 {
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
-    letter-spacing: -0.06em;
+    font-size: var(--font-size-page-title);
+    letter-spacing: var(--tracking-title);
+    line-height: 1.12;
     margin-bottom: var(--spacing-5);
   }
 

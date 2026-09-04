@@ -5,12 +5,13 @@ import Footer from '../../components/Footer.astro';
 ---
 
 <Layout
-  title="Tarifs — ConsoAlert | Wattson"
+  title="Tarifs — surveillance Linky gratuite | ConsoAlert"
   description="Notre grille tarifaire est simple : tout est gratuit. Pour toujours pour les fonctionnalités actuelles."
+  canonical="https://www.consoalert.com/fr/pricing/"
 >
   <Header />
 
-  <main class="pricing-page">
+  <main id="main" class="pricing-page">
 
     <!-- ── HERO ── -->
     <section class="pricing-hero">
@@ -47,7 +48,7 @@ import Footer from '../../components/Footer.astro';
                 <span class="price-currency">€</span>
                 <span class="price-period" data-monthly="/mois" data-yearly="/an" data-daily="/jour">/mois</span>
               </div>
-              <p class="plan-tagline">Payez chaque mois. Enfin, rien.<br/>. </p>
+              <p class="plan-tagline">Payez chaque mois. Enfin, rien.</p>
             </div>
             <a href="https://app.consoalert.com/auth" class="plan-cta secondary">Commencer, c'est gratuit</a>
             <ul class="plan-features">
@@ -121,8 +122,8 @@ import Footer from '../../components/Footer.astro';
               <li class="feature"><span class="check">🔒</span>Fonctionnalités secrètes.</li>
 
             </ul>
-            <div class="plan-footnote" style="color: var(--color-slate-400); font-size:12px; margin-top:16px;">
-Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'est écrit ici sur internet. Donc c'est vrai.
+            <div class="plan-footnote">
+Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>. C'est écrit ici sur internet. Donc c'est vrai.
             </div>
           </div>
 
@@ -139,7 +140,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
       <div class="container">
         <div class="donation-card">
           <div class="coffee-emoji">☕</div>
-          <h2 class="donation-title">Wattson bosse dûr pour offrir à son chat une belle vie. (vous avez la ref ?)</h2>
+          <h2 class="donation-title">Wattson bosse dur pour offrir à son chat une belle vie.</h2>
           <p class="donation-desc">
             ConsoAlert est gratuit, un peu parce qu'on a créé cet outil pour notre propre usage et beaucoup parceque c'est pas nous qui bossons. C'est wattson !!!
             Mais si Wattson vous a évité une facture salée, retrouvé un chauffage resta allumé
@@ -242,11 +243,11 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .pricing-headline {
-    font-size: clamp(36px, 5vw, 64px);
+    font-size: var(--font-size-page-title);
     font-weight: 700;
     color: var(--color-text-primary);
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    letter-spacing: var(--tracking-title);
+    line-height: 1.12;
     margin-bottom: var(--spacing-6);
   }
 
@@ -323,7 +324,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   .plan-card {
     background: white;
     border: 1px solid var(--color-slate-200);
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
     padding: 32px;
     position: relative;
     display: flex;
@@ -342,7 +343,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
       rgba(0,0,0,0.015) 20px
     );
     border: 1px solid var(--color-slate-200);
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
     padding: 32px;
     position: relative;
     display: flex;
@@ -415,9 +416,9 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .price-amount {
-    font-size: 64px;
+    font-size: clamp(2.25rem, 4vw, 3rem);
     font-weight: 700;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--tracking-title);
     color: var(--color-text-primary);
   }
 
@@ -459,7 +460,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
     font-family: monospace;
     background: var(--color-slate-100);
     padding: 2px 6px;
-    border-radius: 4px;
+    border-radius: var(--radius-xs);
     font-size: 13px;
     color: var(--color-blurple);
   }
@@ -469,7 +470,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
     display: block;
     text-align: center;
     padding: 13px 24px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     font-size: 15px;
     font-weight: 600;
     transition: all 0.2s;
@@ -536,10 +537,11 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .plan-footnote {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--color-slate-400);
     line-height: 1.5;
-    padding-top: 16px;
+    margin-top: var(--spacing-4);
+    padding-top: var(--spacing-4);
     border-top: 1px solid rgba(255,255,255,0.1);
   }
 
@@ -591,7 +593,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .future-title {
-    font-size: clamp(24px, 3vw, 40px);
+    font-size: var(--font-size-section-title);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.03em;
@@ -626,7 +628,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
     font-size: 14px;
     font-weight: 600;
     padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     transition: all 0.2s;
   }
 
@@ -641,7 +643,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   .mystery-card {
     background: white;
     border: 1px solid var(--color-slate-200);
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
     padding: 32px;
     position: relative;
     overflow: hidden;
@@ -684,9 +686,9 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .mystery-amount {
-    font-size: 56px;
+    font-size: clamp(2.25rem, 4vw, 3rem);
     font-weight: 700;
-    letter-spacing: -0.04em;
+    letter-spacing: var(--tracking-title);
     color: var(--color-slate-300);
     filter: blur(2px);
   }
@@ -738,7 +740,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   .mystery-btn {
     width: 100%;
     padding: 13px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     background: var(--color-slate-100);
     color: var(--color-slate-400);
     font-size: 14px;
@@ -772,7 +774,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .coffee-emoji {
-    font-size: 56px;
+    font-size: 40px;
     line-height: 1;
     margin-bottom: var(--spacing-6);
     animation: wiggle 3s ease-in-out infinite;
@@ -785,7 +787,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .donation-title {
-    font-size: clamp(22px, 3vw, 32px);
+    font-size: var(--font-size-section-title);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.03em;
@@ -817,7 +819,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
     font-size: 16px;
     font-weight: 700;
     padding: 14px 32px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     transition: all 0.2s;
     box-shadow: 0 4px 16px rgba(255, 221, 0, 0.4);
   }
@@ -861,7 +863,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   }
 
   .faq-title {
-    font-size: clamp(24px, 3vw, 36px);
+    font-size: var(--font-size-section-title);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.03em;
@@ -884,7 +886,7 @@ Les fonctionnalités actuelles resteront <strong>toujours gratuites</strong>.C'e
   .faq-item {
     background: white;
     border: 1px solid var(--color-slate-200);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 24px;
   }
 

@@ -62,15 +62,28 @@ const { hero } = fr;
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
+    /* svh et non vh : sur mobile, 100vh inclut la barre d'URL, ce qui poussait
+       le CTA sous la ligne de flottaison et faisait sauter la page au scroll. */
+    min-height: 100svh;
     display: flex;
     align-items: center;
     padding: var(--spacing-24) 0 var(--spacing-16);
     overflow: hidden;
     background-image: url('/background_abstract-waves.jpg');
+    background-image: image-set(
+      url('/background_abstract-waves.avif') type('image/avif'),
+      url('/background_abstract-waves.webp') type('image/webp'),
+      url('/background_abstract-waves.jpg') type('image/jpeg')
+    );
     background-size: cover;
     background-position: center 60%;
     background-repeat: no-repeat;
+  }
+
+  @supports not (min-height: 100svh) {
+    .hero {
+      min-height: 100vh;
+    }
   }
 
   .hero-container {
@@ -98,24 +111,12 @@ const { hero } = fr;
   }
 
   .hero-title {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-hero-title);
     font-weight: 700;
     line-height: 1.1;
-    letter-spacing: -0.03em;
+    letter-spacing: var(--tracking-title);
     color: var(--color-text-primary);
     margin-bottom: var(--spacing-6);
-  }
-
-  @media (min-width: 768px) {
-    .hero-title {
-      font-size: var(--font-size-5xl);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .hero-title {
-      font-size: var(--font-size-6xl);
-    }
   }
 
   .hero-subtitle {

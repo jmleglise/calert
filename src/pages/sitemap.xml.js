@@ -1,10 +1,4 @@
-import {
-  getPublishedPosts,
-  getPostUrl,
-  getAllTags,
-  getPostsByTag,
-  SITE_URL,
-} from '../lib/blog';
+import { getPublishedPosts, getPostUrl, SITE_URL } from '../lib/blog';
 
 function getPostLastMod(post) {
   return post.data.updatedDate ?? post.data.pubDate;
@@ -29,27 +23,23 @@ function escapeXml(value) {
 
 export async function GET() {
   const posts = await getPublishedPosts();
-  const tags = getAllTags(posts);
 
+  // Slash final partout : le build genere des dossiers (/fr/pricing/index.html),
+  // donc l'URL canonique porte le slash. Sans lui le sitemap declarait une
+  // seconde URL pour la meme page.
   const urls = [
     { loc: '/fr/' },
-    { loc: '/fr/pricing' },
-    { loc: '/fr/contact' },
+    { loc: '/fr/pricing/' },
+    { loc: '/fr/contact/' },
     {
       loc: '/fr/posts/',
       lastmod: getLatestLastMod(posts),
     },
   ];
 
-  // Pages de tags uniquement — pas de pagination
-  for (const tag of tags) {
-    const tagPosts = getPostsByTag(posts, tag.slug);
-
-    urls.push({
-      loc: `/fr/posts/${tag.slug}/`,
-      lastmod: getLatestLastMod(tagPosts),
-    });
-  }
+  // Ni pages de tags ni pagination : elles sont en noindex (listes quasi
+  // dupliquees d'un tag a l'autre) et n'ont rien a faire dans le sitemap.
+  // /fr/mentions-legales est volontairement absent, la page est en noindex.
 
   // Articles individuels
   for (const post of posts) {

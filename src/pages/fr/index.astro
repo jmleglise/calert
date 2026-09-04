@@ -8,6 +8,7 @@ import Legal from '../../components/Legal.astro';
 import FAQ from '../../components/FAQ.astro';
 import Footer from '../../components/Footer.astro';
 import fr from '../../i18n/fr.json';
+import { faqItems } from '../../data/faq';
 
 const canonical = 'https://www.consoalert.com/fr/';
 
@@ -49,6 +50,17 @@ const structuredData = {
           'Propriétaires, conciergeries, gestionnaires de locations courte durée, gestionnaires multi-logements et propriétaires de résidences secondaires',
       },
     },
+    {
+      // Les 9 questions de la FAQ etaient deja affichees sans etre declarees :
+      // FAQPage les rend eligibles au rich snippet.
+      '@type': 'FAQPage',
+      '@id': 'https://www.consoalert.com/fr/#faq',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
   ],
 };
 ---
@@ -58,9 +70,10 @@ const structuredData = {
   description={fr.meta.description}
   canonical={canonical}
   structuredData={structuredData}
+  preloadImage={{ href: '/background_abstract-waves.avif', type: 'image/avif' }}
 >
   <Header />
-  <main>
+  <main id="main">
     <Hero />
     <Partners />
     <Cards />
