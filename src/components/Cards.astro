@@ -16,7 +16,13 @@ const { cards } = fr;
           <div class="card-inner">
             <div class="card-top">
               <h3 class="card-title">{card.cardTitle}</h3>
-              <button class="card-expand-btn" aria-label="Agrandir">
+              <button
+                class="card-expand-btn"
+                data-card-open={card.id}
+                aria-haspopup="dialog"
+                aria-controls={`modal-${card.id}`}
+                aria-label={`Agrandir : ${card.cardTitle}`}
+              >
 <svg viewBox="0 0 16 16" fill="none">
   <path
     d="M10 1h5v5 M6 15H1v-5"
@@ -38,8 +44,8 @@ const { cards } = fr;
 
 <!-- Expanded modals -->
 {cards.items.map((card, index) => (
-  <div class="modal-overlay" data-modal={card.id}>
-    <div class="modal-panel" role="dialog" aria-modal="true">
+  <div class="modal-overlay" data-modal={card.id} id={`modal-${card.id}`}>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby={`modal-title-${card.id}`}>
 
       <button class="modal-close" data-close={card.id} aria-label="Fermer">
         <svg viewBox="0 0 14 14" fill="none">
@@ -52,7 +58,7 @@ const { cards } = fr;
         <!-- 2-column content -->
         <div class="modal-content">
           <div class="modal-col-text">
-            <h2 class="modal-title">{card.title}</h2>
+            <h2 class="modal-title" id={`modal-title-${card.id}`}>{card.title}</h2>
             <div class="modal-body-text">
               {card.body.map((paragraph: string) => (
                 <p>{paragraph}</p>
@@ -147,10 +153,10 @@ const { cards } = fr;
   }
 
   .section-title {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-section-title);
     font-weight: 700;
     color: var(--color-text-primary);
-    letter-spacing: -0.03em;
+    letter-spacing: var(--tracking-title);
     margin-bottom: var(--spacing-4);
   }
 
@@ -182,7 +188,7 @@ const { cards } = fr;
 
   /* ────────────────── CARD SHELL ────────────────── */
   .card {
-    border-radius: 7px;
+    border-radius: var(--radius-sm);
     border: 1px solid rgba(0, 0, 0, 0.08);
     background: #FFFFFF;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -234,7 +240,7 @@ const { cards } = fr;
   .card-expand-btn {
     width: 36px;
     height: 36px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     padding: 3px;
     background: var(--color-blurple-icon);
     display: flex;
@@ -290,7 +296,7 @@ const { cards } = fr;
   .bar {
     flex: 1;
     background: var(--color-slate-200);
-    border-radius: 4px 4px 0 0;
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
     transition: height 0.3s;
   }
 
@@ -317,7 +323,7 @@ const { cards } = fr;
     font-size: 12px;
     font-weight: 600;
     padding: 8px 14px;
-    border-radius: 99px;
+    border-radius: var(--radius-full);
   }
 
   .alert-dot {
@@ -416,7 +422,7 @@ const { cards } = fr;
   .timeline-bar {
     flex: 1;
     height: 20px;
-    border-radius: 4px;
+    border-radius: var(--radius-xs);
     background: var(--color-slate-100);
   }
 
@@ -441,7 +447,7 @@ const { cards } = fr;
     padding: 10px 16px;
     background: #dc2626;
     color: white;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     font-size: 13px;
     font-weight: 600;
     display: flex;
@@ -488,7 +494,7 @@ const { cards } = fr;
   .ev-slot {
     flex: 1;
     background: var(--color-slate-100);
-    border-radius: 3px 3px 0 0;
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0;
   }
 
   .ev-charging {
@@ -509,7 +515,7 @@ const { cards } = fr;
     gap: 6px;
     background: #dcfce7;
     border: 1px solid #bbf7d0;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 10px 16px;
   }
 
@@ -613,7 +619,7 @@ const { cards } = fr;
     font-size: 15px;
     font-weight: 700;
     padding: 8px 16px;
-    border-radius: 99px;
+    border-radius: var(--radius-full);
   }
 
   /* ── BOILER ── */
@@ -651,7 +657,7 @@ const { cards } = fr;
   }
 
   .boiler-cell {
-    border-radius: 3px;
+    border-radius: var(--radius-xs);
   }
 
   .cell-on { background: #f59e0b; }
@@ -677,7 +683,7 @@ const { cards } = fr;
     font-size: 13px;
     font-weight: 600;
     padding: 10px 16px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
   }
 
   /* ── FAULT ── */
@@ -721,7 +727,7 @@ const { cards } = fr;
     gap: 10px;
     padding: 8px 12px;
     background: var(--color-slate-50);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--color-slate-200);
   }
 
@@ -796,7 +802,7 @@ const { cards } = fr;
     font-size: 11px;
     font-weight: 600;
     padding: 2px 8px;
-    border-radius: 99px;
+    border-radius: var(--radius-full);
   }
 
   .source-status.synced {
@@ -806,7 +812,7 @@ const { cards } = fr;
 
   .ical-calendar {
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--color-slate-200);
     padding: 12px;
   }
@@ -832,7 +838,7 @@ const { cards } = fr;
     font-weight: 500;
     color: var(--color-slate-700);
     padding: 8px 4px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
   }
 
   .ical-day.empty { color: var(--color-slate-300); }
@@ -868,7 +874,7 @@ const { cards } = fr;
     align-items: center;
     gap: 10px;
     padding: 10px 12px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     background: var(--color-slate-50);
     border: 1px solid var(--color-slate-200);
   }
@@ -941,7 +947,7 @@ const { cards } = fr;
     width: 100%;
     max-width: 900px;
     max-height: 92vh;
-    border-radius: 16px 16px 0 0;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
     position: relative;
     transform: translateY(40px);
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -952,7 +958,7 @@ const { cards } = fr;
 
   @media (min-width: 768px) {
     .modal-panel {
-      border-radius: 16px;
+      border-radius: var(--radius-xl);
     }
   }
 
@@ -971,7 +977,7 @@ const { cards } = fr;
     align-items: center;
     justify-content: center;
     background: var(--color-slate-100);
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     color: var(--color-slate-500);
     z-index: 10;
     transition: background 0.15s, color 0.15s;
@@ -1014,11 +1020,11 @@ const { cards } = fr;
   }
 
   .modal-title {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(20px, 2.5vw, 28px);
+    font-family: var(--font-family);
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
     font-weight: 700;
     color: var(--color-text-primary);
-    letter-spacing: -0.03em;
+    letter-spacing: var(--tracking-title);
     line-height: 1.25;
   }
 
@@ -1043,7 +1049,7 @@ const { cards } = fr;
     color: white;
     background: var(--color-blurple);
     padding: 13px 28px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 16px rgba(99, 91, 255, 0.3);
     width: fit-content;
@@ -1092,7 +1098,7 @@ const { cards } = fr;
     flex-shrink: 0;
     width: 22px;
     height: 22px;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     background: rgba(99, 91, 255, 0.10);
     color: var(--color-blurple);
     display: flex;
@@ -1106,7 +1112,7 @@ const { cards } = fr;
   /* ── Image preview placeholder ── */
   .modal-preview {
     margin: 0 36px 36px;
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.08);
     box-shadow: 0 8px 32px rgba(10, 37, 64, 0.08);
@@ -1165,7 +1171,7 @@ const { cards } = fr;
 
   .preview-nav-item {
     height: 8px;
-    border-radius: 4px;
+    border-radius: var(--radius-xs);
     background: rgba(255,255,255,0.15);
   }
 
@@ -1188,7 +1194,7 @@ const { cards } = fr;
   .preview-card-sm {
     flex: 1;
     height: 48px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     opacity: 0.7;
   }
 
@@ -1210,20 +1216,74 @@ const { cards } = fr;
 <script>
   const cardEls = document.querySelectorAll('.card');
   const overlays = document.querySelectorAll('.modal-overlay');
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  // Element a qui rendre le focus quand la modale se referme.
+  let lastFocused: HTMLElement | null = null;
+
+  const openModal = (cardId: string | undefined, trigger: HTMLElement) => {
+    const overlay = document.querySelector(`[data-modal="${cardId}"]`);
+    if (!overlay) return;
+    lastFocused = trigger;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // L'overlay passe de visibility:hidden a visible via une transition :
+    // focus() reste sans effet tant que l'element est encore hidden. On force
+    // le recalcul de style, et on retente a la fin de la transition si besoin.
+    const focusClose = () => overlay.querySelector<HTMLElement>('.modal-close')?.focus();
+    void (overlay as HTMLElement).offsetHeight;
+    focusClose();
+    if (!overlay.contains(document.activeElement)) {
+      overlay.addEventListener('transitionend', focusClose, { once: true });
+    }
+  };
 
   cardEls.forEach((card) => {
-    const cardId = card.dataset.card;
-    card.addEventListener('click', () => {
-      const overlay = document.querySelector(`[data-modal="${cardId}"]`);
-      overlay?.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    card.addEventListener('click', (e) => {
+      const trigger = e.target instanceof Element ? e.target.closest('button') : null;
+      openModal(card.dataset.card, (trigger as HTMLElement) ?? (card as HTMLElement));
     });
   });
 
   const closeModal = () => {
+    const wasOpen = document.querySelector('.modal-overlay.active');
     overlays.forEach(o => o.classList.remove('active'));
     document.body.style.overflow = '';
+    if (wasOpen && lastFocused) {
+      lastFocused.focus();
+      lastFocused = null;
+    }
   };
+
+  // Piege a focus : Tab ne doit pas sortir de la modale ouverte.
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const active = document.querySelector('.modal-overlay.active');
+    if (!active) return;
+
+    const items = [...active.querySelectorAll<HTMLElement>(FOCUSABLE)]
+      .filter((el) => el.offsetParent !== null);
+    if (items.length === 0) return;
+
+    const first = items[0];
+    const last = items[items.length - 1];
+
+    // Focus encore hors de la modale : on le ramene dedans.
+    if (!(document.activeElement instanceof Element) || !active.contains(document.activeElement)) {
+      e.preventDefault();
+      first.focus();
+      return;
+    }
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 
   overlays.forEach(overlay => {
     overlay.addEventListener('click', (e) => {

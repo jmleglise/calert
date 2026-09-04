@@ -1,11 +1,19 @@
 ---
+// Ecran de redirection statique vers /fr/pricing/.
+// Sert reellement (la Function ne redirige que "/"), d'ou le noindex + canonical
+// pour qu'il ne soit pas indexe comme un duplicata vide de la page tarifs.
 ---
 <!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0;url=/fr/pricing" />
-    <script>window.location.replace('/fr/pricing');</script>
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/fr/pricing/" />
+    <link rel="canonical" href="https://www.consoalert.com/fr/pricing/" />
+    <title>Tarifs ConsoAlert — redirection</title>
+    <script>window.location.replace('/fr/pricing/');</script>
   </head>
-  <body></body>
+  <body>
+    <a href="/fr/pricing/">Continuer vers les tarifs ConsoAlert</a>
+  </body>
 </html>

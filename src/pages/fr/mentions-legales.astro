@@ -5,13 +5,15 @@ import Footer from '../../components/Footer.astro';
 ---
 
 <Layout
-  title="Mentions légales & Conditions • ConsoAlert"
+  title="Mentions légales & Conditions | ConsoAlert"
   description="Mentions légales, conditions d'utilisation et politique de protection des données personnelles (RGPD) du service ConsoAlert."
+  canonical="https://www.consoalert.com/fr/mentions-legales/"
+  noindex
 >
 
 <Header />
 
-<main class="contact-page">
+<main id="main" class="contact-page">
 
   <section class="contact-hero">
     <div class="container">
@@ -223,11 +225,11 @@ import Footer from '../../components/Footer.astro';
   }
 
   .contact-headline {
-    font-size: clamp(36px, 5vw, 64px);
+    font-size: var(--font-size-page-title);
     font-weight: 700;
     color: var(--color-text-primary);
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    letter-spacing: var(--tracking-title);
+    line-height: 1.12;
     margin-bottom: var(--spacing-6);
   }
 

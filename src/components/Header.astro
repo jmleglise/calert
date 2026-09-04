@@ -27,14 +27,20 @@ const { nav } = fr;
       <a href="https://app.consoalert.com/auth" class="btn-signup">{nav.signup}</a>
     </div>
 
-    <button class="mobile-menu-btn" aria-label="Menu" data-mobile-menu>
+    <button
+      class="mobile-menu-btn"
+      aria-label="Menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      data-mobile-menu
+    >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
   </div>
 
-  <nav class="nav-mobile" data-mobile-nav>
+  <nav class="nav-mobile" id="mobile-nav" data-mobile-nav>
     <a href="/fr/" class="nav-link">{nav.home}</a>
     <a href="/fr/pricing" class="nav-link">{nav.pricing}</a>
     <a href="/fr/contact" class="nav-link">{nav.contact}</a>    
@@ -260,15 +266,25 @@ const { nav } = fr;
   const mobileMenuBtn = document.querySelector('[data-mobile-menu]');
   const mobileNav = document.querySelector('[data-mobile-nav]');
 
+  const setMenu = (open: boolean) => {
+    mobileNav?.classList.toggle('open', open);
+    mobileMenuBtn?.setAttribute('aria-expanded', String(open));
+  };
+
   mobileMenuBtn?.addEventListener('click', () => {
-    mobileNav?.classList.toggle('open');
+    setMenu(!mobileNav?.classList.contains('open'));
   });
 
   // Close mobile nav when clicking a link
   mobileNav?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-    });
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileNav?.classList.contains('open')) {
+      setMenu(false);
+      (mobileMenuBtn as HTMLElement | null)?.focus();
+    }
   });
 
   // Add scrolled class

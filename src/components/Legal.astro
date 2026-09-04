@@ -44,16 +44,11 @@ const { legal } = fr;
   }
 
   .legal-title {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-section-title);
     font-weight: 700;
+    letter-spacing: var(--tracking-title);
     color: var(--color-text-primary);
     margin-bottom: var(--spacing-4);
-  }
-
-  @media (min-width: 768px) {
-    .legal-title {
-      font-size: var(--font-size-4xl);
-    }
   }
 
   .legal-subtitle {
@@ -78,7 +73,7 @@ const { legal } = fr;
   .legal-block {
     background: #FFFFFF;
     padding: var(--spacing-8);
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     animation: fadeIn 0.6s ease-out forwards;

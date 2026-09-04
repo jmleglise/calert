@@ -103,7 +103,13 @@ export function getPaginationUrl(basePath: string, page: number) {
 export type RenderedMarkdown = {
   html: string;
   headings: Array<{ depth: number; slug: string; text: string }>;
+  /** Vrai si l'article contient au moins une formule : conditionne le chargement de KaTeX. */
+  hasMath: boolean;
 };
+
+// Positionne par protectMath pendant un rendu, remis a zero par renderMarkdownWithMath.
+// Le rendu est synchrone et mono-thread au build, l'etat ne peut pas s'entrelacer.
+let mathSeen = false;
 
 function escapeHtml(value: string) {
   return value
@@ -119,6 +125,7 @@ function protectMath(value: string) {
   const tokenFor = (segment: string) => {
     const token = `@@MATH_${mathSegments.length}@@`;
     mathSegments.push(segment);
+    mathSeen = true;
     return token;
   };
 
@@ -147,6 +154,7 @@ function formatInline(value: string) {
 }
 
 export function renderMarkdownWithMath(markdown: string): RenderedMarkdown {
+  mathSeen = false;
   const headings: RenderedMarkdown['headings'] = [];
   const blocks: string[] = [];
   const lines = markdown.replace(/\r\n/g, '\n').split('\n');
@@ -241,5 +249,5 @@ export function renderMarkdownWithMath(markdown: string): RenderedMarkdown {
   }
   flushOpenBlocks();
 
-  return { html: blocks.join('\n'), headings };
+  return { html: blocks.join('\n'), headings, hasMath: mathSeen };
 }

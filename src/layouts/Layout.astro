@@ -6,20 +6,43 @@ interface Props {
   description?: string;
   canonical?: string;
   alternates?: Array<{ lang: string; href: string }>;
-  keywords?: string[];
-  structuredData?: Record<string, unknown>;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+  /** Retire la page de l'index (pages de tags, pagination, mentions legales, ecrans de redirection). */
+  noindex?: boolean;
+  /** Ne charge KaTeX que sur les pages qui contiennent reellement des formules. */
+  math?: boolean;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  /** Precharge l'image LCP (fond du hero) pour la sortir du chemin critique CSS. */
+  preloadImage?: { href: string; type?: string };
+  publishedTime?: string;
+  modifiedTime?: string;
 }
+
+const SITE_NAME = 'ConsoAlert';
+const SITE_URL = 'https://www.consoalert.com';
 
 const {
   title,
-  description = 'Agent IA intelligent qui surveille vos logements 24h/24 via Linky. Detecte anomalies, squat, abus. Sans boitier.',
+  description = 'Agent IA qui surveille vos logements 24h/24 via Linky. Détecte anomalies, squat, abus. Sans boîtier.',
   canonical,
-  alternates = [
-    { lang: 'fr', href: 'https://www.consoalert.com/fr/' },
-    { lang: 'x-default', href: 'https://www.consoalert.com/fr/' },
-  ],
-  keywords = [],
+  // Par défaut le hreflang s'auto-référence : chaque page se déclare comme sa
+  // propre version FR. Quand d'autres langues arriveront, les pages passeront
+  // explicitement la liste complète de leurs traductions.
+  alternates = canonical
+    ? [
+        { lang: 'fr', href: canonical },
+        { lang: 'x-default', href: canonical },
+      ]
+    : [],
   structuredData,
+  noindex = false,
+  math = false,
+  ogType = 'website',
+  ogImage = `${SITE_URL}/og-consoalert.jpg`,
+  preloadImage,
+  publishedTime,
+  modifiedTime,
 } = Astro.props;
 ---
 
@@ -29,48 +52,83 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
-    <script is:inline>
-      window.__renderConsoAlertMath = () => {
-        if (!window.renderMathInElement) return false;
 
-        window.renderMathInElement(document.querySelector('.article-content') ?? document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '$', right: '$', display: false },
-            { left: '\\(', right: '\\)', display: false },
-            { left: '\\[', right: '\\]', display: true },
-          ],
-          ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-          throwOnError: false,
-        });
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    {preloadImage && (
+      <link
+        rel="preload"
+        href={preloadImage.href}
+        as="image"
+        type={preloadImage.type}
+        fetchpriority="high"
+      />
+    )}
 
-        return true;
-      };
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="ConsoAlert - surveillance Linky de vos logements 24/7" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 
-      document.addEventListener('DOMContentLoaded', () => {
-        let attempts = 0;
-        const renderWhenReady = () => {
-          attempts += 1;
-          if (!window.__renderConsoAlertMath() && attempts < 40) {
-            window.setTimeout(renderWhenReady, 125);
-          }
-        };
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
-        renderWhenReady();
-      });
-    </script>
-    <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-    <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="window.__renderConsoAlertMath?.()"></script>
+    {math && (
+      <>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+          crossorigin="anonymous"
+        />
+        <script
+          is:inline
+          defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+          crossorigin="anonymous"></script>
+        <script
+          is:inline
+          defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+          crossorigin="anonymous"
+          onload="renderMathInElement(document.querySelector('.article-content') ?? document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\\\(', right: '\\\\)', display: false },
+              { left: '\\\\[', right: '\\\\]', display: true }
+            ],
+            ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            throwOnError: false
+          })"></script>
+      </>
+    )}
+
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
     <slot />
   </body>
 </html>
@@ -82,6 +140,24 @@ const {
 
   body {
     overflow-x: hidden;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: var(--spacing-4);
+    top: calc(-1 * var(--spacing-20));
+    z-index: 200;
+    padding: var(--spacing-3) var(--spacing-5);
+    border-radius: var(--radius-md);
+    background: var(--color-blurple);
+    color: #fff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus-visible {
+    top: var(--spacing-4);
   }
 
   /* Modal overlay styles */
@@ -104,5 +180,19 @@ const {
   /* Prevent body scroll when modal is open */
   body.modal-open {
     overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>

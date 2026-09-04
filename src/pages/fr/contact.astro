@@ -7,12 +7,13 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 ---
 
 <Layout
-  title="Contact — ConsoAlert | Wattson"
+  title="Contact — parlez à l'équipe | ConsoAlert"
   description="Vous voulez contacter Wattson ? Il lira votre message. Mais c'est un humain qui répondra. Wattson est occupé à surveiller vos logements."
+  canonical="https://www.consoalert.com/fr/contact/"
 >
   <Header />
 
-  <main class="contact-page">
+  <main id="main" class="contact-page">
 
     <!-- ── HERO ── -->
     <section class="contact-hero">
@@ -248,11 +249,11 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   }
 
   .contact-headline {
-    font-size: clamp(36px, 5vw, 64px);
+    font-size: var(--font-size-page-title);
     font-weight: 700;
     color: var(--color-text-primary);
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    letter-spacing: var(--tracking-title);
+    line-height: 1.12;
     margin-bottom: var(--spacing-6);
   }
 
@@ -327,7 +328,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   .aside-block {
     background: white;
     border: 1px solid var(--color-slate-200);
-    border-radius: 14px;
+    border-radius: var(--radius-lg);
     padding: 28px;
     box-shadow: var(--shadow-sm);
   }
@@ -439,7 +440,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     font-size: 14px;
     font-weight: 700;
     padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     transition: all 0.2s;
     box-shadow: 0 4px 14px rgba(255, 221, 0, 0.4);
     margin-bottom: var(--spacing-3);
@@ -467,7 +468,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   .form-wrapper {
     background: white;
     border: 1px solid var(--color-slate-200);
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
     padding: 40px;
     box-shadow: var(--shadow-sm);
   }
@@ -523,7 +524,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     color: var(--color-text-primary);
     background: var(--color-slate-50);
     border: 1.5px solid var(--color-slate-200);
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     padding: 12px 16px;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     outline: none;
@@ -605,7 +606,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     font-size: 15px;
     font-weight: 600;
     padding: 13px 28px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     border: none;
     cursor: pointer;
     transition: all 0.2s;
@@ -645,7 +646,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   }
 
   .success-icon {
-    font-size: 56px;
+    font-size: 40px;
     animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
@@ -676,7 +677,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     font-size: 14px;
     font-weight: 600;
     padding: 10px 24px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     margin-top: var(--spacing-4);
     transition: background 0.2s;
   }

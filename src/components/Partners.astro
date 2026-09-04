@@ -2,40 +2,47 @@
 import fr from '../i18n/fr.json';
 const { partners } = fr;
 
+// width/height sont les dimensions intrinseques du fichier : elles fixent le
+// ratio et reservent la place avant le chargement (sans width, la balise ne
+// reservait aucune largeur, d'ou un decalage de mise en page).
+// displayHeight aligne optiquement les trois logos, qui sinon s'affichaient
+// a 107, 91 et 38 px de haut sous le seul effet du max-width.
 const logos = [
-//  {
- //   name: 'Enedis',
-//    file: '/logo-enedis.png',
-//    height: 52,
-//  },
   {
     name: 'Airbnb',
-    file: '/Airbnb-Logo-Horizontal-on-White-768x512.png',
-    height: 42,
+    file: '/partner-airbnb.webp',
+    width: 126,
+    height: 84,
+    displayHeight: 40,
   },
   {
     name: 'Booking.com',
-    file: '/Booking-Com-Logo-500x283.png',
-    height: 36,
+    file: '/partner-booking.webp',
+    width: 127,
+    height: 72,
+    displayHeight: 36,
   },
   {
     name: 'Abritel HomeAway',
-    file: '/Abritel_HomeAway_Logo.jpg',
-    height: 30,
+    file: '/partner-abritel.webp',
+    width: 200,
+    height: 47,
+    displayHeight: 26,
   },
 ];
 ---
 
 <section class="partners">
   <div class="partners-container">
-    {partners.title}
+    <p class="partners-title">{partners.title}</p>
     <div class="partners-logos">
       {logos.map((logo) => (
-        <div class="partner-logo">
+        <div class="partner-logo" style={`--logo-height: ${logo.displayHeight}px`}>
           <img
             src={logo.file}
             alt={logo.name}
-            height=30
+            width={logo.width}
+            height={logo.height}
             loading="lazy"
             decoding="async"
           />
@@ -91,6 +98,7 @@ const logos = [
 
   .partner-logo img {
     display: block;
+    height: var(--logo-height);
     width: auto;
     max-width: 160px;
     object-fit: contain;

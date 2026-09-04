@@ -1,6 +1,6 @@
 ---
-title: " Architecture Stochastique : Pour une Détection Prédictive des Anomalies de Consommation Electrique"
-description: "La théorie mathématique derrière notre système de détection d'anomalie de consommation Electrique."
+title: "Architecture stochastique : détection prédictive des anomalies de consommation électrique"
+description: "La théorie mathématique derrière notre système de détection d'anomalie de consommation électrique."
 pubDate: 2026-07-05
 tags: ["Moteur", "Wattson", "IA", "Intelligence"]
 keywords: ["Moteur de détection d'anomalie", "Réseaux neuronnaux"]
