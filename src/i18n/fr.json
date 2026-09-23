@@ -84,6 +84,25 @@
         "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Studio Marais</span><span class=\"prop-status\">Normal — 1.2 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">T2 Lyon Part-Dieu</span><span class=\"prop-status\">Vide — 0.1 kWh</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Villa Nice</span><span class=\"prop-status alert-status\">Anomalie — 8.4 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Apt. Bordeaux</span><span class=\"prop-status\">Occupé — 2.8 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Chalet Megève</span><span class=\"prop-status\">Vide — 0.2 kWh</span></div></div></div></div>"
       },
       {
+        "id": "parties-communes",
+        "icon": "🏢",
+        "cardTitle": "Syndics et gestionnaires d'immeuble : surveillez les parties communes.",
+        "title": "Parties communes : plus aucune dérive ne passe inaperçue.",
+        "body": [
+          "Halls, escaliers, parkings, caves, VMC, portes de garage : les parties communes consomment tous les jours, et personne ne les surveille.",
+          "Une trottinette ou une voiture rechargée chaque nuit sur la prise du parking. Un éclairage qui ne s'éteint plus. Une panne électrique, une ampoule grillée, un détecteur de présence hors service. Ces incidents sont immédiatement détectés.",
+          "Vous agissez avant les plaintes des résidents. Vous arrivez en assemblée générale avec des faits chiffrés. La facture de la copropriété reste sous contrôle."
+        ],
+        "bullets": [
+          "Stoppez les usages abusifs des prises communes.",
+          "Soyez prévenu d'une panne avant qu'un résident vous appelle.",
+          "Justifiez chaque intervention avec un coût chiffré, devant le conseil syndical comme en assemblée générale.",
+          "Pilotez tous vos immeubles depuis un seul tableau de bord, sans visite sur place."
+        ],
+        "visualClass": "visual-dashboard",
+        "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Hall — Bât. A</span><span class=\"prop-status\">Normal</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Parking sous-sol</span><span class=\"prop-status alert-status\">Recharge nocturne détectée</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Escalier — Bât. B</span><span class=\"prop-status alert-status\">Éclairage allumé 24h/24</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Escalier — Bât. C</span><span class=\"prop-status alert-status\">Panne d'éclairage</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">VMC</span><span class=\"prop-status\">Normal</span></div></div></div></div>"
+      },
+      {
         "id": "residence-secondaire",
         "icon": "🏠",
         "cardTitle": "Gardez un œil sur votre résidence secondaire.",
