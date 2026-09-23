@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Surveillance de consommation Linky pour vos logements",
-    "description": "Wattson surveille la consommation Linky de vos locations et résidences secondaires 24h/24, détecte les anomalies et vous alerte avant la facture. Sans boîtier."
+    "description": "Wattson surveille la consommation électrique de vos locations, résidences secondaires et parties communes 24h/24 et vous alerte avant la facture. Sans boîtier."
   },
   "nav": {
     "home": "Accueil",
@@ -13,8 +13,8 @@
     "signup": "S'inscrire"
   },
   "hero": {
-    "title": "Surveillez la consommation Linky de vos logements",
-    "subtitle": "Dormez sur vos deux oreilles, notre Agent Intelligent Wattson surveille la consommation électrique de vos logements 24/7, détecte les anomalies et vous alerte avant que les factures n'explosent. Sans aucun boîtier à installer.",
+    "title": "Surveillez la consommation électrique de vos biens",
+    "subtitle": "Dormez sur vos deux oreilles, notre Agent Intelligent Wattson surveille la consommation Linky de vos logements 24/7, détecte les anomalies et vous alerte avant que les factures n'explosent. Sans aucun boîtier à installer.",
     "cta": "Commencer, c'est gratuit",
     "micro": "Activation en 2 minutes. Compatible Airbnb & Booking. Conforme RGPD."
   },
@@ -45,45 +45,7 @@
         "visualClass": "visual-heater",
         "visualHtml": "<div class=\"heater-bg\"></div><div class=\"heater-chart\"><div class=\"chart-bars\"><div class=\"bar\" style=\"height:30%\"></div><div class=\"bar\" style=\"height:35%\"></div><div class=\"bar\" style=\"height:28%\"></div><div class=\"bar bar-alert\" style=\"height:95%\"></div><div class=\"bar bar-alert\" style=\"height:90%\"></div><div class=\"bar bar-alert\" style=\"height:88%\"></div><div class=\"bar bar-alert\" style=\"height:92%\"></div></div><div class=\"chart-label-empty\">Logement vide</div><div class=\"alert-badge\"><span class=\"alert-dot\"></span>Anomalie détectée — Chauffage actif</div></div>"
       },
-      {
-        "id": "recharge-ve",
-        "icon": "🚗",
-        "cardTitle": "Recharges de véhicules électriques : Refacturez les locataires pour les consommation hors norme.",
-        "title": "Refacturez équitablement les recharges de véhicules électriques.",
-        "body": [
-          "Les véhicules électriques sont de plus en plus présents dans les locations saisonnières.",
-          "Une seule recharge complète de batterie de 60 à 80 kWh peut représenter entre 12 € et 25 € d'électricité. Sur un séjour court, cela peut réduire significativement votre marge ou celle de votre propriétaire.",
-          "Wattson détecte les consommations exceptionnelles, estime l'énergie supplémentaire consommée et vous aide à justifier une éventuelle refacturation."
-        ],
-        "bullets": [
-          "Détectez les pics de consommation compatibles avec une recharge.",
-          "Estimez automatiquement le coût associé.",
-          "Générez un rapport de consommation détaillé.",
-          "Préservez la rentabilité de chaque réservation."
-        ],
-        "visualClass": "visual-savings",
-        "visualHtml": "<div class=\"savings-bg\"></div><div class=\"savings-content\"><div class=\"savings-ring\"><svg viewBox=\"0 0 120 120\"><circle cx=\"60\" cy=\"60\" r=\"48\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"10\"/><circle cx=\"60\" cy=\"60\" r=\"48\" fill=\"none\" stroke=\"url(#savings-grad)\" stroke-width=\"10\" stroke-dasharray=\"188 113\" stroke-linecap=\"round\" transform=\"rotate(-90 60 60)\"/><text x=\"60\" y=\"55\" text-anchor=\"middle\" font-size=\"20\" font-weight=\"700\" fill=\"#0f172a\">200€</text><text x=\"60\" y=\"72\" text-anchor=\"middle\" font-size=\"10\" fill=\"#64748b\">économisés</text><defs><linearGradient id=\"savings-grad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"#6366f1\"/><stop offset=\"100%\" stop-color=\"#4f46e5\"/></linearGradient></defs></svg></div><div class=\"savings-items\"><div class=\"saving-item\"><span class=\"saving-label\">Sèche-serviette 1000W</span><span class=\"saving-value positive\">+€€€</span></div><div class=\"saving-item\"><span class=\"saving-label\">Abonnement Wattson</span><span class=\"saving-value negative\">–€</span></div><div class=\"saving-divider\"></div><div class=\"saving-item bold\"><span class=\"saving-label\">ROI en 48h</span><span class=\"saving-value positive\">✓</span></div></div></div>"
-      },
-      {
-        "id": "multi-logements",
-        "icon": "📊",
-        "cardTitle": "Centralisez la surveillance de tous vos logements.",
-        "title": "Centralisez la surveillance de tous vos logements.",
-        "body": [
-          "Lorsque l'on gère plusieurs biens, surveiller chaque compteur devient rapidement impossible.",
-          "Locations courte durée, appartements LMNP, résidences secondaires : plus votre parc grandit, plus le risque de passer à côté d'une anomalie augmente.",
-          "Wattson surveille automatiquement tous vos logements depuis une seule interface et analyse chaque compteur quotidiennement, sans exception."
-        ],
-        "bullets": [
-          "Une vue centralisée de l'ensemble de votre parc immobilier.",
-          "Une surveillance identique quel que soit le nombre de logements.",
-          "Des alertes consolidées dans un seul espace.",
-          "Une gestion 100 % à distance sans déplacement."
-        ],
-        "visualClass": "visual-dashboard",
-        "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Studio Marais</span><span class=\"prop-status\">Normal — 1.2 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">T2 Lyon Part-Dieu</span><span class=\"prop-status\">Vide — 0.1 kWh</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Villa Nice</span><span class=\"prop-status alert-status\">Anomalie — 8.4 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Apt. Bordeaux</span><span class=\"prop-status\">Occupé — 2.8 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Chalet Megève</span><span class=\"prop-status\">Vide — 0.2 kWh</span></div></div></div></div>"
-      },
-      {
+          {
         "id": "parties-communes",
         "icon": "🏢",
         "cardTitle": "Syndics et gestionnaires d'immeuble : surveillez les parties communes.",
@@ -120,6 +82,44 @@
         ],
         "visualClass": "visual-ev",
         "visualHtml": "<div class=\"ev-bg\"></div><div class=\"ev-content\"><div class=\"ev-night-chart\"><div class=\"ev-label\">Consommation nocturne</div><div class=\"ev-timeline\"><div class=\"ev-slot\" style=\"height:10%\"></div><div class=\"ev-slot\" style=\"height:12%\"></div><div class=\"ev-slot ev-charging\" style=\"height:85%\"></div><div class=\"ev-slot ev-charging\" style=\"height:88%\"></div><div class=\"ev-slot ev-charging\" style=\"height:90%\"></div><div class=\"ev-slot ev-charging\" style=\"height:87%\"></div><div class=\"ev-slot ev-charging\" style=\"height:89%\"></div><div class=\"ev-slot ev-charging\" style=\"height:86%\"></div><div class=\"ev-slot\" style=\"height:11%\"></div><div class=\"ev-slot\" style=\"height:9%\"></div></div><div class=\"ev-hours\"><span>22h</span><span>00h</span><span>02h</span><span>04h</span><span>06h</span></div></div><div class=\"ev-cost-badge\"><span class=\"ev-cost-value\">+20€</span><span class=\"ev-cost-label\">récupérables</span></div></div>"
+      },
+      {
+        "id": "recharge-ve",
+        "icon": "🚗",
+        "cardTitle": "Recharges de véhicules électriques : Refacturez les consommations hors norme.",
+        "title": "Refacturez équitablement les recharges de véhicules électriques.",
+        "body": [
+          "Les véhicules électriques sont de plus en plus présents dans les locations saisonnières.",
+          "Une seule recharge complète de batterie de 60 à 80 kWh peut représenter entre 12 € et 25 € d'électricité. Sur un séjour court, cela peut réduire significativement votre marge ou celle de votre propriétaire.",
+          "Wattson détecte les consommations exceptionnelles, estime l'énergie supplémentaire consommée et vous aide à justifier une éventuelle refacturation."
+        ],
+        "bullets": [
+          "Détectez les pics de consommation compatibles avec une recharge.",
+          "Estimez automatiquement le coût associé.",
+          "Générez un rapport de consommation détaillé.",
+          "Préservez la rentabilité de chaque réservation."
+        ],
+        "visualClass": "visual-savings",
+        "visualHtml": "<div class=\"savings-bg\"></div><div class=\"savings-content\"><div class=\"savings-ring\"><svg viewBox=\"0 0 120 120\"><circle cx=\"60\" cy=\"60\" r=\"48\" fill=\"none\" stroke=\"#e2e8f0\" stroke-width=\"10\"/><circle cx=\"60\" cy=\"60\" r=\"48\" fill=\"none\" stroke=\"url(#savings-grad)\" stroke-width=\"10\" stroke-dasharray=\"188 113\" stroke-linecap=\"round\" transform=\"rotate(-90 60 60)\"/><text x=\"60\" y=\"55\" text-anchor=\"middle\" font-size=\"20\" font-weight=\"700\" fill=\"#0f172a\">200€</text><text x=\"60\" y=\"72\" text-anchor=\"middle\" font-size=\"10\" fill=\"#64748b\">économisés</text><defs><linearGradient id=\"savings-grad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"#6366f1\"/><stop offset=\"100%\" stop-color=\"#4f46e5\"/></linearGradient></defs></svg></div><div class=\"savings-items\"><div class=\"saving-item\"><span class=\"saving-label\">Sèche-serviette 1000W</span><span class=\"saving-value positive\">+€€€</span></div><div class=\"saving-item\"><span class=\"saving-label\">Abonnement Wattson</span><span class=\"saving-value negative\">–€</span></div><div class=\"saving-divider\"></div><div class=\"saving-item bold\"><span class=\"saving-label\">ROI en 48h</span><span class=\"saving-value positive\">✓</span></div></div></div>"
+      },
+      {
+        "id": "multi-logements",
+        "icon": "📊",
+        "cardTitle": "Centralisez la surveillance de tous vos logements.",
+        "title": "Centralisez la surveillance de tous vos logements.",
+        "body": [
+          "Lorsque l'on gère plusieurs biens, surveiller chaque compteur devient rapidement impossible.",
+          "Locations courte durée, appartements LMNP, résidences secondaires : plus votre parc grandit, plus le risque de passer à côté d'une anomalie augmente.",
+          "Wattson surveille automatiquement tous vos logements depuis une seule interface et analyse chaque compteur quotidiennement, sans exception."
+        ],
+        "bullets": [
+          "Une vue centralisée de l'ensemble de votre parc immobilier.",
+          "Une surveillance identique quel que soit le nombre de logements.",
+          "Des alertes consolidées dans un seul espace.",
+          "Une gestion 100 % à distance sans déplacement."
+        ],
+        "visualClass": "visual-dashboard",
+        "visualHtml": "<div class=\"dashboard-bg\"></div><div class=\"dashboard-content\"><div class=\"dash-properties\"><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Studio Marais</span><span class=\"prop-status\">Normal — 1.2 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">T2 Lyon Part-Dieu</span><span class=\"prop-status\">Vide — 0.1 kWh</span></div></div><div class=\"dash-prop alert\"><div class=\"prop-dot dot-alert\"></div><div class=\"prop-info\"><span class=\"prop-name\">Villa Nice</span><span class=\"prop-status alert-status\">Anomalie — 8.4 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Apt. Bordeaux</span><span class=\"prop-status\">Occupé — 2.8 kWh</span></div></div><div class=\"dash-prop ok\"><div class=\"prop-dot dot-ok\"></div><div class=\"prop-info\"><span class=\"prop-name\">Chalet Megève</span><span class=\"prop-status\">Vide — 0.2 kWh</span></div></div></div></div>"
       },
       {
         "id": "anomalies",
@@ -215,7 +215,7 @@
           "Alertes beaucoup plus pertinentes grâce au contexte réel du logement."
         ],
         "visualClass": "visual-ical",
-        "visualHtml": "<div class=\"ical-bg\"></div><div class=\"ical-content\"><div class=\"ical-sources\"><div class=\"ical-source airbnb\"><div class=\"source-dot dot-airbnb\"></div><span>Airbnb</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source booking\"><div class=\"source-dot dot-booking\"></div><span>Booking.com</span><span class=\"source-status synced\">Synced</span></div><div class=\"ical-source abritel\"><div class=\"source-dot dot-abritel\"></div><span>Abritel</span><span class=\"source-status synced\">Synced</span></div></div><div class=\"ical-calendar\"><div class=\"ical-week\"><div class=\"ical-day-label\">L</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">J</div><div class=\"ical-day-label\">V</div><div class=\"ical-day-label\">S</div><div class=\"ical-day-label\">D</div><div class=\"ical-day empty\"></div><div class=\"ical-day empty\"></div><div class=\"ical-day occupied airbnb-day\">14</div><div class=\"ical-day occupied airbnb-day\">15</div><div class=\"ical-day occupied booking-day\">16</div><div class=\"ical-day occupied booking-day\">17</div><div class=\"ical-day empty\">18</div></div></div></div>"
+        "visualHtml": "<div class=\"ical-bg\"></div><div class=\"ical-content\"><div class=\"ical-sources\"><div class=\"ical-source airbnb\"><div class=\"source-dot dot-airbnb\"></div><span>Airbnb</span><span class=\"source-status synced\">Sync</span></div><div class=\"ical-source booking\"><div class=\"source-dot dot-booking\"></div><span>Booking.com</span><span class=\"source-status synced\">Sync</span></div><div class=\"ical-source abritel\"><div class=\"source-dot dot-abritel\"></div><span>Abritel</span><span class=\"source-status synced\">Sync</span></div></div><div class=\"ical-calendar\"><div class=\"ical-week\"><div class=\"ical-day-label\">L</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">M</div><div class=\"ical-day-label\">J</div><div class=\"ical-day-label\">V</div><div class=\"ical-day-label\">S</div><div class=\"ical-day-label\">D</div><div class=\"ical-day empty\"></div><div class=\"ical-day empty\"></div><div class=\"ical-day occupied airbnb-day\">14</div><div class=\"ical-day occupied airbnb-day\">15</div><div class=\"ical-day occupied booking-day\">16</div><div class=\"ical-day occupied booking-day\">17</div><div class=\"ical-day empty\">18</div></div></div></div>"
       }
     ]
   },
