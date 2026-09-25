@@ -39,6 +39,52 @@ Ordre de correction recommandé : section 11.
 
 ---
 
+## Statut des corrections
+
+Tous les constats sont traités dans la même PR que ce rapport. Mesures refaites après correction, avec le même script, sur 8 pages (accueil, tarifs, contact, mentions, blog, tag, 2 articles), à 1440 et 390 px.
+
+| Contrôle | Avant | Après |
+|---|---|---|
+| Débordement horizontal à 390 px | +62 px (blog, tags), +42 px (article théorie), +2 px (article) | 0 sur les 8 pages |
+| Bord gauche du contenu à 1440 px | 104 / 128 / 130 px | 128 px partout (header, contenu, footer) |
+| Textes sous 4,5:1 (3:1 si grand) | 30+ | 0 |
+| Tailles de police calculées (accueil) | 15 | 8, toutes issues de l'échelle |
+| `font-size` en px dans les `.astro` | 95 | 0 |
+| Polices rendues | Inter Variable + repli système + `system-ui` | Inter Variable (+ mono pour l'URL factice) |
+| Emojis affichés dans l'interface | 13 | 0 |
+| `box-shadow` en dur | 22 | 5, toutes des anneaux de focus sur tokens |
+| Erreurs JS (menu, FAQ, modale, sélecteur, formulaire) | — | 0 |
+
+Correspondance constat → correction :
+
+- **L1, L2, L3, L4** : grilles en `minmax(0, 1fr)`, conteneur unique `.container`, tokens `--header-height`, `--section-y`, `--section-y-sm`. Styles du blog regroupés dans `src/styles/blog.css`.
+- **T1 à T5** : échelle unique dans `global.css`, classes `.page-title`, `.section-heading`, `.section-lead`, `.eyebrow` utilisées partout, `--measure` sur les textes longs.
+- **C1 à C4** : tokens `--color-text-muted/danger/warning/success/link`, `--color-blurple-hover` → `primary-600`, `--gradient-accent` unique, bouton de don en style secondaire.
+- **B1, B2** : composant `.btn` (`--primary`, `--secondary`, `--ghost`, tailles `sm` / `lg` / `block`), focus visible global.
+- **R1, R2** : rayons `lg` pour les cartes, `xl` pour modale et formulaire, ombres sur tokens, cartes en `min-height`, lien « En savoir plus » en pied de carte, bouton d'agrandissement neutre.
+- **V1** : visuels réaffectés (résidence secondaire → climatisation, VE → recharge nocturne, anomalies → pics anormaux), visuel budget refait (répartition des usages), nouveau visuel « 3 étapes » pour l'activation.
+- **V2, V3** : carte du hero réalignée, formats français, bandeau partenaires lisible et libellé corrigé.
+- **L6** : carte orpheline en pleine largeur (texte à gauche, visuel à droite), question orpheline de la FAQ tarifs en pleine largeur.
+- **F1 à F4** : champs à 16 px, message d'erreur unique, `aria-invalid` / `aria-describedby`, formulaire avant la colonne latérale sur mobile, `aria-pressed` sur le sélecteur de période, `aria-current` dans le header et les tags, temps de lecture affiché, appel à l'action en fin d'article.
+- **I1** : composant `src/components/Icon.astro` (SVG au trait, `currentColor`) à la place des emojis.
+- **X1** : coquilles et formats numériques corrigés dans `fr.json` et les pages.
+- **D1** : CSS mort supprimé, composant `PageHero.astro` commun à tarifs, contact, mentions et blog.
+
+Changements de contenu à valider par le porteur du projet :
+
+- le lien « Accueil » du header est remplacé par « Fonctionnalités » (`/fr/#features`) ;
+- le libellé du bandeau partenaires devient « Compatible avec les calendriers de réservation » ;
+- sur la carte du hero, « Évaluation du risque » devient « Coût estimé » ;
+- la colonne « Qui sommes-nous ? » de la page contact reçoit deux lignes : « Un humain vous répond sous quelques jours » (reprise du bloc commenté existant) et un lien vers la section RGPD ;
+- les chiffres du visuel budget (62 / 21 / 17 %, 120 €/an) sont illustratifs, comme ceux des autres maquettes.
+
+Points non traités, hors périmètre du code :
+
+- « Se connecter » et « S'inscrire » pointent toujours vers la même URL `/auth` : cela dépend de l'application ;
+- la ressemblance de la palette avec celle de Stripe (C3) est une décision de marque.
+
+---
+
 ## 2. Typographie
 
 ### T1. Titres de cards en police de repli [code][mesuré] (élevé)

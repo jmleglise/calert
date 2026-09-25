@@ -1,12 +1,23 @@
 ---
 import fr from '../i18n/fr.json';
+import Icon from './Icon.astro';
 const { nav } = fr;
+
+const links = [
+  { href: '/fr/#features', label: nav.features },
+  { href: '/fr/pricing/', label: nav.pricing },
+  { href: '/fr/posts/', label: nav.blog },
+  { href: '/fr/contact/', label: nav.contact },
+];
+
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isCurrent = (href: string) => !href.includes('#') && path.startsWith(href);
 ---
 
 <header class="header">
-  <div class="header-container">
-    <a href="/fr/" class="logo">
-      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="container header-container">
+    <a href="/fr/" class="logo" aria-label="ConsoAlert, accueil">
+      <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect width="32" height="32" rx="8" fill="currentColor"/>
         <path d="M8 16C8 16 10 10 16 10C22 10 24 16 24 16C24 16 22 22 16 22C10 22 8 16 8 16Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="16" cy="16" r="3" fill="white"/>
@@ -14,17 +25,15 @@ const { nav } = fr;
       <span class="logo-text">ConsoAlert</span>
     </a>
 
-    <nav class="nav-desktop">
-      <a href="/fr/" class="nav-link">{nav.home}</a>
-      <a href="/fr/pricing" class="nav-link">{nav.pricing}</a>
-      <a href="/fr/contact" class="nav-link">{nav.contact}</a>
-      <a href="/fr/posts/" class="nav-link">{nav.blog}</a>
-
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      {links.map((link) => (
+        <a href={link.href} class="nav-link" aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+      ))}
     </nav>
 
     <div class="auth-buttons">
-      <a href="https://app.consoalert.com/auth" class="btn-login">{nav.login}</a>
-      <a href="https://app.consoalert.com/auth" class="btn-signup">{nav.signup}</a>
+      <a href="https://app.consoalert.com/auth" class="btn btn--ghost btn--sm">{nav.login}</a>
+      <a href="https://app.consoalert.com/auth" class="btn btn--primary btn--sm">{nav.signup}</a>
     </div>
 
     <button
@@ -34,21 +43,18 @@ const { nav } = fr;
       aria-controls="mobile-nav"
       data-mobile-menu
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
+      <Icon name="menu" />
     </button>
   </div>
 
-  <nav class="nav-mobile" id="mobile-nav" data-mobile-nav>
-    <a href="/fr/" class="nav-link">{nav.home}</a>
-    <a href="/fr/pricing" class="nav-link">{nav.pricing}</a>
-    <a href="/fr/contact" class="nav-link">{nav.contact}</a>    
-    <a href="/fr/posts/" class="nav-link">{nav.blog}</a>
+  <nav class="nav-mobile" id="mobile-nav" data-mobile-nav aria-label="Navigation mobile">
+    {links.map((link) => (
+      <a href={link.href} class="nav-link" aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+    ))}
 
     <div class="auth-buttons-mobile">
-      <a href="https://app.consoalert.com/auth" class="btn-login">{nav.login}</a>
-      <a href="https://app.consoalert.com/auth" class="btn-signup">{nav.signup}</a>
+      <a href="https://app.consoalert.com/auth" class="btn btn--secondary btn--block">{nav.login}</a>
+      <a href="https://app.consoalert.com/auth" class="btn btn--primary btn--block">{nav.signup}</a>
     </div>
   </nav>
 </header>
@@ -60,25 +66,23 @@ const { nav } = fr;
     left: 0;
     right: 0;
     z-index: 50;
-    background-color: color-mix(in oklab, white 70%, transparent);
-    backdrop-filter: blur(3px) saturate(70%);
-    -webkit-backdrop-filter: blur(3px) saturate(70%);
-    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
-    transition: all var(--transition-normal);
+    background-color: color-mix(in oklab, white 80%, transparent);
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    border-bottom: 1px solid var(--color-border);
+    transition: box-shadow var(--transition-normal);
   }
 
   .header.scrolled {
-    box-shadow: 0 4px 24px rgba(10, 37, 64, 0.08);
+    box-shadow: var(--shadow-md);
   }
 
   .header-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-6);
-    height: 72px;
+    height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-6);
   }
 
   .logo {
@@ -106,12 +110,6 @@ const { nav } = fr;
     gap: var(--spacing-8);
   }
 
-  @media (min-width: 768px) {
-    .nav-desktop {
-      display: flex;
-    }
-  }
-
   .nav-link {
     font-size: var(--font-size-sm);
     font-weight: 500;
@@ -120,7 +118,8 @@ const { nav } = fr;
     position: relative;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link[aria-current='page'] {
     color: var(--color-text-primary);
   }
 
@@ -135,53 +134,21 @@ const { nav } = fr;
     transition: width var(--transition-normal);
   }
 
-  .nav-link:hover::after {
+  .nav-link:hover::after,
+  .nav-link[aria-current='page']::after {
     width: 100%;
   }
 
   .auth-buttons {
     display: none;
     align-items: center;
-    gap: var(--spacing-3);
-  }
-
-  @media (min-width: 768px) {
-    .auth-buttons {
-      display: flex;
-    }
-  }
-
-  .btn-login {
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    padding: var(--spacing-2) var(--spacing-4);
-    transition: color var(--transition-fast);
-  }
-
-  .btn-login:hover {
-    color: var(--color-text-primary);
-  }
-
-  .btn-signup {
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: white;
-    background: var(--color-blurple);
-    padding: var(--spacing-2) var(--spacing-5);
-    border-radius: var(--radius-full);
-    transition: all var(--transition-fast);
-  }
-
-  .btn-signup:hover {
-    background: var(--color-blurple-hover);
-    transform: translateY(-1px);
+    gap: var(--spacing-2);
   }
 
   .mobile-menu-btn {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     align-items: center;
     justify-content: center;
     color: var(--color-text-primary);
@@ -193,34 +160,40 @@ const { nav } = fr;
     background: var(--color-slate-100);
   }
 
+  .mobile-menu-btn :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+
   @media (min-width: 768px) {
+    .nav-desktop,
+    .auth-buttons {
+      display: flex;
+    }
+
     .mobile-menu-btn {
       display: none;
     }
   }
 
-  .mobile-menu-btn svg {
-    width: 24px;
-    height: 24px;
-  }
-
   .nav-mobile {
     position: absolute;
-    top: 72px;
+    top: var(--header-height);
     left: 0;
     right: 0;
-    background: color-mix(in oklab, white 90%, transparent);
+    background: color-mix(in oklab, white 95%, transparent);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+    border-bottom: 1px solid var(--color-border);
     padding: var(--spacing-4) var(--spacing-6) var(--spacing-6);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-3);
+    gap: var(--spacing-1);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all var(--transition-normal);
+    transition: opacity var(--transition-normal), visibility var(--transition-normal),
+      transform var(--transition-normal);
   }
 
   .nav-mobile.open {
@@ -236,8 +209,12 @@ const { nav } = fr;
   }
 
   .nav-mobile .nav-link {
-    padding: var(--spacing-2) 0;
+    padding: var(--spacing-3) 0;
     font-size: var(--font-size-base);
+  }
+
+  .nav-mobile .nav-link::after {
+    display: none;
   }
 
   .auth-buttons-mobile {
@@ -245,20 +222,8 @@ const { nav } = fr;
     flex-direction: column;
     gap: var(--spacing-3);
     margin-top: var(--spacing-3);
-    padding-top: var(--spacing-3);
-    border-top: 1px solid var(--color-slate-200);
-  }
-
-  .auth-buttons-mobile .btn-login {
-    text-align: center;
-    padding: var(--spacing-3);
-    border: 1px solid var(--color-slate-200);
-    border-radius: var(--radius-md);
-  }
-
-  .auth-buttons-mobile .btn-signup {
-    text-align: center;
-    padding: var(--spacing-3);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--color-border);
   }
 </style>
 
@@ -290,10 +255,6 @@ const { nav } = fr;
   // Add scrolled class
   const header = document.querySelector('.header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header?.classList.add('scrolled');
-    } else {
-      header?.classList.remove('scrolled');
-    }
-  });
+    header?.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
 </script>

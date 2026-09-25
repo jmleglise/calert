@@ -1,32 +1,31 @@
 ---
 import fr from '../i18n/fr.json';
 import { faqItems as items } from '../data/faq';
+import Icon from './Icon.astro';
 const { faq } = fr;
 ---
 
-<section class="faq-section" id="faq">
-  <div class="faq-container">
-    <div class="faq-header">
-      <h2 class="faq-title">{faq.title}</h2>
+<section class="section" id="faq">
+  <div class="container container--narrow">
+    <div class="section-header">
+      <h2 class="section-heading">{faq.title}</h2>
     </div>
 
     <div class="faq-list">
       {items.map((item, index) => (
-        <div class="faq-item" data-faq-item style={`animation-delay: ${index * 0.1}s`}>
-          <button
-            class="faq-question"
-            data-faq-trigger
-            aria-expanded="false"
-            aria-controls={`faq-answer-${index}`}
-            id={`faq-question-${index}`}
-          >
-            <span class="faq-question-text">{item.question}</span>
-            <span class="faq-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12h14"/>
-              </svg>
-            </span>
-          </button>
+        <div class="surface faq-item" data-faq-item>
+          <h3>
+            <button
+              class="faq-question"
+              data-faq-trigger
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+              id={`faq-question-${index}`}
+            >
+              <span class="faq-question-text">{item.question}</span>
+              <span class="faq-icon"><Icon name="close" /></span>
+            </button>
+          </h3>
           <div
             class="faq-answer"
             data-faq-answer
@@ -43,42 +42,14 @@ const { faq } = fr;
 </section>
 
 <style>
-  .faq-section {
-    padding: var(--spacing-24) 0;
-  }
-
-  .faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-6);
-  }
-
-  .faq-header {
-    text-align: center;
-    margin-bottom: var(--spacing-12);
-  }
-
-  .faq-title {
-    font-size: var(--font-size-section-title);
-    font-weight: 700;
-    letter-spacing: var(--tracking-title);
-    color: var(--color-text-primary);
-  }
-
   .faq-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-4);
+    gap: var(--spacing-3);
   }
 
   .faq-item {
-    background: #FFFFFF;
-    border-radius: var(--radius-xl);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
     overflow: hidden;
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
   }
 
   .faq-question {
@@ -87,10 +58,11 @@ const { faq } = fr;
     align-items: center;
     justify-content: space-between;
     gap: var(--spacing-4);
-    padding: var(--spacing-6);
+    padding: var(--spacing-5) var(--spacing-6);
     text-align: left;
     font-size: var(--font-size-lg);
     font-weight: 500;
+    line-height: var(--line-height-normal);
     color: var(--color-text-primary);
     transition: color var(--transition-fast);
   }
@@ -113,22 +85,24 @@ const { faq } = fr;
     border-radius: var(--radius-full);
     color: var(--color-text-secondary);
     flex-shrink: 0;
-    transition: all var(--transition-normal);
+    transition: background var(--transition-normal), color var(--transition-normal);
   }
 
-  .faq-icon svg {
+  /* Croix tournée de 45° : se lit comme un « + » fermé, un « × » ouvert. */
+  .faq-icon :global(svg) {
     width: 16px;
     height: 16px;
+    transform: rotate(45deg);
     transition: transform var(--transition-normal);
   }
 
   .faq-item.open .faq-icon {
     background: var(--color-blurple);
-    color: white;
+    color: #fff;
   }
 
-  .faq-item.open .faq-icon svg {
-    transform: rotate(45deg);
+  .faq-item.open .faq-icon :global(svg) {
+    transform: rotate(0deg);
   }
 
   .faq-answer {
@@ -139,9 +113,9 @@ const { faq } = fr;
 
   .faq-answer-text {
     padding: 0 var(--spacing-6) var(--spacing-6);
-    font-size: var(--font-size-base);
     line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);
+    max-width: var(--measure);
   }
 </style>
 

@@ -1,61 +1,52 @@
 ---
 import fr from '../i18n/fr.json';
+import Icon from './Icon.astro';
 const { cards } = fr;
 ---
 
-<section class="cards-section" id="features">
-  <div class="cards-container">
+<section class="section cards-section" id="features">
+  <div class="container">
     <div class="section-header">
-      <h2 class="section-title">{cards.title}</h2>
-      <p class="section-subtitle">{cards.subtitle}</p>
+      <h2 class="section-heading">{cards.title}</h2>
+      <p class="section-lead">{cards.subtitle}</p>
     </div>
 
     <div class="cards-grid">
       {cards.items.map((card) => (
         <article class="card" data-card={card.id}>
-          <div class="card-inner">
-            <div class="card-top">
-              <h3 class="card-title">{card.cardTitle}</h3>
-              <button
-                class="card-expand-btn"
-                data-card-open={card.id}
-                aria-haspopup="dialog"
-                aria-controls={`modal-${card.id}`}
-                aria-label={`Agrandir : ${card.cardTitle}`}
-              >
-<svg viewBox="0 0 16 16" fill="none">
-  <path
-    d="M10 1h5v5 M6 15H1v-5"
-    stroke="currentColor"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  />
-</svg>
-              </button>
-            </div>
-            <div class={`card-visual ${card.visualClass}`} set:html={card.visualHtml}></div>
+          <div class="card-top">
+            <h3 class="card-title">{card.cardTitle}</h3>
+            <button
+              class="card-expand-btn"
+              data-card-open={card.id}
+              aria-haspopup="dialog"
+              aria-controls={`modal-${card.id}`}
+              aria-label={`Agrandir : ${card.cardTitle}`}
+            >
+              <Icon name="expand" />
+            </button>
           </div>
+          <div class={`card-visual ${card.visualClass}`} aria-hidden="true" set:html={card.visualHtml}></div>
+          <span class="card-more" aria-hidden="true">
+            En savoir plus
+            <Icon name="arrow-right" />
+          </span>
         </article>
       ))}
     </div>
   </div>
 </section>
 
-<!-- Expanded modals -->
-{cards.items.map((card, index) => (
+<!-- Modales -->
+{cards.items.map((card) => (
   <div class="modal-overlay" data-modal={card.id} id={`modal-${card.id}`}>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby={`modal-title-${card.id}`}>
 
       <button class="modal-close" data-close={card.id} aria-label="Fermer">
-        <svg viewBox="0 0 14 14" fill="none">
-          <path d="M13 1L1 13M1 1l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
+        <Icon name="close" />
       </button>
 
       <div class="modal-scroll">
-
-        <!-- 2-column content -->
         <div class="modal-content">
           <div class="modal-col-text">
             <h2 class="modal-title" id={`modal-title-${card.id}`}>{card.title}</h2>
@@ -64,11 +55,9 @@ const { cards } = fr;
                 <p>{paragraph}</p>
               ))}
             </div>
-            <a href="https://app.consoalert.com/auth" class="modal-cta-btn">
+            <a href="https://app.consoalert.com/auth" class="btn btn--primary">
               {cards.cta}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
+              <Icon name="arrow-right" class="btn-arrow" />
             </a>
           </div>
 
@@ -76,11 +65,7 @@ const { cards } = fr;
             <ul class="modal-bullets">
               {card.bullets.map((bullet: string) => (
                 <li class="modal-bullet">
-                  <span class="bullet-check" aria-hidden="true">
-                    <svg viewBox="0 0 16 16" fill="none">
-                      <path d="M3 8l3.5 3.5L13 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
+                  <span class="list-icon"><Icon name="check" /></span>
                   <span>{bullet}</span>
                 </li>
               ))}
@@ -88,44 +73,38 @@ const { cards } = fr;
           </div>
         </div>
 
-        <!-- Image placeholder -->
-        <div class="modal-preview">
-          <div class="preview-inner">
-            <div class="preview-bar">
-              <span class="preview-dot"></span>
-              <span class="preview-dot"></span>
-              <span class="preview-dot"></span>
-              <span class="preview-url">app.consoalert.com — Tableau de bord Wattson</span>
+        <!-- Aperçu schématique du tableau de bord -->
+        <div class="modal-preview" aria-hidden="true">
+          <div class="preview-bar">
+            <span class="preview-dot"></span>
+            <span class="preview-dot"></span>
+            <span class="preview-dot"></span>
+            <span class="preview-url">app.consoalert.com — Tableau de bord Wattson</span>
+          </div>
+          <div class="preview-screen">
+            <div class="preview-sidebar">
+              <div class="preview-nav-item active-nav"></div>
+              <div class="preview-nav-item"></div>
+              <div class="preview-nav-item"></div>
+              <div class="preview-nav-item"></div>
             </div>
-            <div class="preview-screen">
-              <div class="preview-sidebar">
-                <div class="preview-nav-item active-nav"></div>
-                <div class="preview-nav-item"></div>
-                <div class="preview-nav-item"></div>
-                <div class="preview-nav-item"></div>
+            <div class="preview-main">
+              <div class="preview-row">
+                <div class="preview-card-sm gradient-blue"></div>
+                <div class="preview-card-sm gradient-green"></div>
+                <div class="preview-card-sm gradient-red"></div>
               </div>
-              <div class="preview-main">
-                <div class="preview-row">
-                  <div class="preview-card-sm gradient-blue"></div>
-                  <div class="preview-card-sm gradient-green"></div>
-                  <div class="preview-card-sm gradient-red"></div>
-                </div>
-                <div class="preview-chart-area">
-                  <svg viewBox="0 0 400 100" preserveAspectRatio="none" class="preview-chart-svg">
-                    <polyline points="0,80 50,70 100,60 150,65 200,30 250,25 300,35 350,20 400,25" fill="none" stroke="url(#preview-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <polyline points="0,80 50,70 100,60 150,65 200,30 250,25 300,35 350,20 400,25 400,100 0,100" fill="url(#preview-fill)" stroke="none"/>
-                    <defs>
-                      <linearGradient id="preview-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#635BFF"/>
-                        <stop offset="100%" stop-color="#7C7AF5"/>
-                      </linearGradient>
-                      <linearGradient id="preview-fill" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#635BFF" stop-opacity="0.15"/>
-                        <stop offset="100%" stop-color="#635BFF" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
+              <div class="preview-chart-area">
+                <svg viewBox="0 0 400 100" preserveAspectRatio="none" class="preview-chart-svg">
+                  <polyline points="0,80 50,70 100,60 150,65 200,30 250,25 300,35 350,20 400,25" fill="none" stroke="#635BFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="0,80 50,70 100,60 150,65 200,30 250,25 300,35 350,20 400,25 400,100 0,100" fill={`url(#preview-fill-${card.id})`} stroke="none"/>
+                  <defs>
+                    <linearGradient id={`preview-fill-${card.id}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#635BFF" stop-opacity="0.15"/>
+                      <stop offset="100%" stop-color="#635BFF" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
             </div>
           </div>
@@ -135,245 +114,282 @@ const { cards } = fr;
     </div>
   </div>
 ))}
+
 <style is:global>
-  /* ────────────────── SECTION ────────────────── */
-  .cards-section {
-    padding: var(--spacing-24) 0;
-  }
-
-  .cards-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-6);
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: var(--spacing-16);
-  }
-
-  .section-title {
-    font-size: var(--font-size-section-title);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: var(--tracking-title);
-    margin-bottom: var(--spacing-4);
-  }
-
-  .section-subtitle {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    max-width: 560px;
-    margin: 0 auto;
-  }
-
-  /* ────────────────── GRID ────────────────── */
+  /* ────────────────── GRILLE ────────────────── */
   .cards-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-6);
   }
 
   @media (min-width: 768px) {
     .cards-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 1024px) {
     .cards-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  /* ────────────────── CARD SHELL ────────────────── */
+  /* ────────────────── CARTE ────────────────── */
   .card {
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: #FFFFFF;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 'top' 'visual' 'more';
+    min-height: 480px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
     cursor: pointer;
-    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
+    transition: box-shadow var(--transition-normal), transform var(--transition-normal),
+      border-color var(--transition-normal);
   }
 
   .card:hover {
-    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    transform: scale(1.02);
-    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: var(--color-primary-200);
   }
 
-  .card-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  /* Dernière carte seule sur sa ligne : elle prend toute la largeur,
+     texte à gauche, visuel à droite. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      min-height: 320px;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      grid-template-rows: 1fr auto;
+      grid-template-areas: 'top visual' 'more visual';
+    }
+
+    .card:last-child:nth-child(odd) .card-visual {
+      margin-top: 0;
+      align-items: center;
+    }
+
+    .card:last-child:nth-child(odd) .card-visual > [class$='-content'] {
+      width: 100%;
+      max-width: 520px;
+    }
   }
 
-  /* ────────────────── CARD TOP ────────────────── */
+  @media (min-width: 1024px) {
+    .card:last-child:nth-child(3n + 1) {
+      grid-column: 1 / -1;
+      min-height: 320px;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      grid-template-rows: 1fr auto;
+      grid-template-areas: 'top visual' 'more visual';
+    }
+
+    .card:last-child:nth-child(3n + 1) .card-visual {
+      margin-top: 0;
+      align-items: center;
+    }
+
+    .card:last-child:nth-child(3n + 1) .card-visual > [class$='-content'] {
+      width: 100%;
+      max-width: 520px;
+    }
+  }
+
   .card-top {
-    padding: 32px 32px 0;
+    grid-area: top;
+    padding: var(--spacing-8) var(--spacing-8) 0;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
-    flex-shrink: 0;
+    gap: var(--spacing-3);
   }
 
   .card-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 600;
     line-height: 1.35;
-    letter-spacing: -0.015em;
-    color: #0A2540;
-    margin-bottom: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-primary);
   }
 
   .card-expand-btn {
     width: 36px;
     height: 36px;
+    flex-shrink: 0;
     border-radius: var(--radius-md);
-    padding: 3px;
-    background: var(--color-blurple-icon);
+    background: var(--color-slate-100);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    flex-shrink: 0;
-    transition: background 0.15s ease, transform 0.15s ease;
+    color: var(--color-slate-600);
+    transition: background var(--transition-fast), color var(--transition-fast);
   }
 
   .card-expand-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
   }
 
   .card:hover .card-expand-btn {
-    background: var(--color-blurple-hover);
+    background: var(--color-blurple);
+    color: #fff;
   }
 
-  /* ────────────────── CARD VISUAL ────────────────── */
+  .card-more {
+    grid-area: more;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-4) var(--spacing-8) var(--spacing-6);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-link);
+  }
+
+  .card-more svg {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--transition-fast);
+  }
+
+  .card:hover .card-more svg {
+    transform: translateX(3px);
+  }
+
+  /* ────────────────── VISUELS ────────────────── */
   .card-visual {
-    flex: 1;
+    grid-area: visual;
     position: relative;
     overflow: hidden;
-    margin-top: 24px;
+    margin-top: var(--spacing-6);
+    display: flex;
+    flex-direction: column;
   }
 
-  /* ── HEATER ── */
-  .visual-heater .heater-bg {
+  .card-visual > [class$='-bg'] {
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg, #fff7ed 0%, #fff 100%);
   }
 
-  .heater-chart {
+  .card-visual > [class$='-content'],
+  .card-visual > .heater-chart {
     position: relative;
     z-index: 1;
-    height: 100%;
-    padding: 20px 32px 32px;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    padding: var(--spacing-5) var(--spacing-8) var(--spacing-6);
   }
+
+  /* Libellé discret en capitales, commun à plusieurs visuels. */
+  .chart-label-empty,
+  .ev-label {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-2);
+  }
+
+  /* ── Chauffage (conciergerie) ── */
+  .heater-bg { background: linear-gradient(160deg, #fff7ed 0%, #fff 100%); }
 
   .chart-bars {
     display: flex;
     align-items: flex-end;
-    gap: 8px;
+    gap: var(--spacing-2);
     height: 140px;
-    margin-bottom: 8px;
+    margin-bottom: var(--spacing-2);
   }
 
   .bar {
     flex: 1;
     background: var(--color-slate-200);
     border-radius: var(--radius-xs) var(--radius-xs) 0 0;
-    transition: height 0.3s;
   }
 
   .bar-alert {
-    background: linear-gradient(180deg, #fb923c, #ef4444);
-  }
-
-  .chart-label-empty {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--color-slate-500);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 12px;
+    background: linear-gradient(180deg, #fb923c, var(--color-error-500));
   }
 
   .alert-badge {
     display: inline-flex;
+    align-self: flex-start;
     align-items: center;
-    gap: 8px;
-    background: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
-    font-size: 12px;
+    gap: var(--spacing-2);
+    background: var(--color-error-50);
+    border: 1px solid var(--color-error-200);
+    color: var(--color-text-danger);
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    padding: 8px 14px;
+    padding: var(--spacing-2) var(--spacing-3);
     border-radius: var(--radius-full);
   }
 
   .alert-dot {
     width: 8px;
     height: 8px;
-    background: #ef4444;
+    background: var(--color-error-500);
     border-radius: 50%;
-    animation: pulse 1.5s ease-in-out infinite;
+    animation: pulse 1.5s ease-in-out 3;
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
-  }
+  /* ── Budget ── */
+  .savings-bg { background: linear-gradient(160deg, var(--color-primary-50) 0%, #fff 60%); }
 
-  /* ── SAVINGS ── */
-  .visual-savings .savings-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #eef2ff 0%, #fff 60%);
-  }
-
-  .savings-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 20px 32px 32px;
-    display: flex;
+  .visual-savings .savings-content {
+    flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: var(--spacing-4);
   }
 
   .savings-ring svg {
-    width: 120px;
-    height: 120px;
+    width: 96px;
+    height: 96px;
   }
 
   .savings-items {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-2);
   }
 
   .saving-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
-    color: var(--color-slate-600);
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .saving-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .saving-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .dot-heat { background: var(--color-blurple); }
+  .dot-water { background: #0EA5E9; }
+  .dot-other { background: var(--color-slate-300); }
+
+  .saving-value {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
   }
 
   .saving-item.bold {
@@ -381,107 +397,19 @@ const { cards } = fr;
     color: var(--color-text-primary);
   }
 
-  .saving-value.positive { color: #16a34a; font-weight: 600; }
-  .saving-value.negative { color: #dc2626; font-weight: 600; }
+  .saving-value.positive { color: var(--color-text-success); }
 
   .saving-divider {
     height: 1px;
-    background: var(--color-slate-200);
-    margin: 4px 0;
+    background: var(--color-border);
+    margin: var(--spacing-1) 0;
   }
 
-  /* ── SQUAT ── */
-  .visual-squat .squat-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #f0fdf4 0%, #fff 60%);
-  }
+  /* ── Recharge VE ── */
+  .ev-bg { background: linear-gradient(160deg, #f0f9ff 0%, #fff 70%); }
 
-  .squat-timeline {
-    position: relative;
-    z-index: 1;
-    padding: 20px 32px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .timeline-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .timeline-date {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--color-slate-400);
-    width: 28px;
-  }
-
-  .timeline-bar {
-    flex: 1;
-    height: 20px;
-    border-radius: var(--radius-xs);
-    background: var(--color-slate-100);
-  }
-
-  .squat-bar {
-    background: linear-gradient(90deg, #ef4444, #f97316);
-  }
-
-  .timeline-wh {
-    font-size: 11px;
-    color: var(--color-slate-400);
-    width: 60px;
-    text-align: right;
-  }
-
-  .timeline-row.alert .timeline-date { color: var(--color-slate-800); }
-  .timeline-row.alert .alert-text { color: #dc2626; font-weight: 600; }
-
-  .squat-alert {
-    position: relative;
-    z-index: 1;
-    margin: 0 32px;
-    padding: 10px 16px;
-    background: #dc2626;
-    color: white;
-    border-radius: var(--radius-lg);
-    font-size: 13px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .squat-icon { width: 20px; height: 20px; flex-shrink: 0; }
-
-  /* ── EV ── */
-  .visual-ev .ev-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #f0f9ff 0%, #fff 70%);
-  }
-
-  .ev-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 16px 32px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 16px;
-  }
-
-  .ev-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-slate-500);
-    margin-bottom: 8px;
+  .visual-ev .ev-content {
+    gap: var(--spacing-4);
   }
 
   .ev-timeline {
@@ -504,48 +432,45 @@ const { cards } = fr;
   .ev-hours {
     display: flex;
     justify-content: space-between;
-    font-size: 10px;
-    color: var(--color-slate-400);
-    margin-top: 4px;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-1);
   }
 
   .ev-cost-badge {
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    gap: var(--spacing-2);
     background: #dcfce7;
     border: 1px solid #bbf7d0;
-    border-radius: var(--radius-lg);
-    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-3) var(--spacing-4);
   }
 
-  .ev-cost-value { font-size: 22px; font-weight: 700; color: #16a34a; }
-  .ev-cost-label { font-size: 13px; color: #15803d; }
-
-  /* ── CLIM ── */
-  .visual-clim .clim-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #eff6ff 0%, #fff 70%);
+  .ev-cost-value {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-success);
   }
 
-  .clim-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 12px 32px 32px;
-    display: flex;
-    flex-direction: column;
+  .ev-cost-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-success);
+  }
+
+  /* ── Climatisation (résidence secondaire) ── */
+  .clim-bg { background: linear-gradient(160deg, #eff6ff 0%, #fff 70%); }
+
+  .visual-clim .clim-content {
     align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
+    gap: var(--spacing-3);
   }
 
   .clim-gauge svg { width: 200px; height: 110px; }
 
   .clim-stats {
     display: flex;
-    gap: 40px;
+    gap: var(--spacing-10);
   }
 
   .clim-stat {
@@ -555,32 +480,24 @@ const { cards } = fr;
   }
 
   .clim-stat-v {
-    font-size: 22px;
+    font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--color-text-primary);
   }
 
   .clim-stat-l {
-    font-size: 11px;
-    color: var(--color-slate-500);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 
-  /* ── MINING ── */
-  .visual-mining .mining-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #fff1f2 0%, #fff 60%);
-  }
+  /* ── Logement vacant ── */
+  .mining-bg { background: linear-gradient(160deg, #fff1f2 0%, #fff 60%); }
 
-  .mining-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 16px 0 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 12px;
+  .visual-mining .mining-content,
+  .visual-fault .fault-content {
+    padding-left: 0;
+    padding-right: 0;
+    gap: var(--spacing-3);
   }
 
   .mining-line {
@@ -588,201 +505,197 @@ const { cards } = fr;
     overflow: hidden;
   }
 
-  .mining-line svg {
+  .mining-line svg,
+  .fault-signal svg {
     width: 100%;
     height: 100%;
   }
 
   .mining-alert {
-    padding: 0 32px;
+    padding: 0 var(--spacing-8);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-3);
   }
 
   .mining-big {
-    font-size: 28px;
+    font-size: var(--font-size-2xl);
     font-weight: 700;
     color: var(--color-text-primary);
     display: block;
+    white-space: nowrap;
   }
 
   .mining-sub {
-    font-size: 11px;
-    color: var(--color-slate-500);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 
   .mining-loss {
-    background: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
-    font-size: 15px;
+    background: var(--color-error-50);
+    border: 1px solid var(--color-error-200);
+    color: var(--color-text-danger);
+    font-size: var(--font-size-sm);
     font-weight: 700;
-    padding: 8px 16px;
+    padding: var(--spacing-2) var(--spacing-4);
     border-radius: var(--radius-full);
+    white-space: nowrap;
   }
 
-  /* ── BOILER ── */
-  .visual-boiler .boiler-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #fffbeb 0%, #fff 70%);
-  }
-
-  .boiler-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 20px 32px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 16px;
-  }
-
-  .boiler-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-slate-500);
-    margin-bottom: 8px;
-  }
-
-  .boiler-grid {
-    display: grid;
-    grid-template-columns: repeat(24, 1fr);
-    gap: 3px;
-    height: 40px;
-  }
-
-  .boiler-cell {
-    border-radius: var(--radius-xs);
-  }
-
-  .cell-on { background: #f59e0b; }
-  .cell-peak { background: #ef4444; }
-  .cell-off { background: var(--color-slate-200); }
-  .cell-mid { background: #fbbf24; }
-
-  .boiler-time-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: var(--color-slate-400);
-    margin-top: 4px;
-  }
-
-  .boiler-verdict {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    color: #92400e;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 16px;
-    border-radius: var(--radius-lg);
-  }
-
-  /* ── FAULT ── */
-  .visual-fault .fault-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #fef2f2 0%, #fff 60%);
-  }
-
-  .fault-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 16px 0 28px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 10px;
-  }
+  /* ── Anomalies ── */
+  .fault-bg { background: linear-gradient(160deg, var(--color-error-50) 0%, #fff 60%); }
 
   .fault-signal {
     height: 80px;
     overflow: hidden;
   }
 
-  .fault-signal svg {
-    width: 100%;
-    height: 100%;
-  }
-
   .fault-alerts {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 0 32px;
+    gap: var(--spacing-2);
+    padding: 0 var(--spacing-8);
   }
 
   .fault-alert {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
+    gap: var(--spacing-3);
+    padding: var(--spacing-2) var(--spacing-3);
     background: var(--color-slate-50);
     border-radius: var(--radius-md);
-    border: 1px solid var(--color-slate-200);
+    border: 1px solid var(--color-border);
   }
 
   .fault-alert.critical {
-    background: #fef2f2;
-    border-color: #fecaca;
+    background: var(--color-error-50);
+    border-color: var(--color-error-200);
   }
 
   .fault-time {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--color-slate-400);
+    color: var(--color-slate-600);
     font-variant-numeric: tabular-nums;
     width: 36px;
   }
 
   .fault-msg {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--color-slate-700);
   }
 
   .fault-alert.critical .fault-msg {
-    color: #dc2626;
+    color: var(--color-text-danger);
     font-weight: 600;
   }
 
-  /* ── ICAL ── */
-  .visual-ical .ical-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #f0fdf4 0%, #fff 60%);
+  /* ── Activation en 3 étapes ── */
+  .steps-bg { background: linear-gradient(160deg, var(--color-primary-50) 0%, #fff 60%); }
+
+  .visual-steps .steps-content {
+    gap: var(--spacing-5);
   }
 
-  .ical-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 20px 32px 32px;
+  .steps-list {
+    list-style: none;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    gap: 16px;
+    gap: var(--spacing-3);
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-3);
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .step-mark {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+  }
+
+  .step-mark svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .step.done .step-mark {
+    background: #dcfce7;
+    color: var(--color-text-success);
+  }
+
+  .step.active {
+    border-color: var(--color-primary-200);
+    box-shadow: 0 0 0 3px var(--color-primary-50);
+  }
+
+  .step.active .step-mark {
+    background: var(--color-blurple);
+    color: #fff;
+  }
+
+  .step-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .step-sub {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .steps-timer {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-link);
+  }
+
+  .steps-timer svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ── Calendriers ── */
+  .ical-bg { background: linear-gradient(160deg, var(--color-success-50) 0%, #fff 60%); }
+
+  .visual-ical .ical-content {
+    gap: var(--spacing-4);
   }
 
   .ical-sources {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-2);
   }
 
   .ical-source {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 13px;
+    gap: var(--spacing-2);
+    font-size: var(--font-size-sm);
     color: var(--color-slate-700);
     font-weight: 500;
   }
@@ -793,95 +706,81 @@ const { cards } = fr;
     border-radius: 50%;
   }
 
-  .dot-airbnb { background: #f43f5e; }
+  .dot-airbnb { background: #e11d48; }
   .dot-booking { background: #003580; }
   .dot-abritel { background: #f97316; }
 
   .source-status {
     margin-left: auto;
-    font-size: 11px;
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    padding: 2px 8px;
+    padding: 2px var(--spacing-2);
     border-radius: var(--radius-full);
   }
 
   .source-status.synced {
     background: #dcfce7;
-    color: #16a34a;
+    color: var(--color-text-success);
   }
 
   .ical-calendar {
-    background: white;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-slate-200);
-    padding: 12px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-3);
   }
 
   .ical-week {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+    gap: var(--spacing-1);
   }
 
   .ical-day-label {
     text-align: center;
-    font-size: 10px;
+    font-size: var(--font-size-xs);
     font-weight: 600;
-    color: var(--color-slate-400);
+    color: var(--color-text-muted);
     text-transform: uppercase;
-    padding: 4px 0;
+    padding: var(--spacing-1) 0;
   }
 
   .ical-day {
     text-align: center;
-    font-size: 13px;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--color-slate-700);
-    padding: 8px 4px;
-    border-radius: var(--radius-md);
+    padding: var(--spacing-2) var(--spacing-1);
+    border-radius: var(--radius-sm);
   }
 
-  .ical-day.empty { color: var(--color-slate-300); }
-  .ical-day.occupied { color: white; font-weight: 600; }
-  .airbnb-day { background: #f43f5e; }
+  .ical-day.empty { color: var(--color-text-muted); }
+  .ical-day.occupied { color: #fff; font-weight: 600; }
+  .airbnb-day { background: #e11d48; }
   .booking-day { background: #003580; }
 
-  /* ── DASHBOARD ── */
-  .visual-dashboard .dashboard-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #f8fafc 0%, #fff 60%);
-  }
-
-  .dashboard-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    padding: 20px 32px 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
+  /* ── Tableau de bord (multi-logements, parties communes) ── */
+  .dashboard-bg { background: linear-gradient(160deg, var(--color-slate-50) 0%, #fff 60%); }
 
   .dash-properties {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-2);
   }
 
   .dash-prop {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
+    gap: var(--spacing-3);
+    padding: var(--spacing-2) var(--spacing-3);
     border-radius: var(--radius-md);
     background: var(--color-slate-50);
-    border: 1px solid var(--color-slate-200);
+    border: 1px solid var(--color-border);
   }
 
   .dash-prop.alert {
-    background: #fef2f2;
-    border-color: #fecaca;
+    background: var(--color-error-50);
+    border-color: var(--color-error-200);
   }
 
   .prop-dot {
@@ -891,8 +790,8 @@ const { cards } = fr;
     flex-shrink: 0;
   }
 
-  .dot-ok { background: #22c55e; }
-  .dot-alert { background: #ef4444; animation: pulse 1.5s ease-in-out infinite; }
+  .dot-ok { background: var(--color-success-500); }
+  .dot-alert { background: var(--color-error-500); animation: pulse 1.5s ease-in-out 3; }
 
   .prop-info {
     display: flex;
@@ -901,39 +800,41 @@ const { cards } = fr;
   }
 
   .prop-name {
-    font-size: 13px;
+    font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--color-slate-800);
   }
 
   .prop-status {
-    font-size: 11px;
-    color: var(--color-slate-500);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 
-  .alert-status { color: #dc2626 !important; font-weight: 600; }
+  .prop-status.alert-status {
+    color: var(--color-text-danger);
+    font-weight: 600;
+  }
 
-  /* ────────────────── MODALS ────────────────── */
+  /* ────────────────── MODALES ────────────────── */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(10, 37, 64, 0.6);
+    background: rgb(10 37 64 / 0.6);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 200;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
   }
 
   @media (min-width: 768px) {
     .modal-overlay {
       align-items: center;
-      padding: 32px;
+      padding: var(--spacing-8);
     }
   }
 
@@ -943,7 +844,7 @@ const { cards } = fr;
   }
 
   .modal-panel {
-    background: #FFFFFF;
+    background: #fff;
     width: 100%;
     max-width: 900px;
     max-height: 92vh;
@@ -966,21 +867,20 @@ const { cards } = fr;
     transform: translateY(0);
   }
 
-  /* Close button — top-right pill */
   .modal-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
+    top: var(--spacing-5);
+    right: var(--spacing-5);
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--color-slate-100);
-    border-radius: var(--radius-md);
-    color: var(--color-slate-500);
+    border-radius: var(--radius-full);
+    color: var(--color-slate-600);
     z-index: 10;
-    transition: background 0.15s, color 0.15s;
+    transition: background var(--transition-fast), color var(--transition-fast);
   }
 
   .modal-close:hover {
@@ -988,89 +888,56 @@ const { cards } = fr;
     color: var(--color-text-primary);
   }
 
-  .modal-close svg { width: 14px; height: 14px; }
+  .modal-close svg { width: 18px; height: 18px; }
 
-  /* Scrollable area */
   .modal-scroll {
     overflow-y: auto;
     flex: 1;
   }
 
-  /* ── 2-column content ── */
   .modal-content {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 48px 36px 40px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-8);
+    padding: var(--spacing-12) var(--spacing-8) var(--spacing-10);
   }
 
   @media (min-width: 640px) {
     .modal-content {
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      padding: 56px 52px 48px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-12);
+      padding: var(--spacing-12) var(--spacing-12) var(--spacing-10);
     }
   }
 
-  /* Left column */
   .modal-col-text {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: flex-start;
+    gap: var(--spacing-5);
   }
 
   .modal-title {
-    font-family: var(--font-family);
-    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    font-size: var(--font-size-2xl);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: var(--tracking-title);
     line-height: 1.25;
+    padding-right: var(--spacing-10);
   }
 
   .modal-body-text {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-3);
   }
 
   .modal-body-text p {
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
     color: var(--color-text-secondary);
   }
 
-  .modal-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    color: white;
-    background: var(--color-blurple);
-    padding: 13px 28px;
-    border-radius: var(--radius-md);
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 16px rgba(99, 91, 255, 0.3);
-    width: fit-content;
-    margin-top: 4px;
-  }
-
-  .modal-cta-btn svg {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.15s;
-  }
-
-  .modal-cta-btn:hover {
-    background: var(--color-blurple-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(99, 91, 255, 0.4);
-  }
-
-  .modal-cta-btn:hover svg { transform: translateX(3px); }
-
-  /* Right column — bullets */
   .modal-col-bullets {
     display: flex;
     flex-direction: column;
@@ -1081,62 +948,46 @@ const { cards } = fr;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: var(--spacing-4);
   }
 
   .modal-bullet {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-base);
     font-weight: 500;
     color: var(--color-text-primary);
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
   }
 
-  .bullet-check {
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
-    border-radius: var(--radius-sm);
-    background: rgba(99, 91, 255, 0.10);
-    color: var(--color-blurple);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .modal-bullet .list-icon {
     margin-top: 1px;
   }
 
-  .bullet-check svg { width: 12px; height: 12px; }
-
-  /* ── Image preview placeholder ── */
+  /* ── Aperçu schématique ── */
   .modal-preview {
-    margin: 0 36px 36px;
+    margin: 0 var(--spacing-8) var(--spacing-8);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 8px 32px rgba(10, 37, 64, 0.08);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
     background: var(--color-slate-50);
   }
 
   @media (min-width: 640px) {
     .modal-preview {
-      margin: 0 52px 52px;
+      margin: 0 var(--spacing-12) var(--spacing-12);
     }
-  }
-
-  .preview-inner {
-    display: flex;
-    flex-direction: column;
   }
 
   .preview-bar {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 14px;
+    padding: var(--spacing-3) var(--spacing-4);
     background: var(--color-slate-100);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .preview-dot {
@@ -1147,10 +998,13 @@ const { cards } = fr;
   }
 
   .preview-url {
-    font-size: 11px;
-    color: var(--color-slate-400);
-    margin-left: 8px;
-    font-family: monospace;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin-left: var(--spacing-2);
+    font-family: var(--font-family-mono);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .preview-screen {
@@ -1161,9 +1015,9 @@ const { cards } = fr;
 
   .preview-sidebar {
     width: 48px;
-    background: #0A2540;
+    background: var(--color-slate-900);
     flex-shrink: 0;
-    padding: 16px 10px;
+    padding: var(--spacing-4) 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -1172,18 +1026,18 @@ const { cards } = fr;
   .preview-nav-item {
     height: 8px;
     border-radius: var(--radius-xs);
-    background: rgba(255,255,255,0.15);
+    background: rgb(255 255 255 / 0.15);
   }
 
   .active-nav { background: var(--color-blurple); }
 
   .preview-main {
     flex: 1;
-    padding: 16px;
+    padding: var(--spacing-4);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    background: #FFFFFF;
+    gap: var(--spacing-3);
+    background: #fff;
   }
 
   .preview-row {
@@ -1198,7 +1052,7 @@ const { cards } = fr;
     opacity: 0.7;
   }
 
-  .gradient-blue  { background: linear-gradient(135deg, #635BFF 0%, #7C7AF5 100%); }
+  .gradient-blue  { background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-400) 100%); }
   .gradient-green { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
   .gradient-red   { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
 
@@ -1214,12 +1068,12 @@ const { cards } = fr;
 </style>
 
 <script>
-  const cardEls = document.querySelectorAll('.card');
+  const cardEls = document.querySelectorAll<HTMLElement>('.card');
   const overlays = document.querySelectorAll('.modal-overlay');
   const FOCUSABLE =
     'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-  // Element a qui rendre le focus quand la modale se referme.
+  // Élément auquel rendre le focus quand la modale se referme.
   let lastFocused: HTMLElement | null = null;
 
   const openModal = (cardId: string | undefined, trigger: HTMLElement) => {
@@ -1228,9 +1082,9 @@ const { cards } = fr;
     lastFocused = trigger;
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    // L'overlay passe de visibility:hidden a visible via une transition :
-    // focus() reste sans effet tant que l'element est encore hidden. On force
-    // le recalcul de style, et on retente a la fin de la transition si besoin.
+    // L'overlay passe de visibility:hidden à visible via une transition :
+    // focus() reste sans effet tant que l'élément est encore hidden. On force
+    // le recalcul de style, et on retente à la fin de la transition si besoin.
     const focusClose = () => overlay.querySelector<HTMLElement>('.modal-close')?.focus();
     void (overlay as HTMLElement).offsetHeight;
     focusClose();
@@ -1242,7 +1096,7 @@ const { cards } = fr;
   cardEls.forEach((card) => {
     card.addEventListener('click', (e) => {
       const trigger = e.target instanceof Element ? e.target.closest('button') : null;
-      openModal(card.dataset.card, (trigger as HTMLElement) ?? (card as HTMLElement));
+      openModal(card.dataset.card, (trigger as HTMLElement) ?? card);
     });
   });
 
@@ -1256,7 +1110,7 @@ const { cards } = fr;
     }
   };
 
-  // Piege a focus : Tab ne doit pas sortir de la modale ouverte.
+  // Piège à focus : Tab ne doit pas sortir de la modale ouverte.
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab') return;
     const active = document.querySelector('.modal-overlay.active');
@@ -1269,7 +1123,6 @@ const { cards } = fr;
     const first = items[0];
     const last = items[items.length - 1];
 
-    // Focus encore hors de la modale : on le ramene dedans.
     if (!(document.activeElement instanceof Element) || !active.contains(document.activeElement)) {
       e.preventDefault();
       first.focus();
@@ -1287,7 +1140,7 @@ const { cards } = fr;
 
   overlays.forEach(overlay => {
     overlay.addEventListener('click', (e) => {
-      // Close when clicking outside the modal panel (backdrop)
+      // Fermeture au clic sur le fond, hors du panneau.
       const target = e.target;
       if (!(target instanceof Element) || !target.closest('.modal-panel')) {
         closeModal();
@@ -1306,14 +1159,14 @@ const { cards } = fr;
     if (e.key === 'Escape') closeModal();
   });
 
-  // Swipe down to close on mobile
+  // Glisser vers le bas pour fermer sur mobile.
   let touchStartY = 0;
   document.querySelectorAll('.modal-panel').forEach(panel => {
     panel.addEventListener('touchstart', (e) => {
-      touchStartY = e.touches[0].clientY;
+      touchStartY = (e as TouchEvent).touches[0].clientY;
     }, { passive: true });
     panel.addEventListener('touchmove', (e) => {
-      if (e.touches[0].clientY - touchStartY > 80) closeModal();
+      if ((e as TouchEvent).touches[0].clientY - touchStartY > 80) closeModal();
     }, { passive: true });
   });
 </script>

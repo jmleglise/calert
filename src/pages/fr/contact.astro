@@ -2,6 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
 
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 ---
@@ -13,88 +15,65 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 >
   <Header />
 
-  <main id="main" class="contact-page">
+  <main id="main">
 
-    <!-- ── HERO ── -->
-    <section class="contact-hero">
-      <div class="container">
-        
-        <h1 class="contact-headline">
-          Vous voulez contacter<br/>
-          <span class="headline-accent">Wattson ?</span>
-        </h1>
-        <p class="contact-sub">
-          Wattson est un agent IA. Il surveille vos logements, détecte les anomalies,
-          ne dort jamais et ne prend pas de vacances.<br/>
-          <strong>En revanche, il ne répond pas aux emails.</strong>C'est un humain qui le fera à sa place.
-        </p>
+    <PageHero title="Vous voulez contacter" accent="Wattson ?">
+      <p>
+        Wattson est un agent IA. Il surveille vos logements, détecte les anomalies,
+        ne dort jamais et ne prend pas de vacances.
+      </p>
+      <p><strong>En revanche, il ne répond pas aux e-mails.</strong> C'est un humain qui le fera à sa place.</p>
+    </PageHero>
 
-        <!-- Response time bar 
-        <div class="response-pills">
-          <div class="response-pill">
-            <span class="pill-icon">⚡</span>
-            Wattson lit : instantané
-          </div>
-          <div class="response-pill">
-            <span class="pill-icon">🧑‍💻</span>
-            Réponse humaine : quelques jours
-          </div>
-          <div class="response-pill">
-            <span class="pill-icon">☕</span>
-            Selon disponibilité du café
-          </div>
-        </div>
-        -->
-      </div>
-    </section>
-
-    <!-- ── FORM + ASIDE ── -->
-    <section class="contact-section">
+    <section class="section contact-section">
       <div class="container">
         <div class="contact-layout">
 
-          <!-- ASIDE gauche -->
           <aside class="contact-aside">
-            <div class="aside-block">
-              <div class="aside-icon">📬</div>
-              <h3 class="aside-title">Qui sommes-nous ?</h3>
+            <div class="surface aside-block">
+              <span class="aside-icon"><Icon name="mail" /></span>
+              <h2 class="aside-title">Qui sommes-nous ?</h2>
               <ul class="aside-list">
                 <li>
-                  <span class="aside-check">✓</span>
+                  <span class="list-icon"><Icon name="map-pin" /></span>
                   ConsoAlert et Wattson sont développés à Paris.
+                </li>
+                <li>
+                  <span class="list-icon"><Icon name="clock" /></span>
+                  Un humain vous répond sous quelques jours.
+                </li>
+                <li>
+                  <span class="list-icon"><Icon name="shield" /></span>
+                  <span>Questions RGPD : consultez les <a href="/fr/mentions-legales/#rgpd">mentions légales</a>.</span>
                 </li>
               </ul>
             </div>
 
-            <div class="aside-block aside-donation">
-              <div class="donation-emoji">☕</div>
-              <h3 class="donation-aside-title">Offrir un café à Wattson</h3>
-              <p class="donation-aside-desc">
-                Wattson tourne 24h/24 sans pause. Si son travail vous a aidé,
-                vous pouvez lui payer un café, c'est note seule source de motivation.
-                
+            <div class="surface aside-block aside-donation">
+              <span class="aside-icon aside-icon--coffee"><Icon name="coffee" /></span>
+              <h2 class="aside-title">Offrir un café à Wattson</h2>
+              <p class="aside-desc">
+                Wattson tourne 24&nbsp;h/24 sans pause. Si son travail vous a aidé,
+                vous pouvez lui payer un café : c'est notre seule source de motivation.
               </p>
               <a
                 href="https://buymeacoffee.com/consoalert"
                 target="_blank"
                 rel="noopener"
-                class="donation-aside-btn"
+                class="btn btn--secondary btn--sm"
               >
-                <svg viewBox="0 0 24 24" fill="none" class="donation-coffee-icon">
-                  <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <Icon name="coffee" />
                 Faire un don
               </a>
-              <p class="donation-aside-micro">Sans obligation. Wattson ne vous jugera pas.</p>
+              <p class="aside-micro">Sans obligation. Wattson ne vous jugera pas.</p>
             </div>
           </aside>
 
-          <!-- FORM -->
           <div class="form-wrapper">
             <form class="contact-form" id="contact-form" novalidate>
               <div class="form-row">
                 <div class="form-field">
-                  <label class="form-label" for="nom">Nom <span class="required-star">*</span></label>
+                  <label class="form-label" for="nom">Nom <span class="required-star" aria-hidden="true">*</span></label>
                   <input
                     class="form-input"
                     type="text"
@@ -102,12 +81,13 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
                     name="nom"
                     placeholder="Dupont"
                     autocomplete="family-name"
+                    aria-describedby="error-nom"
                     required
                   />
                   <span class="field-error" id="error-nom">Ce champ est requis.</span>
                 </div>
                 <div class="form-field">
-                  <label class="form-label" for="prenom">Prénom <span class="required-star">*</span></label>
+                  <label class="form-label" for="prenom">Prénom <span class="required-star" aria-hidden="true">*</span></label>
                   <input
                     class="form-input"
                     type="text"
@@ -115,6 +95,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
                     name="prenom"
                     placeholder="Jean"
                     autocomplete="given-name"
+                    aria-describedby="error-prenom"
                     required
                   />
                   <span class="field-error" id="error-prenom">Ce champ est requis.</span>
@@ -122,7 +103,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               </div>
 
               <div class="form-field">
-                <label class="form-label" for="email">Email <span class="required-star">*</span></label>
+                <label class="form-label" for="email">E-mail <span class="required-star" aria-hidden="true">*</span></label>
                 <input
                   class="form-input"
                   type="email"
@@ -130,9 +111,10 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
                   name="email"
                   placeholder="jean.dupont@exemple.fr"
                   autocomplete="email"
+                  aria-describedby="error-email"
                   required
                 />
-                <span class="field-error" id="error-email">Merci d'entrer un email valide.</span>
+                <span class="field-error" id="error-email">Merci d'entrer un e-mail valide.</span>
               </div>
 
               <div class="form-field">
@@ -151,50 +133,43 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               </div>
 
               <div class="form-field">
-                <label class="form-label" for="message">Message <span class="required-star">*</span></label>
+                <label class="form-label" for="message">Message <span class="required-star" aria-hidden="true">*</span></label>
                 <textarea
                   class="form-input form-textarea"
                   id="message"
                   name="message"
                   rows="5"
-                  placeholder="Bonjour Wattson, ..."
+                  placeholder="Bonjour Wattson, …"
+                  aria-describedby="error-message"
                   required
                 ></textarea>
                 <span class="field-error" id="error-message">Le message ne peut pas être vide.</span>
               </div>
 
+              <div id="turnstile-widget" class="turnstile-widget" aria-label="Vérification anti-bot Cloudflare"></div>
+
               <p class="form-error" id="form-error" role="alert" aria-live="assertive"></p>
 
-              <div class="form-field">
-                <div id="turnstile-widget" class="turnstile-widget" aria-label="Vérification anti-bot Cloudflare"></div>
-                <span class="field-error" id="error-turnstile">Veuillez confirmer que vous n'êtes pas un robot.</span>
-              </div>
-
               <div class="form-footer">
-                <p class="form-disclaimer">
-                  
-                </p>
-                <button type="submit" class="form-submit" id="submit-btn">
-                  <span class="submit-label">Envoyer à Wattson</span>
-                  <svg class="submit-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
+                <p class="form-required-note"><span aria-hidden="true">*</span> Champs obligatoires</p>
+                <button type="submit" class="btn btn--primary" id="submit-btn">
+                  Envoyer à Wattson
+                  <Icon name="arrow-right" class="btn-arrow" />
                 </button>
               </div>
             </form>
 
-            <!-- SUCCESS STATE -->
             <div class="success-state" id="success-state" aria-hidden="true">
-              <div class="success-icon">✅</div>
+              <span class="success-icon"><Icon name="check-circle" /></span>
               <h2 class="success-title">Wattson a reçu votre message.</h2>
               <p class="success-desc">
-                Il l'a analysé, catégorisé et transmis à un humain en 0,003 secondes.
+                Il l'a analysé, catégorisé et transmis à un humain en 0,003 seconde.
                 L'humain, lui, prendra un peu plus de temps. Il fait avec les moyens du bord.
               </p>
               <p class="success-desc">
-                On vous répondra dès que possible — c'est-à-dire dès qu'on aura bu notre café.
+                On vous répondra dès que possible, c'est-à-dire dès qu'on aura bu notre café.
               </p>
-              <a href="/fr/" class="success-back">Retour à l'accueil</a>
+              <a href="/fr/" class="btn btn--secondary">Retour à l'accueil</a>
             </div>
           </div>
 
@@ -208,117 +183,28 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 </Layout>
 
 <style>
-  .contact-page {
-    padding-top: 72px;
-  }
-
-  /* ── HERO ── */
-  .contact-hero {
-    padding: var(--spacing-24) 0 var(--spacing-16);
-    text-align: center;
-    background: linear-gradient(180deg, #edf8ff 0%, var(--color-body-bg) 100%);
-    border-bottom: 1px solid var(--color-slate-200);
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
-    border: 1px solid var(--color-slate-200);
-    color: var(--color-text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 6px 16px;
-    border-radius: var(--radius-full);
-    margin-bottom: var(--spacing-8);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-blurple);
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .contact-headline {
-    font-size: var(--font-size-page-title);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: var(--tracking-title);
-    line-height: 1.12;
-    margin-bottom: var(--spacing-6);
-  }
-
-  .headline-accent {
-    background: linear-gradient(135deg, #0ea5e9 0%, #635BFF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .contact-sub {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
-    max-width: 600px;
-    margin: 0 auto var(--spacing-10);
-  }
-
-  .contact-sub strong {
-    color: var(--color-text-primary);
-  }
-
-  .response-pills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .response-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
-    border: 1px solid var(--color-slate-200);
-    color: var(--color-text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 18px;
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .pill-icon { font-size: 15px; }
-
-  /* ── CONTACT SECTION ── */
-  .contact-section {
-    padding: var(--spacing-16) 0 var(--spacing-24);
-  }
-
   .contact-layout {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-12);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-8);
     align-items: start;
   }
 
   @media (min-width: 960px) {
     .contact-layout {
-      grid-template-columns: 340px 1fr;
-      gap: var(--spacing-16);
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: var(--spacing-12);
     }
   }
 
-  /* ── ASIDE ── */
+  /* Formulaire en premier sur mobile : c'est l'action principale de la page. */
+  @media (max-width: 959px) {
+    .contact-aside {
+      order: 2;
+    }
+  }
+
+  /* ── Colonne latérale ── */
   .contact-aside {
     display: flex;
     flex-direction: column;
@@ -326,168 +212,97 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   }
 
   .aside-block {
-    background: white;
-    border: 1px solid var(--color-slate-200);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-6);
   }
 
   .aside-icon {
-    font-size: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-50);
+    color: var(--color-blurple);
     margin-bottom: var(--spacing-4);
   }
 
+  .aside-icon :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .aside-icon--coffee {
+    background: #FFDD00;
+    color: #1a1a1a;
+  }
+
   .aside-title {
-    font-size: 16px;
+    font-size: var(--font-size-base);
     font-weight: 700;
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-5);
+    margin-bottom: var(--spacing-4);
   }
 
   .aside-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-3);
   }
 
   .aside-list li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
-    line-height: 1.5;
   }
 
-  .aside-check {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(34, 197, 94, 0.12);
-    color: var(--color-success-500);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    margin-top: 1px;
+  .aside-list a {
+    color: var(--color-text-link);
+    font-weight: 600;
   }
 
-  .aside-cross {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--color-error-500);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-    margin-top: 1px;
-  }
-
-  .aside-muted {
-    color: var(--color-slate-400);
-    text-decoration: line-through;
-    text-decoration-color: var(--color-slate-300);
-  }
-
-
-  .aside-donation {
-    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-    border-color: #fcd34d;
-    text-align: center;
-  }
-
-  .donation-emoji {
-    font-size: 40px;
-    margin-bottom: var(--spacing-3);
-    animation: wiggle 3s ease-in-out infinite;
-  }
-
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-5deg); }
-    75% { transform: rotate(5deg); }
-  }
-
-  .donation-aside-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #92400e;
-    margin-bottom: var(--spacing-3);
-  }
-
-  .donation-aside-desc {
-    font-size: 13px;
-    color: #a16207;
-    line-height: 1.6;
+  .aside-desc {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
     margin-bottom: var(--spacing-4);
   }
 
-  .donation-aside-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: #FFDD00;
-    color: #1a1a1a;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 12px 24px;
-    border-radius: var(--radius-md);
-    transition: all 0.2s;
-    box-shadow: 0 4px 14px rgba(255, 221, 0, 0.4);
-    margin-bottom: var(--spacing-3);
-  }
-
-  .donation-aside-btn:hover {
-    background: #FFE833;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 221, 0, 0.5);
-  }
-
-  .donation-coffee-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .donation-aside-micro {
-    font-size: 11px;
-    color: #ca8a04;
+  .aside-micro {
+    margin-top: var(--spacing-3);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
     font-style: italic;
   }
 
-
-  /* ── FORM ── */
+  /* ── Formulaire ── */
   .form-wrapper {
-    background: white;
-    border: 1px solid var(--color-slate-200);
+    background: #fff;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    padding: 40px;
+    padding: clamp(var(--spacing-6), 4vw, var(--spacing-10));
     box-shadow: var(--shadow-sm);
   }
 
   .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-5);
   }
 
   .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-4);
   }
 
   @media (max-width: 640px) {
     .form-row {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--spacing-5);
     }
   }
 
@@ -495,38 +310,38 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     display: flex;
     flex-direction: column;
     gap: 6px;
-    position: relative;
   }
 
   .form-label {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--color-text-primary);
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--spacing-1);
   }
 
   .required-star {
-    color: var(--color-error-500);
-    font-size: 13px;
+    color: var(--color-text-danger);
   }
 
   .optional-label {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
-    color: var(--color-slate-400);
+    color: var(--color-text-muted);
   }
 
+  /* 16 px minimum : en dessous, iOS Safari zoome au focus. */
   .form-input {
-    font-family: var(--font-family);
-    font-size: 15px;
+    font-family: inherit;
+    font-size: var(--font-size-base);
     color: var(--color-text-primary);
     background: var(--color-slate-50);
-    border: 1.5px solid var(--color-slate-200);
+    border: 1.5px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: 12px 16px;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    padding: var(--spacing-3) var(--spacing-4);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+      background var(--transition-fast);
     outline: none;
     width: 100%;
   }
@@ -537,24 +352,24 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 
   .form-input:focus {
     border-color: var(--color-blurple);
-    background: white;
-    box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.1);
+    background: #fff;
+    box-shadow: 0 0 0 3px var(--color-primary-200);
   }
 
   .form-input.invalid {
     border-color: var(--color-error-500);
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.08);
+    box-shadow: 0 0 0 3px var(--color-error-200);
   }
 
   .form-textarea {
     resize: vertical;
-    min-height: 130px;
+    min-height: 140px;
     line-height: 1.6;
   }
 
   .field-error {
-    font-size: 12px;
-    color: var(--color-error-500);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-danger);
     display: none;
   }
 
@@ -563,23 +378,20 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   }
 
   .form-error {
-    color: var(--color-error-500);
-    font-size: 13px;
-    margin-top: -8px;
-    margin-bottom: 6px;
-    min-height: 18px;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-danger);
   }
 
-  #turnstile-widget {
-    margin-top: 8px;
+  .form-error:empty {
+    display: none;
   }
 
   .form-footer {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-start;
-    padding-top: 8px;
+    flex-direction: column-reverse;
+    gap: var(--spacing-4);
+    align-items: stretch;
+    padding-top: var(--spacing-2);
   }
 
   @media (min-width: 640px) {
@@ -590,54 +402,18 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     }
   }
 
-  .form-disclaimer {
-    font-size: 12px;
-    color: var(--color-slate-400);
-    line-height: 1.5;
-    max-width: 300px;
+  .form-required-note {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 
-  .form-submit {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--color-blurple);
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 13px 28px;
-    border-radius: var(--radius-md);
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 14px rgba(99, 91, 255, 0.3);
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .form-submit:hover {
-    background: var(--color-blurple-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(99, 91, 255, 0.4);
-  }
-
-  .submit-arrow {
-    width: 16px;
-    height: 16px;
-    transition: transform 0.2s;
-  }
-
-  .form-submit:hover .submit-arrow {
-    transform: translateX(3px);
-  }
-
-  /* ── SUCCESS ── */
+  /* ── Confirmation ── */
   .success-state {
     display: none;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: var(--spacing-16) var(--spacing-8);
+    padding: var(--spacing-12) var(--spacing-4);
     gap: var(--spacing-4);
   }
 
@@ -646,8 +422,13 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   }
 
   .success-icon {
-    font-size: 40px;
-    animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    color: var(--color-text-success);
+    animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .success-icon :global(svg) {
+    width: 48px;
+    height: 48px;
   }
 
   @keyframes pop-in {
@@ -656,34 +437,16 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   }
 
   .success-title {
-    font-size: 24px;
+    font-size: var(--font-size-2xl);
     font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.02em;
   }
 
   .success-desc {
-    font-size: 15px;
     color: var(--color-text-secondary);
     line-height: var(--line-height-relaxed);
     max-width: 440px;
-  }
-
-  .success-back {
-    display: inline-flex;
-    align-items: center;
-    background: var(--color-slate-100);
-    color: var(--color-text-primary);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 24px;
-    border-radius: var(--radius-md);
-    margin-top: var(--spacing-4);
-    transition: background 0.2s;
-  }
-
-  .success-back:hover {
-    background: var(--color-slate-200);
   }
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -693,7 +456,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   const successState = document.getElementById('success-state');
   const formError = document.getElementById('form-error');
   const submitBtn = document.getElementById('submit-btn');
-  const turnstileInitError = 'La clé publique Turnstile est manquante ou le widget ne peut pas être chargé. Votre message ne peut pas être envoyé.';
+  const turnstileInitError = 'La vérification anti-robot ne peut pas être chargée. Votre message ne peut pas être envoyé pour le moment.';
   const genericFormError = 'Impossible d’envoyer le message. Merci de réessayer plus tard.';
   let turnstileWidgetId = null;
 
@@ -720,25 +483,15 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
     }
 
     input.classList.toggle('invalid', !valid);
+    input.setAttribute('aria-invalid', String(!valid));
     error?.classList.toggle('visible', !valid);
     return valid;
   }
 
   function initTurnstile() {
     const widgetHost = document.getElementById('turnstile-widget');
-    const errorElement = document.getElementById('error-turnstile');
 
-    if (!turnstileSiteKey) {
-      errorElement?.classList.add('visible');
-      errorElement.textContent = turnstileInitError;
-      setFormError(turnstileInitError);
-      if (submitBtn) submitBtn.disabled = true;
-      return;
-    }
-
-    if (!widgetHost || !window.turnstile) {
-      errorElement?.classList.add('visible');
-      errorElement.textContent = turnstileInitError;
+    if (!turnstileSiteKey || !widgetHost || !window.turnstile) {
       setFormError(turnstileInitError);
       if (submitBtn) submitBtn.disabled = true;
       return;
@@ -748,7 +501,7 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
       sitekey: turnstileSiteKey,
       action: 'contact',
       callback() {
-        errorElement?.classList.remove('visible');
+        clearFormError();
       },
     });
   }
@@ -782,12 +535,12 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 
     if (!allValid) {
       setFormError('Merci de corriger les champs en erreur.');
+      form.querySelector('.invalid')?.focus();
       return;
     }
 
     const token = turnstileWidgetId !== null && window.turnstile ? window.turnstile.getResponse(turnstileWidgetId) : '';
     if (!token) {
-      document.getElementById('error-turnstile')?.classList.add('visible');
       setFormError('Veuillez confirmer que vous n’êtes pas un robot.');
       if (window.turnstile && turnstileWidgetId !== null) {
         window.turnstile.reset(turnstileWidgetId);
@@ -847,7 +600,6 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 
       form.style.display = 'none';
       if (successState) {
-        successState.style.display = 'flex';
         successState.removeAttribute('aria-hidden');
         successState.classList.add('visible');
       }
