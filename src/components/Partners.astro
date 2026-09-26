@@ -5,39 +5,39 @@ const { partners } = fr;
 // width/height sont les dimensions intrinseques du fichier : elles fixent le
 // ratio et reservent la place avant le chargement (sans width, la balise ne
 // reservait aucune largeur, d'ou un decalage de mise en page).
-// displayHeight aligne optiquement les trois logos, qui sinon s'affichaient
-// a 107, 91 et 38 px de haut sous le seul effet du max-width.
+// displayHeight aligne optiquement les trois logos, dont les fichiers n'ont
+// pas le meme ratio.
 const logos = [
   {
     name: 'Airbnb',
     file: '/partner-airbnb.webp',
     width: 126,
     height: 84,
-    displayHeight: 40,
+    displayHeight: 48,
   },
   {
     name: 'Booking.com',
     file: '/partner-booking.webp',
     width: 127,
     height: 72,
-    displayHeight: 36,
+    displayHeight: 44,
   },
   {
     name: 'Abritel HomeAway',
     file: '/partner-abritel.webp',
     width: 200,
     height: 47,
-    displayHeight: 26,
+    displayHeight: 32,
   },
 ];
 ---
 
 <section class="partners">
-  <div class="partners-container">
+  <div class="container">
     <p class="partners-title">{partners.title}</p>
-    <div class="partners-logos">
+    <ul class="partners-logos">
       {logos.map((logo) => (
-        <div class="partner-logo" style={`--logo-height: ${logo.displayHeight}px`}>
+        <li class="partner-logo" style={`--logo-height: ${logo.displayHeight}px`}>
           <img
             src={logo.file}
             alt={logo.name}
@@ -46,46 +46,41 @@ const logos = [
             loading="lazy"
             decoding="async"
           />
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>
 
 <style>
   .partners {
-    padding: var(--spacing-12) 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    background: #FFFFFF;
-  }
-
-  .partners-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-6);
+    padding: var(--section-y-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    background: #fff;
     text-align: center;
   }
 
   .partners-title {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: var(--color-slate-400);
+    color: var(--color-text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--spacing-8);
+    letter-spacing: var(--tracking-caps);
+    margin-bottom: var(--spacing-6);
   }
 
   .partners-logos {
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-8);
+    gap: var(--spacing-6);
   }
 
   @media (min-width: 768px) {
     .partners-logos {
-      gap: var(--spacing-12);
+      gap: var(--spacing-16);
     }
   }
 
@@ -93,17 +88,16 @@ const logos = [
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-normal);
   }
 
   .partner-logo img {
     display: block;
     height: var(--logo-height);
     width: auto;
-    max-width: 160px;
+    max-width: 180px;
     object-fit: contain;
-    /* Grayscale + multiply so white backgrounds vanish on light bg */
-    filter: grayscale(100%) opacity(0.55);
+    /* Niveaux de gris + multiply : le fond blanc des fichiers disparaît. */
+    filter: grayscale(100%) opacity(0.8);
     mix-blend-mode: multiply;
     transition: filter var(--transition-normal);
   }

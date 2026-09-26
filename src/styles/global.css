@@ -19,7 +19,7 @@
 }
 
 :root {
-  /* ── Blurple / Stripe palette ── */
+  /* ── Palette primaire ── */
   --color-primary-50:  #f0efff;
   --color-primary-100: #e0deff;
   --color-primary-200: #c2bcff;
@@ -31,7 +31,7 @@
   --color-primary-800: #3229a6;
   --color-primary-900: #231a85;
 
-  /* ── Neutral / Stripe blue-slate ── */
+  /* ── Neutres ── */
   --color-slate-50:  #F6F9FC;
   --color-slate-100: #edf2f7;
   --color-slate-200: #e3e8ef;
@@ -44,45 +44,67 @@
   --color-slate-900: #0A2540;
   --color-slate-950: #060f1e;
 
-  /* ── Semantic ── */
+  /* ── Couleurs de remplissage (barres, pastilles, fonds). Pas pour du texte. ── */
   --color-success-500: #22c55e;
   --color-warning-500: #f59e0b;
   --color-error-500:   #ef4444;
+  --color-success-50:  #f0fdf4;
+  --color-warning-50:  #fffbeb;
+  --color-error-50:    #fef2f2;
+  --color-error-200:   #fecaca;
 
-  /* ── Brand tokens ── */
-  --color-blurple:       #635BFF;
-  --color-blurple-hover: #7C7AF5;
-  --color-blurple-icon:  #6A67F3;
-  --color-text-primary:  #0A2540;
-  --color-text-secondary:#425466;
-  --color-body-bg:       #F6F9FC;
+  /* ── Tokens sémantiques ── */
+  --color-blurple:       var(--color-primary-500);
+  /* Plus sombre que la base : le texte blanc reste lisible au survol (6,1:1). */
+  --color-blurple-hover: var(--color-primary-600);
+  --color-text-primary:  var(--color-slate-900);
+  --color-text-secondary:var(--color-slate-600);
+  /* Texte discret : 4,8:1 sur blanc. slate-400 et plus clair sont réservés
+     aux bordures, placeholders et éléments décoratifs. */
+  --color-text-muted:    var(--color-slate-500);
+  --color-text-on-dark-muted: var(--color-slate-400);
+  --color-text-danger:   #B91C1C;
+  --color-text-warning:  #B45309;
+  --color-text-success:  #15803D;
+  /* Liens et libellés colorés : primary-600 reste au-dessus de 4,5:1 sur les
+     fonds teintés (primary-50), contrairement à primary-500. */
+  --color-text-link:     var(--color-primary-600);
+  --color-body-bg:       var(--color-slate-50);
+  --color-border:        var(--color-slate-200);
 
+  --gradient-accent: linear-gradient(135deg, #0EA5E9 0%, var(--color-primary-500) 100%);
+  --gradient-page: linear-gradient(180deg, var(--color-primary-50) 0%, var(--color-body-bg) 100%);
+
+  /* ── Typographie ── */
   --font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.75rem;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Tokens semantiques : une seule source de verite pour les titres.
-     Les pages ne fixent plus leur propre clamp() chacune dans leur coin. */
+  /* Échelle unique. Aucune taille en px dans les composants. */
+  --font-size-xs: 0.75rem;    /* 12 */
+  --font-size-sm: 0.875rem;   /* 14 */
+  --font-size-base: 1rem;     /* 16 */
+  --font-size-lg: 1.125rem;   /* 18 */
+  --font-size-xl: 1.25rem;    /* 20 */
+  --font-size-2xl: 1.5rem;    /* 24 */
+  --font-size-3xl: 1.875rem;  /* 30 */
+  --font-size-4xl: 2.25rem;   /* 36 */
+
+  /* Tokens sémantiques de titres. */
   --font-size-hero-title: clamp(2.25rem, 5vw, 3.25rem);    /* 36 -> 52 px */
   --font-size-page-title: clamp(2rem, 4vw, 3rem);          /* 32 -> 48 px */
   --font-size-section-title: clamp(1.625rem, 3vw, 2rem);   /* 26 -> 32 px */
   --font-size-card-title: clamp(1.125rem, 2vw, 1.375rem);  /* 18 -> 22 px */
+  --font-size-price: clamp(2.25rem, 4vw, 3rem);            /* 36 -> 48 px */
 
-  /* Un seul tracking pour tous les gros titres (etait -0.03 / -0.04 / -0.06em). */
   --tracking-title: -0.03em;
+  --tracking-tight: -0.015em;
+  --tracking-caps: 0.08em;
 
   --line-height-tight: 1.2;
   --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --line-height-relaxed: 1.7;
 
+  /* ── Espacements ── */
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
   --spacing-3: 0.75rem;
@@ -96,21 +118,31 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  /* ── Layout ── */
+  --header-height: 72px;
+  --container-max: 1280px;
+  --container-narrow: 800px;
+  --section-y: clamp(4rem, 8vw, 6rem);
+  --section-y-sm: clamp(3rem, 5vw, 4rem);
+  --measure: 68ch;
 
-  /* Echelle de radius unique. Avant : 20 valeurs distinctes, dont 10 en dur
-     qui doublonnaient ces tokens (10px, 16px, 12px, 8px, 99px, 7px, 14px...). */
+  /* ── Ombres (base : slate-900) ── */
+  --shadow-sm: 0 1px 2px rgb(10 37 64 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(10 37 64 / 0.08);
+  --shadow-lg: 0 12px 28px -6px rgb(10 37 64 / 0.14);
+  --shadow-xl: 0 24px 48px -12px rgb(10 37 64 / 0.18);
+  --shadow-2xl: 0 32px 64px -16px rgb(10 37 64 / 0.28);
+  --shadow-primary: 0 8px 24px -6px rgb(99 91 255 / 0.5);
+
+  /* ── Rayons ──
+     cartes de contenu : lg / modale et formulaire : xl / hero : 2xl */
   --radius-xs: 4px;      /* barres de graphes, micro-indicateurs */
-  --radius-sm: 6px;      /* chips, badges, tags */
-  --radius-md: 10px;     /* boutons, inputs, petits blocs */
+  --radius-sm: 6px;      /* chips, badges */
+  --radius-md: 10px;     /* inputs, petits blocs */
   --radius-lg: 14px;     /* cartes */
-  --radius-xl: 20px;     /* grandes cartes, modales */
-  --radius-2xl: 28px;    /* panneaux hero, grandes sections */
-  --radius-full: 9999px; /* pilules, avatars */
+  --radius-xl: 20px;     /* modales, formulaire */
+  --radius-2xl: 28px;    /* panneau du hero */
+  --radius-full: 9999px; /* boutons, pilules */
 
   --transition-fast: 150ms;
   --transition-normal: 300ms;
@@ -127,6 +159,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--spacing-6));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -164,29 +197,17 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--line-height-tight);
 }
 
-/* Titre d'entree de page (contact, tarifs, blog, article, mentions).
-   Ces pages sont de meme niveau : elles doivent partager la meme taille. */
-.page-title {
-  font-size: var(--font-size-page-title);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: var(--tracking-title);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-6);
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-blurple);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-/* Titre de section a l'interieur d'une page. */
-.section-heading {
-  font-size: var(--font-size-section-title);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: var(--tracking-title);
-  color: var(--color-text-primary);
-}
+/* ── Layout ── */
 
 .container {
   width: 100%;
-  max-width: 1280px;
+  max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--spacing-6);
 }
@@ -201,6 +222,181 @@ h1, h2, h3, h4, h5, h6 {
   .container {
     padding: 0 var(--spacing-12);
   }
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  padding: var(--section-y) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+}
+
+/* ── Titres ── */
+
+/* Titre d'entrée de page (contact, tarifs, blog, article, mentions). */
+.page-title {
+  font-size: var(--font-size-page-title);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: var(--tracking-title);
+  color: var(--color-text-primary);
+}
+
+/* Titre de section à l'intérieur d'une page. */
+.section-heading {
+  font-size: var(--font-size-section-title);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--tracking-title);
+  color: var(--color-text-primary);
+}
+
+.section-lead {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: var(--spacing-4) auto 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-text-link);
+  margin-bottom: var(--spacing-4);
+}
+
+.text-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Boutons ── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  min-height: 44px;
+  padding: 0 var(--spacing-6);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background var(--transition-fast), color var(--transition-fast),
+    transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--primary {
+  background: var(--color-blurple);
+  color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn--primary:hover {
+  background: var(--color-blurple-hover);
+}
+
+.btn--secondary {
+  background: var(--color-slate-100);
+  color: var(--color-text-primary);
+}
+
+.btn--secondary:hover {
+  background: var(--color-slate-200);
+}
+
+.btn--ghost {
+  color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover {
+  color: var(--color-text-primary);
+  transform: none;
+}
+
+.btn--sm {
+  min-height: 40px;
+  padding: 0 var(--spacing-5);
+  font-size: var(--font-size-sm);
+}
+
+.btn--lg {
+  min-height: 52px;
+  padding: 0 var(--spacing-8);
+  font-size: var(--font-size-lg);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ── Surfaces ── */
+
+.surface {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Pastille d'icône dans une liste (coche, cadenas...). */
+.list-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-50);
+  color: var(--color-blurple);
+}
+
+.list-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.list-icon--neutral {
+  background: var(--color-slate-100);
+  color: var(--color-text-muted);
 }
 
 .sr-only {
@@ -235,25 +431,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn var(--transition-normal) ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp var(--transition-slow) ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scaleIn var(--transition-normal) ease-out forwards;
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
 }

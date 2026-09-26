@@ -1,0 +1,55 @@
+---
+// En-tête commun des pages secondaires (tarifs, contact, mentions, blog).
+// Remplace quatre copies du même bloc CSS.
+interface Props {
+  title: string;
+  /** Fin du titre, affichée à la ligne avec le dégradé d'accent. */
+  accent?: string;
+  eyebrow?: string;
+}
+
+const { title, accent, eyebrow } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container page-hero-inner">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class="page-title">
+      {title}
+      {accent && <><br /><span class="text-accent">{accent}</span></>}
+    </h1>
+    {Astro.slots.has('default') && (
+      <div class="page-hero-lead">
+        <slot />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding: calc(var(--header-height) + var(--section-y-sm)) 0 var(--section-y-sm);
+    text-align: center;
+    background: var(--gradient-page);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    max-width: 860px;
+  }
+
+  .page-hero-lead {
+    margin-top: var(--spacing-6);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+  }
+
+  .page-hero-lead :global(strong) {
+    color: var(--color-text-primary);
+  }
+
+  .page-hero-lead :global(p + p) {
+    margin-top: var(--spacing-3);
+  }
+</style>

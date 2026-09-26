@@ -10,13 +10,17 @@ interface Props {
 const { tags, activeTag, title = 'Sujets' } = Astro.props;
 ---
 
-<section class="tag-panel" aria-labelledby="tag-panel-title">
+<section class="surface tag-panel" aria-labelledby="tag-panel-title">
   <h2 id="tag-panel-title">{title}</h2>
   <div class="tag-cloud">
     {tags.map((tag) => (
-      <a class:list={["tag-chip", { active: tag.slug === activeTag }]} href={`/fr/posts/${tag.slug}/`}>
+      <a
+        class:list={['tag-chip', { active: tag.slug === activeTag }]}
+        href={`/fr/posts/${tag.slug}/`}
+        aria-current={tag.slug === activeTag ? 'page' : undefined}
+      >
         <span>{tag.name}</span>
-        <small>{tag.count}</small>
+        <span class="tag-count">{tag.count}</span>
       </a>
     ))}
   </div>
@@ -24,15 +28,11 @@ const { tags, activeTag, title = 'Sujets' } = Astro.props;
 
 <style>
   .tag-panel {
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid var(--color-slate-200);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
     padding: var(--spacing-6);
   }
 
   .tag-panel h2 {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     margin-bottom: var(--spacing-4);
   }
 
@@ -48,24 +48,29 @@ const { tags, activeTag, title = 'Sujets' } = Astro.props;
     gap: var(--spacing-2);
     color: var(--color-text-secondary);
     background: var(--color-slate-50);
-    border: 1px solid var(--color-slate-200);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
-    padding: 0.45rem 0.8rem;
+    padding: var(--spacing-1) var(--spacing-3);
     font-size: var(--font-size-sm);
     font-weight: 600;
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast), background var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .tag-count {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
   }
 
   .tag-chip:hover,
   .tag-chip.active {
-    color: white;
+    color: #fff;
     background: var(--color-blurple);
     border-color: var(--color-blurple);
-    transform: translateY(-1px);
   }
 
-  .tag-chip small {
-    opacity: 0.76;
-    font-size: var(--font-size-xs);
+  .tag-chip:hover .tag-count,
+  .tag-chip.active .tag-count {
+    color: rgb(255 255 255 / 0.85);
   }
 </style>

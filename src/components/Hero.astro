@@ -1,56 +1,46 @@
 ---
 import fr from '../i18n/fr.json';
+import Icon from './Icon.astro';
 const { hero } = fr;
 ---
 
 <section class="hero">
-  <div class="hero-container">
+  <div class="container hero-container">
     <div class="hero-content">
       <h1 class="hero-title">{hero.title}</h1>
       <p class="hero-subtitle">{hero.subtitle}</p>
       <div class="hero-cta-group">
-        <a href="https://app.consoalert.com/auth" class="hero-cta">
+        <a href="https://app.consoalert.com/auth" class="btn btn--primary btn--lg">
           {hero.cta}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="cta-arrow">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          <Icon name="arrow-right" class="btn-arrow" />
         </a>
         <p class="hero-micro">{hero.micro}</p>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual" aria-hidden="true">
       <div class="hero-card">
-        <div class="wattson-avatar">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="24" fill="url(#grad1)"/>
-            <path d="M16 24C16 24 18 18 24 18C30 18 32 24 32 24C32 24 30 30 24 30C18 30 16 24 16 24Z" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="24" cy="24" r="4" fill="white"/>
-            <circle cx="24" cy="24" r="2" fill="#4f46e5"/>
-            <defs>
-              <linearGradient id="grad1" x1="0" y1="0" x2="48" y2="48">
-                <stop stop-color="#6366f1"/>
-                <stop offset="1" stop-color="#4f46e5"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="stat-value" >Villa Tamaris</span>
+        <div class="hero-card-head">
+          <span class="wattson-avatar">
+            <Icon name="eye" />
+          </span>
+          <span class="property-name">Villa Tamaris</span>
         </div>
         <div class="alert-content">
-          <span class="alert-icon">⚡</span>
+          <span class="alert-icon"><Icon name="zap" /></span>
           <div class="alert-text">
             <span class="alert-title">Anomalie détectée</span>
-            <span class="alert-desc">Chauffage actif - Logement vide</span>
+            <span class="alert-desc">Chauffage actif, logement vide</span>
           </div>
-          <span class="alert-time">Il y a 2 min</span>
+          <span class="alert-time">Il y a 2&nbsp;min</span>
         </div>
         <div class="stats-row">
           <div class="stat">
-            <span class="stat-value">2.4 kWh</span>
-            <span class="stat-label">Sur-consommation</span>
+            <span class="stat-value">2,4&nbsp;kWh</span>
+            <span class="stat-label">Surconsommation</span>
           </div>
           <div class="stat">
-            <span class="stat-value stat-warning">0,5€ / 24h</span>
-            <span class="stat-label">Evaluation du risque</span>
+            <span class="stat-value stat-warning">0,50&nbsp;€/24&nbsp;h</span>
+            <span class="stat-label">Coût estimé</span>
           </div>
         </div>
       </div>
@@ -67,7 +57,7 @@ const { hero } = fr;
     min-height: 100svh;
     display: flex;
     align-items: center;
-    padding: var(--spacing-24) 0 var(--spacing-16);
+    padding: calc(var(--header-height) + var(--spacing-8)) 0 var(--spacing-16);
     overflow: hidden;
     background-image: url('/background_abstract-waves.jpg');
     background-image: image-set(
@@ -89,25 +79,21 @@ const { hero } = fr;
   .hero-container {
     position: relative;
     z-index: 1;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-6);
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--spacing-12);
     align-items: center;
   }
 
   @media (min-width: 1024px) {
     .hero-container {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--spacing-16);
     }
   }
 
   .hero-content {
-    animation: slideUp 0.8s ease-out forwards;
-    animation-delay: 0.2s;
-    opacity: 0;
+    animation: slideUp 0.8s ease-out 0.2s both;
   }
 
   .hero-title {
@@ -140,36 +126,6 @@ const { hero } = fr;
     align-items: flex-start;
   }
 
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: white;
-    background: var(--color-blurple);
-    padding: var(--spacing-4) var(--spacing-8);
-    border-radius: var(--radius-full);
-    transition: all var(--transition-normal);
-    box-shadow: 0 8px 24px rgba(99, 91, 255, 0.35);
-  }
-
-  .hero-cta:hover {
-    background: var(--color-blurple-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(99, 91, 255, 0.45);
-  }
-
-  .cta-arrow {
-    width: 20px;
-    height: 20px;
-    transition: transform var(--transition-fast);
-  }
-
-  .hero-cta:hover .cta-arrow {
-    transform: translateX(4px);
-  }
-
   .hero-micro {
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
@@ -178,29 +134,46 @@ const { hero } = fr;
   .hero-visual {
     display: flex;
     justify-content: center;
-    animation: slideUp 0.8s ease-out forwards;
-    animation-delay: 0.4s;
-    opacity: 0;
+    animation: slideUp 0.8s ease-out 0.4s both;
   }
 
   .hero-card {
-    background: white;
+    background: #fff;
     border-radius: var(--radius-2xl);
     padding: var(--spacing-6);
     box-shadow: var(--shadow-2xl);
-    border: 1px solid var(--color-slate-200);
+    border: 1px solid var(--color-border);
     width: 100%;
-    max-width: 360px;
+    max-width: 380px;
   }
 
-  .wattson-avatar {
+  .hero-card-head {
     display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
     margin-bottom: var(--spacing-4);
   }
 
-  .wattson-avatar svg {
-    width: 48px;
-    height: 48px;
+  .wattson-avatar {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-blurple);
+    color: #fff;
+  }
+
+  .wattson-avatar :global(svg) {
+    width: 22px;
+    height: 22px;
+  }
+
+  .property-name {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
   }
 
   .alert-content {
@@ -209,18 +182,32 @@ const { hero } = fr;
     gap: var(--spacing-3);
     padding: var(--spacing-4);
     background: var(--color-slate-50);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     margin-bottom: var(--spacing-4);
   }
 
   .alert-icon {
-    font-size: 24px;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--color-warning-50);
+    color: var(--color-text-warning);
+  }
+
+  .alert-icon :global(svg) {
+    width: 20px;
+    height: 20px;
   }
 
   .alert-text {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
   }
 
   .alert-title {
@@ -229,15 +216,16 @@ const { hero } = fr;
     color: var(--color-text-primary);
   }
 
-  .alert-desc {
+  .alert-desc,
+  .alert-time {
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
+    color: var(--color-text-muted);
   }
 
   .alert-time {
-    font-size: var(--font-size-xs);
-    color: var(--color-slate-400);
     margin-left: auto;
+    white-space: nowrap;
+    align-self: flex-start;
   }
 
   .stats-row {
@@ -249,6 +237,7 @@ const { hero } = fr;
   .stat {
     display: flex;
     flex-direction: column;
+    gap: 2px;
     padding: var(--spacing-4);
     background: var(--color-slate-50);
     border-radius: var(--radius-lg);
@@ -258,48 +247,36 @@ const { hero } = fr;
     font-size: var(--font-size-xl);
     font-weight: 700;
     color: var(--color-text-primary);
+    white-space: nowrap;
   }
 
   .stat-warning {
-    color: var(--color-warning-500);
+    color: var(--color-text-warning);
   }
 
   .stat-label {
     font-size: var(--font-size-xs);
-    color: var(--color-text-secondary);
-    margin-top: 2px;
+    color: var(--color-text-muted);
   }
 
   .hero-bg-gradient {
     position: absolute;
     inset: 0;
     z-index: 0;
-    /* White overlay on left (text side) fading to transparent — preserves readability */
+    /* Voile clair côté texte, transparent côté visuel. */
     background: linear-gradient(
       105deg,
-      rgba(246, 249, 252, 0.92) 0%,
-      rgba(246, 249, 252, 0.75) 35%,
-      rgba(246, 249, 252, 0.30) 60%,
-      rgba(246, 249, 252, 0.10) 100%
+      rgb(246 249 252 / 0.92) 0%,
+      rgb(246 249 252 / 0.75) 35%,
+      rgb(246 249 252 / 0.30) 60%,
+      rgb(246 249 252 / 0.10) 100%
     );
     pointer-events: none;
   }
 
   @media (max-width: 1023px) {
     .hero-bg-gradient {
-      /* On mobile (single column) cover more of the image */
-      background: rgba(246, 249, 252, 0.82);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+      background: rgb(246 249 252 / 0.82);
     }
   }
 </style>

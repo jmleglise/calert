@@ -2,6 +2,16 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const sections = [
+  { id: 'mentions', label: 'Mentions légales' },
+  { id: 'service', label: 'Le service' },
+  { id: 'responsabilite', label: 'Responsabilité et IA' },
+  { id: 'independance', label: "Indépendance vis-à-vis d'Enedis" },
+  { id: 'rgpd', label: 'Données personnelles (RGPD)' },
+  { id: 'contact', label: 'Contact' },
+];
 ---
 
 <Layout
@@ -13,49 +23,33 @@ import Footer from '../../components/Footer.astro';
 
 <Header />
 
-<main id="main" class="contact-page">
+<main id="main">
 
-  <section class="contact-hero">
+  <PageHero title="Mentions légales et" accent="conditions d'utilisation" />
+
+  <section class="section legal-page">
     <div class="container">
+      <div class="legal-layout">
 
-
-      <h1 class="contact-headline">
-        Mentions légales &<br />
-        <span class="headline-accent">Conditions d'utilisation</span>
-      </h1>
-
-
-    </div>
-  </section>
-
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-layout">
-
-        <aside class="legal-nav">
-          <div class="nav-card">
-            <h3>Sommaire</h3>
-            <ul>
-              <li><a href="#mentions">Mentions légales</a></li>
-              <li><a href="#service">Le service</a></li>
-              <li><a href="#responsabilite">Responsabilité & IA</a></li>
-              <li><a href="#independance">Indépendance vis-à-vis d'Enedis</a></li>
-              <li><a href="#rgpd">Données personnelles (RGPD)</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-        </aside>
+        <nav class="legal-nav surface" aria-labelledby="legal-nav-title">
+          <h2 id="legal-nav-title" class="legal-nav-title">Sommaire</h2>
+          <ul>
+            {sections.map((section) => (
+              <li><a href={`#${section.id}`}>{section.label}</a></li>
+            ))}
+          </ul>
+        </nav>
 
         <article class="legal-content">
 
-          <section class="legal-card" id="mentions">
+          <section class="surface legal-card" id="mentions">
             <h2>Mentions légales</h2>
             <p>
               Le présent site internet est édité sous le nom
-              <strong>ConsoAlert.com</strong>
+              <strong>ConsoAlert.com</strong>.
               {/*  par la société
               <strong>TFIG</strong>
-                  */}        
+                  */}
             </p>
             <p>
               ConsoAlert est un service en ligne permettant d'analyser les
@@ -66,20 +60,19 @@ import Footer from '../../components/Footer.astro';
             </p>
             <p>
               Les données traitées par le service sont hébergées exclusivement
-              au sein de centres de données situés dans l'Union Européenne.
+              au sein de centres de données situés dans l'Union européenne.
             </p>
-
           </section>
 
-          <section class="legal-card" id="service">
+          <section class="surface legal-card" id="service">
             <h2>Le service</h2>
             <p>
-              ConsoAlert est actuellement proposé gratuitement. 
-              Cette gratuité n'engage pas ConsoAlert pour l'avenir. 
+              ConsoAlert est actuellement proposé gratuitement.
+              Cette gratuité n'engage pas ConsoAlert pour l'avenir.
               Le service pourra évoluer, devenir partiellement ou totalement payant, être enrichi, limité ou interrompu à tout moment.
             </p>
             <p>
-              L'utilisation du service est entièrement facultative. 
+              L'utilisation du service est entièrement facultative.
               Aucun utilisateur n'a l'obligation d'utiliser ConsoAlert, tout comme ConsoAlert n'a aucune obligation de maintenir le service pour une durée déterminée. Il n'existe entre l'utilisateur et ConsoAlert aucune relation contractuelle de durée.
             </p>
             <p>
@@ -93,10 +86,10 @@ import Footer from '../../components/Footer.astro';
             </p>
           </section>
 
-          <section class="legal-card" id="responsabilite">
-            <h2>Responsabilité & Algorithmes</h2>
+          <section class="surface legal-card" id="responsabilite">
+            <h2>Responsabilité et algorithmes</h2>
             <p>
-              ConsoAlert est un outil d'assistance et de vigilance. 
+              ConsoAlert est un outil d'assistance et de vigilance.
               Il ne remplace en aucun cas votre propre vigilance, les vérifications physiques sur place, ni les contrôles réguliers devant être réalisés par les propriétaires, les gestionnaires, les conciergeries ou tout autre intervenant.
             </p>
             <p>
@@ -109,17 +102,17 @@ import Footer from '../../components/Footer.astro';
               <strong>Toutes les décisions prises à partir des données ou des alertes fournies par ConsoAlert demeurent sous la seule et unique responsabilité de l'utilisateur.</strong>
             </p>
             <p>
-              Le service est fourni strictement <strong>« en l'état »</strong>, sans aucune garantie de disponibilité, de continuité, d'exactitude, d'exhaustivité, de fiabilité ni de résultat de détection.
+              Le service est fourni strictement <strong>«&nbsp;en l'état&nbsp;»</strong>, sans aucune garantie de disponibilité, de continuité, d'exactitude, d'exhaustivité, de fiabilité ni de résultat de détection.
             </p>
             <p>
               Dans toute la mesure autorisée par la législation applicable, la responsabilité de ConsoAlert est limitée au maximum. ConsoAlert ne pourra être tenu responsable des pertes, dommages, préjudices matériels ou immatériels, consommations électriques inhabituelles, surcharges de factures, dysfonctionnements d'appareils, fraudes, occupations illégales, économies non réalisées, pertes financières, pertes d'exploitation, ou de toute décision prise par l'utilisateur résultant directement ou indirectement de l'utilisation, de la mauvaise utilisation ou de l'indisponibilité du service.
             </p>
           </section>
 
-          <section class="legal-card" id="independance">
+          <section class="surface legal-card" id="independance">
             <h2>Indépendance vis-à-vis d'Enedis</h2>
             <p>
-              ConsoAlert est un service totalement indépendant. 
+              ConsoAlert est un service totalement indépendant.
               ConsoAlert n'est ni édité, ni exploité, ni partenaire, ni recommandé, ni validé par la société Enedis.
             </p>
             <p>
@@ -130,46 +123,45 @@ import Footer from '../../components/Footer.astro';
             </p>
           </section>
 
-          <section class="legal-card" id="rgpd">
+          <section class="surface legal-card" id="rgpd">
             <h2>Protection des données (RGPD)</h2>
             <p>
               Notre politique est simple, sobre et transparente :
             </p>
             <ul>
               <li>
-                <strong>Hébergement :</strong> Toutes les données stockées par ConsoAlert sont hébergées à Zurich - Suisse. A noter que le site ne produit pas de données. Les données sont obtenues de partenaires tiers et sont analysées en temps réel pour déclencher des communications. Le résultat des calculs n'est pas stocké. 
+                <strong>Hébergement :</strong> toutes les données stockées par ConsoAlert sont hébergées à Zurich (Suisse). À noter que le site ne produit pas de données. Les données sont obtenues de partenaires tiers et sont analysées en temps réel pour déclencher des communications. Le résultat des calculs n'est pas stocké.
               </li>
               <li>
-                <strong>Zéro cookie de suivi :</strong> Ce site internet n'utilise aucun cookie de suivi publicitaire, aucun outil de ciblage, ni aucun tracker comportemental. 
+                <strong>Zéro cookie de suivi :</strong> ce site internet n'utilise aucun cookie de suivi publicitaire, aucun outil de ciblage, ni aucun tracker comportemental.
               </li>
               <li>
-                <strong>Emails transactionnels uniquement :</strong> Votre adresse email est collectée uniquement pour les besoins stricts du service (création de compte, alertes de consommation configurées par vos soins, réinitialisation de mot de passe). Vous ne recevrez aucune newsletter publicitaire ni aucune sollicitation commerciale de notre part.
+                <strong>E-mails transactionnels uniquement :</strong> votre adresse e-mail est collectée uniquement pour les besoins stricts du service (création de compte, alertes de consommation configurées par vos soins, réinitialisation de mot de passe). Vous ne recevrez aucune newsletter publicitaire ni aucune sollicitation commerciale de notre part.
               </li>
               <li>
-                <strong>Droit à l'effacement définitif :</strong> Conformément au RGPD, vous disposez d'un droit de rectification et d'effacement de vos données. Les seules données détenues par ConsoAlert sont accessibles sur la page profil. Si vous décidez de supprimer votre compte ConsoAlert, cette action entraîne la <strong>suppression définitive, immédiate et totalement irréversible</strong> de l'intégralité de vos informations personnelles et de vos historiques de consommation de nos bases de données. Aucun historique n'est conservé.
+                <strong>Droit à l'effacement définitif :</strong> conformément au RGPD, vous disposez d'un droit de rectification et d'effacement de vos données. Les seules données détenues par ConsoAlert sont accessibles sur la page profil. Si vous décidez de supprimer votre compte ConsoAlert, cette action entraîne la <strong>suppression définitive, immédiate et totalement irréversible</strong> de l'intégralité de vos informations personnelles et de vos historiques de consommation de nos bases de données. Aucun historique n'est conservé.
               </li>
             </ul>
           </section>
 
-          <section class="legal-card" id="contact">
+          <section class="surface legal-card" id="contact">
             <h2>Contact</h2>
             <p>
               Pour toute question relative aux présentes informations, à l'exercice de vos droits RGPD ou au fonctionnement général du service, vous pouvez contacter ConsoAlert à l'adresse suivante :
             </p>
 
-            <div class="legal-email">
-              <span class="email-part">legal</span>
+            <!-- Adresse découpée pour limiter la collecte automatique. -->
+            <p class="legal-email">
+              <span>legal</span>
               <svg viewBox="0 0 24 24" class="mail-icon" aria-hidden="true">
-                <text x="0" y="18" font-size="20" font-family="sans-serif" fill="currentColor">@</text>
+                <text x="0" y="18" font-size="20" fill="currentColor">@</text>
               </svg>
-              <span class="email-part">consoalert</span>
+              <span>consoalert</span>
               <svg viewBox="0 0 8 8" class="dot-icon" aria-hidden="true">
                 <circle cx="4" cy="5" r="1.5" fill="currentColor"/>
               </svg>
-              <span class="email-part">com</span>
-            </div>
-
-
+              <span>com</span>
+            </p>
           </section>
 
         </article>
@@ -184,222 +176,126 @@ import Footer from '../../components/Footer.astro';
 </Layout>
 
 <style>
-  .contact-page {
-    padding-top: 72px;
-  }
-
-  /* ── HERO ── */
-  .contact-hero {
-    padding: var(--spacing-24) 0 var(--spacing-16);
-    text-align: center;
-    background: linear-gradient(180deg, #edf8ff 0%, var(--color-body-bg) 100%);
-    border-bottom: 1px solid var(--color-slate-200);
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
-    border: 1px solid var(--color-slate-200);
-    color: var(--color-text-secondary);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 6px 16px;
-    border-radius: var(--radius-full);
-    margin-bottom: var(--spacing-8);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-blurple);
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .contact-headline {
-    font-size: var(--font-size-page-title);
-    font-weight: 700;
-    color: var(--color-text-primary);
-    letter-spacing: var(--tracking-title);
-    line-height: 1.12;
-    margin-bottom: var(--spacing-6);
-  }
-
-  .headline-accent {
-    background: linear-gradient(135deg, #0ea5e9 0%, #635BFF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .contact-sub {
-    font-size: var(--font-size-lg);
-    color: var(--color-text-secondary);
-    line-height: var(--line-height-relaxed);
-    max-width: 600px;
-    margin: 0 auto var(--spacing-10);
-  }
-
-  /* ── CONTACT SECTION & LAYOUT ── */
-  .contact-section {
-    padding: var(--spacing-16) 0 var(--spacing-24);
-  }
-
-  .contact-layout {
+  .legal-layout {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-12);
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--spacing-8);
     align-items: start;
   }
 
   @media (min-width: 960px) {
-    .contact-layout {
-      grid-template-columns: 340px 1fr;
-      gap: var(--spacing-16);
+    .legal-layout {
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: var(--spacing-12);
+    }
+
+    /* Sticky seulement en deux colonnes : en une colonne, le sommaire
+       recouvrait le contenu pendant le défilement. */
+    .legal-nav {
+      position: sticky;
+      top: calc(var(--header-height) + var(--spacing-6));
     }
   }
 
-  /* ── SOMMAIRE NAV ── */
   .legal-nav {
-    position: sticky;
-    top: 100px;
-  }
-
-  .nav-card {
-    background: white;
     padding: var(--spacing-6);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-slate-200);
-    box-shadow: var(--shadow-sm);
   }
 
-  .nav-card h3 {
-    font-size: 16px;
+  .legal-nav-title {
+    font-size: var(--font-size-base);
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-4);
-    padding-left: var(--spacing-2);
+    margin-bottom: var(--spacing-3);
+    padding-left: var(--spacing-3);
   }
 
-  .nav-card ul {
+  .legal-nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
   }
 
-  .nav-card li a {
+  .legal-nav a {
     display: block;
     padding: var(--spacing-2) var(--spacing-3);
     color: var(--color-text-secondary);
-    text-decoration: none;
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     border-radius: var(--radius-md);
-    transition: all 0.2s ease;
+    transition: background var(--transition-fast), color var(--transition-fast);
   }
 
-  .nav-card li a:hover {
+  .legal-nav a:hover {
     background: var(--color-slate-50);
-    color: var(--color-blurple);
+    color: var(--color-text-link);
   }
 
-  /* ── CONTENT CARDS ── */
   .legal-content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-8);
+    gap: var(--spacing-6);
   }
 
   .legal-card {
-    background: white;
-    padding: var(--spacing-8);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-slate-200);
-    box-shadow: var(--shadow-sm);
+    padding: clamp(var(--spacing-6), 4vw, var(--spacing-8));
   }
 
   .legal-card h2 {
-    font-size: 24px;
+    font-size: var(--font-size-2xl);
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: var(--spacing-4);
     letter-spacing: -0.02em;
   }
 
-  .legal-card p {
-    font-size: 15px;
+  .legal-card p,
+  .legal-card li {
     color: var(--color-text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-4);
+    line-height: var(--line-height-relaxed);
+    max-width: var(--measure);
   }
 
-  .legal-card p:last-child {
-    margin-bottom: 0;
+  .legal-card p + p,
+  .legal-card ul {
+    margin-top: var(--spacing-4);
   }
 
   .legal-card ul {
     padding-left: var(--spacing-5);
-    margin-bottom: var(--spacing-4);
   }
 
-  .legal-card li {
-    font-size: 15px;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-2);
+  .legal-card li + li {
+    margin-top: var(--spacing-2);
   }
 
   .legal-card strong {
     color: var(--color-text-primary);
   }
 
-  .muted {
-    font-size: 13px !important;
-    color: var(--color-text-muted) !important;
-    font-style: italic;
-  }
-
-  /* ── EMAIL OBFUSCATION SYSTEM (FIXED SVG SIZE) ── */
+  /* ── Adresse e-mail obfusquée ── */
   .legal-email {
     display: inline-flex;
     align-items: center;
+    margin-top: var(--spacing-4);
     background: var(--color-slate-50);
-    padding: 6px 14px;
+    padding: var(--spacing-2) var(--spacing-4);
     border-radius: var(--radius-md);
-    border: 1px solid var(--color-slate-200);
-    font-family: var(--font-sans, system-ui, sans-serif);
-    font-size: 16px;
+    border: 1px solid var(--color-border);
     font-weight: 500;
     color: var(--color-text-primary);
-    user-select: none; /* Rend la capture automatique de texte plus ardue */
+    user-select: none;
   }
 
-  .email-part {
-    line-height: 1;
+  .legal-card .legal-email {
+    color: var(--color-text-primary);
   }
 
-  /* Les SVGs héritent maintenant exactement de la hauteur de ligne du texte (1em) */
   .mail-icon {
     height: 1em;
     width: auto;
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--color-text-primary);
     margin: 0 1px;
+    font-family: inherit;
   }
 
   .dot-icon {
     height: 1em;
-    width: 0.4em; /* Plus étroit pour correspondre à un simple point structurel */
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--color-text-primary);
+    width: 0.4em;
   }
 </style>

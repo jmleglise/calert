@@ -134,19 +134,11 @@ const {
 </html>
 
 <style is:global>
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    overflow-x: hidden;
-  }
-
   .skip-link {
     position: absolute;
     left: var(--spacing-4);
     top: calc(-1 * var(--spacing-20));
-    z-index: 200;
+    z-index: 300;
     padding: var(--spacing-3) var(--spacing-5);
     border-radius: var(--radius-md);
     background: var(--color-blurple);
@@ -158,28 +150,6 @@ const {
 
   .skip-link:focus-visible {
     top: var(--spacing-4);
-  }
-
-  /* Modal overlay styles */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(8px);
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition-normal), visibility var(--transition-normal);
-  }
-
-  .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Prevent body scroll when modal is open */
-  body.modal-open {
-    overflow: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
