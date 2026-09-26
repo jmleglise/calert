@@ -2,6 +2,11 @@
 import fr from '../i18n/fr.json';
 import Icon from './Icon.astro';
 const { cards } = fr;
+
+// Cartes masquées : "hidden": true dans fr.json (le JSON n'accepte pas de
+// commentaire). Retirer la clé pour réafficher la carte et sa modale.
+// Carte masquée actuellement : multi-logements.
+const items = cards.items.filter((card) => !('hidden' in card && card.hidden));
 ---
 
 <section class="section cards-section" id="features">
@@ -12,7 +17,7 @@ const { cards } = fr;
     </div>
 
     <div class="cards-grid">
-      {cards.items.map((card) => (
+      {items.map((card) => (
         <article class="card" data-card={card.id}>
           <div class="card-top">
             <h3 class="card-title">{card.cardTitle}</h3>
@@ -38,7 +43,7 @@ const { cards } = fr;
 </section>
 
 <!-- Modales -->
-{cards.items.map((card) => (
+{items.map((card) => (
   <div class="modal-overlay" data-modal={card.id} id={`modal-${card.id}`}>
     <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby={`modal-title-${card.id}`}>
 
@@ -140,7 +145,6 @@ const { cards } = fr;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 'top' 'visual' 'more';
-    min-height: 480px;
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
     background: #fff;
@@ -162,7 +166,7 @@ const { cards } = fr;
   @media (min-width: 768px) and (max-width: 1023px) {
     .card:last-child:nth-child(odd) {
       grid-column: 1 / -1;
-      min-height: 320px;
+      min-height: 300px;
       grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
       grid-template-rows: 1fr auto;
       grid-template-areas: 'top visual' 'more visual';
@@ -182,7 +186,7 @@ const { cards } = fr;
   @media (min-width: 1024px) {
     .card:last-child:nth-child(3n + 1) {
       grid-column: 1 / -1;
-      min-height: 320px;
+      min-height: 300px;
       grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
       grid-template-rows: 1fr auto;
       grid-template-areas: 'top visual' 'more visual';
@@ -244,7 +248,7 @@ const { cards } = fr;
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    padding: var(--spacing-4) var(--spacing-8) var(--spacing-6);
+    padding: var(--spacing-3) var(--spacing-8) var(--spacing-6);
     font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--color-text-link);
@@ -261,11 +265,14 @@ const { cards } = fr;
   }
 
   /* ────────────────── VISUELS ────────────────── */
+  /* Zone d'illustration de hauteur commune : les visuels sont dimensionnés
+     pour la remplir, centrés verticalement. */
   .card-visual {
     grid-area: visual;
     position: relative;
     overflow: hidden;
-    margin-top: var(--spacing-6);
+    margin-top: var(--spacing-4);
+    min-height: 216px;
     display: flex;
     flex-direction: column;
   }
@@ -282,8 +289,8 @@ const { cards } = fr;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: var(--spacing-5) var(--spacing-8) var(--spacing-6);
+    justify-content: center;
+    padding: var(--spacing-4) var(--spacing-8) var(--spacing-5);
   }
 
   /* Libellé discret en capitales, commun à plusieurs visuels. */
@@ -304,7 +311,7 @@ const { cards } = fr;
     display: flex;
     align-items: flex-end;
     gap: var(--spacing-2);
-    height: 140px;
+    height: 110px;
     margin-bottom: var(--spacing-2);
   }
 
@@ -416,7 +423,7 @@ const { cards } = fr;
     display: flex;
     align-items: flex-end;
     gap: 5px;
-    height: 100px;
+    height: 72px;
   }
 
   .ev-slot {
@@ -444,7 +451,7 @@ const { cards } = fr;
     background: #dcfce7;
     border: 1px solid #bbf7d0;
     border-radius: var(--radius-md);
-    padding: var(--spacing-3) var(--spacing-4);
+    padding: var(--spacing-2) var(--spacing-4);
   }
 
   .ev-cost-value {
@@ -466,7 +473,7 @@ const { cards } = fr;
     gap: var(--spacing-3);
   }
 
-  .clim-gauge svg { width: 200px; height: 110px; }
+  .clim-gauge svg { width: 180px; height: 99px; }
 
   .clim-stats {
     display: flex;
@@ -501,7 +508,7 @@ const { cards } = fr;
   }
 
   .mining-line {
-    height: 100px;
+    height: 90px;
     overflow: hidden;
   }
 
@@ -547,7 +554,7 @@ const { cards } = fr;
   .fault-bg { background: linear-gradient(160deg, var(--color-error-50) 0%, #fff 60%); }
 
   .fault-signal {
-    height: 80px;
+    height: 48px;
     overflow: hidden;
   }
 
@@ -595,21 +602,21 @@ const { cards } = fr;
   .steps-bg { background: linear-gradient(160deg, var(--color-primary-50) 0%, #fff 60%); }
 
   .visual-steps .steps-content {
-    gap: var(--spacing-5);
+    gap: var(--spacing-3);
   }
 
   .steps-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-3);
+    gap: var(--spacing-2);
   }
 
   .step {
     display: flex;
     align-items: center;
     gap: var(--spacing-3);
-    padding: var(--spacing-3);
+    padding: var(--spacing-2) var(--spacing-3);
     background: #fff;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -661,21 +668,6 @@ const { cards } = fr;
   .step-sub {
     font-size: var(--font-size-xs);
     color: var(--color-text-muted);
-  }
-
-  .steps-timer {
-    display: inline-flex;
-    align-self: flex-start;
-    align-items: center;
-    gap: var(--spacing-2);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: var(--color-text-link);
-  }
-
-  .steps-timer svg {
-    width: 16px;
-    height: 16px;
   }
 
   /* ── Calendriers ── */
