@@ -41,7 +41,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Comment ConsoAlert sait-il si un logement est occupé ou vacant ?',
     answer:
-      "Lorsque l'utilisateur synchronise ses calendriers de réservation, ConsoAlert peut utiliser ces périodes comme contexte d'analyse. Cela permet à Wattson de distinguer plus facilement une consommation normale pendant une occupation d'une consommation inhabituelle lorsque le logement est censé être vide.",
+      "Wattson comprend le comportement du bien grâce à son historique et voit l'alternance de périodes vacantes / occupées. Mais Wattson sera encore plus pertinent si vous lui apportez des calendriers de réservation (Airbnb, Abritel, Google…).",
   },
   {
     question: 'Que se passe-t-il si l’autorisation d’accès aux données Linky expire ?',
