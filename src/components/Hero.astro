@@ -39,7 +39,7 @@ const { hero } = fr;
             <span class="stat-label">Surconsommation</span>
           </div>
           <div class="stat">
-            <span class="stat-value stat-warning">0,50&nbsp;€/24&nbsp;h</span>
+            <span class="stat-value stat-warning">0,5€/24h</span>
             <span class="stat-label">Coût estimé</span>
           </div>
         </div>
@@ -140,11 +140,17 @@ const { hero } = fr;
   .hero-card {
     background: #fff;
     border-radius: var(--radius-2xl);
-    padding: var(--spacing-6);
+    padding: var(--spacing-4);
     box-shadow: var(--shadow-2xl);
     border: 1px solid var(--color-border);
     width: 100%;
     max-width: 380px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-card {
+      padding: var(--spacing-6);
+    }
   }
 
   .hero-card-head {
